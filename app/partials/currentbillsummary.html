@@ -1,0 +1,50 @@
+<div class="col-sm-6 col-md-12 col-no-gutter">
+    <p data-ui="overdue" class="overdue"></p>
+    <h3 id="responsive_h3" class="bigtext"><span data-ui="currentBalance" class="bigtext-line0"><sup
+            class="currency">$</sup>0.00</span></h3>
+    <p class="due-date">Due: <span data-ui="dueDate">May 2, 2016</span></p>
+    <span class="hidden" data-ui="selectedAcctValue" id="selectedAcctId">5383990830</span>
+    <span class="hidden" data-ui="showPromoBox" id="showPromoBoxId">false</span>
+    <a class="btn btn-primary" href="payBillFromOverview.req" data-ui="payNowButton"
+       data-modal="[data-ui=&quot;payNowWarningModal&quot;]" onmouseover="this.style.color=&quot;#a11011&quot;"
+       onmouseout="this.style.color=&quot;#ffffff&quot;" onclick="virtualTitlePay()" style="color: rgb(255, 255, 255);">Pay
+        Now</a>
+    <!--<p class="payment-info">Last Payment of <span data-ui="lastPaymentAmt"></span> paid on <br class="visible-sm"><span data-ui="lastPaymentDate"></span></p>-->
+    <p id="nextScheduledPaymentDateInfo" class="payment-info hidden" paymentinfo="paymentDetails">Payment of <span
+            data-ui="nextSchedPaymentAmt"><sup class="currency">$</sup>0.00</span> <span id="nextSchedStatus"
+                                                                                         data-ui="nextSchedStatus">null</span>
+        <span data-ui="nextSchedPaymentDate"> for <br class="visible-sm"><span>January 1, 1970</span></span></p>
+
+    <p id="lastPaymentDateInfo" class="payment-info" paymentinfo="paymentDetails">Last Payment of <span
+            data-ui="lastPaymentAmt"><sup class="currency">$</sup>78.75</span><span
+            data-ui="lastPaymentDate"> paid on <br class="visible-sm"><span>May 2, 2016</span></span></p>
+
+    <span class="hidden" data-ui="hasManySchedPayments" id="hasManySchedPayments">0</span>
+    <div id="paymentSched-div" class="visible-sm visible-md visible-lg">
+        <p id="singlePaymentSched" paymentinfo="paymentDetails" class="hidden"><a
+                href="/oam/user/currentebill.req#paymentSchedSection">Payment Schedule</a></p>
+        <p style="width:70%;" id="muliplePaymentSched" paymentinfo="paymentDetails" class="hidden">Multiple payments are
+            scheduled - <a href="/oam/user/currentebill.req#paymentSchedSection">View details</a></p>
+        <p id="noPaymentSchedule" paymentinfo="paymentDetails" class=""><a href="/oam/user/currentebill.req">Current
+            Bill</a></p>
+    </div>
+    <div id="paymentSched-div" class="visible-xs">
+        <p id="singlePaymentSchedMobile" paymentinfo="paymentDetails" class="hidden"><a
+                href="/oam/user/currentebill.req#paymentSchedSectionMobile">Payment Schedule</a></p>
+        <p style="width:58%;" id="muliplePaymentSchedMobile" paymentinfo="paymentDetails" class="hidden">Multiple
+            payments are scheduled - <a href="/oam/user/currentebill.req#paymentSchedSectionMobile">View details</a></p>
+        <p id="noPaymentScheduleMobile" paymentinfo="paymentDetails" class=""><a
+                href="/oam/user/currentebill.req#summaryOfStatementMobile">Current Bill</a></p>
+    </div>
+    <ul class="bill-links visible-xs list-unstyled">
+        <li><a href="/oam/user/currentebill.req#billHistoryListMobile">View Bill History</a></li>
+    </ul>
+</div>
+<div class="bill-programs col-sm-6 col-md-12 clearfix">
+    <h4>Program Opportunities</h4>
+    <div data-ui="programsList">
+        <div class="col-md-12 stacked col-xs-12 program">
+            <div class="program-element"><a href="/oam/user/ampProgramDetails.req">Averaged Monthly Payment</a></div>
+        </div>
+    </div>
+</div>

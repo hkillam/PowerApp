@@ -1,20 +1,15 @@
 /**
  * Created by Heather Killam on 2016-05-19.
  */
+'use strict';
 
-var powerappControllers = angular.module('powerappControllers', []);
+var powerApp = angular.module('powerApp', []);
 
-powerappControllers.controller('MeterListCtrl', ['$scope', '$http',
-    function ($scope, $http) {
-//        $http.get('meters/meters.json').success(function(data) {
-//            $scope.phones = data;
-//        });
+powerApp.controller('PhoneListCtrl', function ($scope, $http) {
+    $http.get('phones/phones.json').success(function(data) {
+        $scope.phones = data;
+    });
 
-        $scope.meters = 'this should be json data';
-        $scope.orderProp = 'age';
-    }]);
+    $scope.orderProp = 'age';
+});
 
-powerappControllers.controller('MeterDetailCtrl', ['$scope', '$routeParams',
-    function($scope, $routeParams) {
-        $scope.meterId = $routeParams.meterId;
-    }]);

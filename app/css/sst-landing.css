@@ -1,0 +1,59 @@
+/* mimic the css generated in the real application */
+
+.section-header {
+    font-size: 35px;
+    font-size: 2.1875rem;
+    font-family: "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+
+.section-header.section-header-billing {
+    padding-bottom: 10px;
+    border-bottom: solid 20px #0093b4;
+    position: relative;
+    font-family: "museo_sans100", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.section-header.section-header-energy {
+    padding-bottom: 10px;
+    border-bottom: solid 20px #799d4b;
+    position: relative;
+    font-family: "museo_sans100", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.section-header.section-header-billing:after {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    border: 15px solid transparent;
+    border-top-color: #fff;
+    bottom: -30px;
+    left: 50%;
+    margin-left: -15px;
+}
+
+.section-header.section-header-energy:after {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    border: 15px solid transparent;
+    border-top-color: #fff;
+    bottom: -30px;
+    left: 50%;
+    margin-left: -15px;
+}
+
+@media (min-width: 480px) {
+    .bill-summary-block .pay-now {
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .bill-summary-block .pay-now {
+        background-color: #f0f0f0;
+        margin-bottom: 20px;
+    }
+}
