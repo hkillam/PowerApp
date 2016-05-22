@@ -1,22 +1,32 @@
+
+'use strict';
+
+/* App Module */
+
 var powerApp = angular.module('powerApp', [
     'ngRoute',
-    'powerappControllers'
+    'powerControllers'
 ]);
 
-
 powerApp.config(['$routeProvider',
-    function ($routeProvider) {
-        $routeProvider.when('/meters', {
+    function($routeProvider) {
+        $routeProvider.
+        when('/clientAccount', {
+            templateUrl: 'partials/clientAccounts.html',
+            controller: 'ClientAccountsCtrl'
+        }).
+        when('/clientAccount/:meterId', {
             templateUrl: 'partials/currentbillsummary.html',
-            controller: 'MeterListCtrl'
-        }).when('/meters/:meterId', {
-            templateUrl: 'partials/currentbillsummary.html',
-            controller: 'MeterDetailCtrl'
-        }).otherwise({
-            redirectTo: '/meters'
+            controller: 'AccountDetailCtrl'
+        }).
+        when('/sample', {
+            templateUrl: 'partials/sample.html',
+            controller: 'AccountDetailCtrl'
+        }).
+        otherwise({
+            redirectTo: '/clientAccount'
         });
     }]);
-
 
 
 
