@@ -10,6 +10,13 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http',
             $scope.phones = data;
         });
 
+        $scope.template = {
+            "home": "partials/home.html",
+            "about": "partials/aboutus.html",
+            "contact": "partials/contactus.html",
+            "currentbill": "partials/currentbillsummary.html"
+        };
+
         $scope.orderProp = 'age';
     }]);
 

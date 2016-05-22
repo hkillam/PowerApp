@@ -11,8 +11,8 @@ var powerApp = angular.module('powerApp', [
 powerApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/clientAccount', {
-            templateUrl: 'partials/clientAccounts.html',
+        when('/', {
+            templateUrl: 'templates/clientAccounts.html',
             controller: 'ClientAccountsCtrl'
         }).
         when('/clientAccount/:meterId', {
@@ -24,7 +24,7 @@ powerApp.config(['$routeProvider',
             controller: 'AccountDetailCtrl'
         }).
         otherwise({
-            redirectTo: '/clientAccount'
+            redirectTo: '/'
         });
     }]);
 

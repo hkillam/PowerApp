@@ -7,18 +7,21 @@
                 <input type="text" ng-model="yourName" placeholder="Enter a name here">
                 <hr>
                 <h1>Hello {{yourName}}!</h1>
-                <div>
-                    <ul>
-                        <li ng-repeat="phone in phones">
-                            <span><a href="/phones/{{phone.age}}">{{phone.name}}</a></span>
+                <div ng-include="template.currentbill"></div>
 
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
         <!--	    <div class="col-md-4 pay-now "> <div w3-include-html="/samplebillsummary.html"></div> </div> -->
-        <div class="col-md-8">include this thingy here<div ng-include="'#/sample'"></div><img class="img-responsive" src="images/billtrend.png"></div>
+        <div class="col-md-8"><img class="img-responsive" src="images/billtrend.png">
+            <div>
+                <ul>
+                    <li ng-repeat="phone in phones">
+                        <span><a href="#/clientAccount/{{phone.age}}">{{phone.name}}</a></span>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>  <!--       bill-summary-block -->
 <h2 class="section-header section-header-energy">Energy Summary</h2>
