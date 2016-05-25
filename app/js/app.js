@@ -3,7 +3,6 @@
 
 /* App Module */
 
-
 var powerApp = angular.module('powerApp', [
     'ngRoute',
     'powerControllers'
