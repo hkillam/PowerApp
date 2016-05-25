@@ -6,9 +6,15 @@ var powerControllers = angular.module('powerControllers', []);
 
 powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http',
     function($scope, $http) {
-        $http.get('phones/phones.json').success(function(data) {
+
+        $http.get('http://powerstub.killamsolutions.ca/oam/user/getJsonAccountOverview.php?account=6348558270').success(function (data) {
+            $scope.accountOverview = data;
+        });
+
+        $http.get('phones/phones.json').success(function (data) {
             $scope.phones = data;
         });
+
 
         $scope.template = {
             "home": "partials/home.html",
@@ -16,9 +22,8 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http',
             "contact": "partials/contactus.html",
             "currentbill": "partials/currentbillsummary.html",
             "topbar": "partials/topbar.html",
-            "accountmenu": "partials/accountmenu.html",
+            "accountmenu": "partials/accountmenu.html"
         };
-
         $scope.orderProp = 'age';
     }]);
 
@@ -26,3 +31,5 @@ powerControllers.controller('AccountDetailCtrl', ['$scope', '$routeParams',
     function($scope, $routeParams) {
         $scope.meterId = $routeParams.meterId;
     }]);
+
+

@@ -1,0 +1,317 @@
+#outage-alert.alert {
+    position: relative;
+    color: #3a3a3a;
+    background-color: #d87b28;
+    padding: 2px 0;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 0px;
+}
+
+@media only screen and (min-width: 768px) {
+    #outage-alert.alert {
+        padding: 4px 0;
+        top: 0px !important;
+    }
+}
+
+#outage-alert.alert a {
+    color: white
+}
+
+#outage-alert.alert.is-open {
+    background-color: #d87b28;
+    padding-top: 10px;
+    padding-top: 0.625rem;
+    padding-bottom: 10px;
+    padding-bottom: 0.625rem
+}
+
+@media only screen and (max-width: 767px) {
+    #outage-alert.alert.is-open {
+        padding-top: 5px;
+        padding-top: 0.3125rem;
+        padding-bottom: 5px;
+        padding-bottom: 0.3125rem
+    }
+}
+
+.alert__inner {
+    *zoom: 1;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1440px
+}
+
+.alert__inner:before,
+.alert__inner:after {
+    display: table;
+    content: ""
+}
+
+.alert__inner:after {
+    clear: both
+}
+
+@media only screen and (max-width: 767px) {
+    #outage-alert.alert {
+        top: 95px;
+    }
+
+    .alert__inner {
+        padding-right: 15%;
+        padding-left: 15%
+    }
+}
+
+.is-open .alert__inner {
+    padding-right: 100px;
+    padding-right: 6.25rem;
+    padding-left: 20px;
+    padding-left: 1.25rem
+}
+
+@media only screen and (min-width: 1173px) {
+    .is-open .alert__inner {
+        padding-left: 60px;
+        padding-left: 3.75rem
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .is-open .alert__inner {
+        padding-right: 15%
+    }
+}
+
+.alert__head {
+    padding: 6px 0 8px 43px;
+    text-shadow: 0 3px 0 #e29100;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+    background: url("../images/icon-outage.svg") no-repeat transparent center center;
+    text-align: center
+}
+
+.no-svg .alert__head {
+    background-image: url("../images/icon-outage.png")
+}
+
+.is-open .alert__head {
+    text-align: left;
+    padding: 6px 0 8px 43px;
+    background-position: 0% 50%
+}
+
+@media only screen and (max-width: 767px) {
+    .alert__head {
+        background-size: 20px;
+        padding-top: 4px;
+        text-decoration: underline;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        margin-bottom: 0;
+        padding: 2px 0 2px 43px
+    }
+
+    .alert__head:hover {
+        text-decoration: none
+    }
+
+    .is-open .alert__head {
+        padding: 6px 0 8px 43px
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .alert__head {
+        line-height: 1;
+        margin-right: 20px;
+        margin-right: 1.25rem
+    }
+
+    .is-open .alert__head {
+        float: left
+    }
+}
+
+.alert__head-title {
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1;
+    text-align: left;
+    margin: 0;
+    padding-top: 0;
+    opacity: 0
+}
+
+@media only screen and (max-width: 767px) {
+    .alert__head-title {
+        font-size: 16px
+    }
+}
+
+.is-open .alert__head-title {
+    opacity: 1
+}
+
+.alert__body {
+    position: absolute;
+    display: inline-block;
+    top: -20em;
+    opacity: 0;
+    -moz-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    -webkit-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease
+}
+
+@media only screen and (min-width: 768px) {
+    .alert__body {
+        overflow: hidden;
+        padding-top: 6px
+    }
+}
+
+.is-open .alert__body {
+    position: static;
+    top: 0;
+    opacity: 1
+}
+
+.alert__next {
+    position: absolute;
+    opacity: 0;
+    right: 100px;
+    padding: 10px;
+    text-align: middle;
+    top: -20em;
+    display: inline-block;
+    height: 100%
+}
+
+@media only screen and (max-width: 767px) {
+    .alert__next {
+        right: 15%
+    }
+}
+
+.is-open .alert__next {
+    opacity: 1;
+    top: 0
+}
+
+.alert__next-link {
+    -moz-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    -webkit-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    height: 100%;
+    padding: 6px;
+    display: inline-block
+}
+
+.is-open .alert__next-link {
+    border-left: 1px solid #804818;
+    opacity: 1
+}
+
+.alert__link {
+    white-space: nowrap
+}
+
+@media only screen and (max-width: 767px) {
+    .alert__link {
+        display: block;
+        margin-top: 10px;
+        margin-top: 0.625rem
+    }
+}
+
+.alert__toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100px;
+    text-decoration: none;
+    background-color: #7e5000;
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 12px;
+    font-size: 0.75rem
+}
+
+.alert__toggle,
+.alert__toggle:before {
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease
+}
+
+.is-open .alert__toggle {
+    font-size: 16px;
+    font-size: 1rem
+}
+
+.alert__toggle:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.4)
+}
+
+@media only screen and (max-width: 767px) {
+    .alert__toggle {
+        width: 15%
+    }
+}
+
+.alert__toggle:before {
+    text-decoration: underline;
+    display: inline-block
+}
+
+.alert__toggle:before {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    vertical-align: middle;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    content: "\e60d";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -5px;
+    margin-left: -10px;
+    text-decoration: none
+}
+
+.alert__toggle:before:hover {
+    text-decoration: none
+}
+
+.is-open .alert__toggle:before {
+    margin-left: -13px;
+    margin-top: -8px;
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg)
+}
+
+.color-white {
+    color: white !important
+}

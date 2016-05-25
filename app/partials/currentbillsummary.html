@@ -1,4 +1,8 @@
-TBD: try this <span>{{meterId}}</span>
+<!-- Scope passed in? <span>{{phones[0].name}}</span><br>
+Meter ID passed in? <span>{{meterId}}</span>
+
+SCOPE is passed in if this is a piece of template that is included, like in ClientAccounts.html.
+Meter ID is passed in when this is a stand-alone page.  -->
 
 <div class="col-sm-6 col-md-12 col-no-gutter">
     <p data-ui="overdue" class="overdue"></p>
@@ -8,8 +12,8 @@ TBD: try this <span>{{meterId}}</span>
     <span class="hidden" data-ui="selectedAcctValue" id="selectedAcctId">5383990830</span>
     <span class="hidden" data-ui="showPromoBox" id="showPromoBoxId">false</span>
     <a class="btn btn-primary" href="payBillFromOverview.req" data-ui="payNowButton"
-       data-modal="[data-ui=&quot;payNowWarningModal&quot;]" onmouseover="this.style.color=&quot;#a11011&quot;"
-       onmouseout="this.style.color=&quot;#ffffff&quot;" onclick="virtualTitlePay()" style="color: rgb(255, 255, 255);">Pay
+       data-modal="[data-ui=&quot;payNowWarningModal&quot;]" onmouseover="this.style.color='#a11011'"
+       onmouseout="this.style.color='#ffffff'" onclick="virtualTitlePay()" style="color: rgb(255, 255, 255);">Pay
         Now</a>
     <!--<p class="payment-info">Last Payment of <span data-ui="lastPaymentAmt"></span> paid on <br class="visible-sm"><span data-ui="lastPaymentDate"></span></p>-->
     <p id="nextScheduledPaymentDateInfo" class="payment-info hidden" paymentinfo="paymentDetails">Payment of <span
