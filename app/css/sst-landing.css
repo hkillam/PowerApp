@@ -45,6 +45,29 @@
     margin-left: -15px;
 }
 
+nav.side-nav ul li a {
+    color: #000;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    nav.side-nav ul li a::after, nav.side-nav ul li p::after {
+        top: 42px !important;
+    }
+
+    .home-page .bill-summary-block .pay-now .bill-programs .program .program-element a::after, .home-page .bill-summary-block .pay-now .bill-programs .program .program-element p::after {
+        top: 35px !important;
+    }
+
+    .home-page .energy-summary-block .energy-programs.energy-box .programs-list .program .program-element a::after, .home-page .energy-summary-block .energy-programs.energy-box .programs-list .program .program-element p::after {
+        top: 35px !important;
+    }
+
+    .chart-area small.chartMsg {
+        display: none;
+        visibility: hidden;
+    }
+}
+
 @media (min-width: 480px) {
     .bill-summary-block .pay-now {
         text-align: center;

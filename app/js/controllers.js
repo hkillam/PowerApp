@@ -14,7 +14,9 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http',
             "home": "partials/home.html",
             "about": "partials/aboutus.html",
             "contact": "partials/contactus.html",
-            "currentbill": "partials/currentbillsummary.html"
+            "currentbill": "partials/currentbillsummary.html",
+            "topbar": "partials/topbar.html",
+            "accountmenu": "partials/accountmenu.html",
         };
 
         $scope.orderProp = 'age';

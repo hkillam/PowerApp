@@ -1,0 +1,95 @@
+<!-- UTILITY BAR -->
+<div class="utility-bar hidden-print">
+    <div class="wrapper wrapper--xwide">
+        <div class="utility-drop-wrapper"><select id="stateList" name="location" class="utility-drop"
+                                                  onchange="setStateLocation(this.options[this.selectedIndex].value);">
+            <option value="/Geographic Location/Colorado">Colorado</option>
+            <option value="/Geographic Location/Michigan">Michigan</option>
+            <option value="/Geographic Location/Minnesota">Minnesota</option>
+            <option value="/Geographic Location/New Mexico">New Mexico</option>
+            <option value="/Geographic Location/North Dakota">North Dakota</option>
+            <option value="/Geographic Location/South Dakota">South Dakota</option>
+            <option value="/Geographic Location/Texas">Texas</option>
+            <option value="/Geographic Location/Wisconsin">Wisconsin</option>
+        </select></div>
+        <a href="https://www.xcelenergy.com/customer_support" class="hidden-lap-and-down ">Customer Support</a>
+        <div class="account-wrapper"><a href="https://myaccount.xcelenergy.com/oam/user/getaccountbyid.req"><i
+                class="icomoon icomoon-account"></i>My Account</a> <a
+                href="https://myaccount.xcelenergy.com/oam/user/logout.req" class="signout ">Sign Out</a></div>
+    </div>
+</div>
+<div class="page-header">
+    <div class="wrapper wrapper--xwide wrapper--bleed-mobile"><a class="page-logo-wrapper"
+                                                                 href="https://www.xcelenergy.com/">
+        <h1><span class="page-logo"><img alt="Xcel Energy"
+                                         src="https://www.xcelenergy.com/staticfiles/xe-responsive/assets/images/logo.png"/></span>
+            <span class="visuallyhidden">Xcel Energy</span></h1>
+    </a>
+        <nav class="page-nav-wrapper">
+            <ul class="page-nav js-page-nav">
+                <li class="close"><a id="page-nav-close" data-toggler data-toggle-remote data-toggle-self
+                                     data-toggle-class=".nav-is-open" data-toggle-trigger="#page-nav-close"
+                                     data-toggle-target="body"><span class="visuallyhidden">Close Navigation</span></a>
+                </li>
+                <li class="hidden-lap-and-up"><span class="page-nav__menu">Menu</span></li>
+                <li><a href="https://www.xcelenergy.com/billing_and_payment"
+                       class="page-nav__item page-nav__item-billing ">Billing & Payment</a></li>
+                <li><a href="https://www.xcelenergy.com/start,_stop,_transfer"
+                       class="page-nav__item page-nav__item-sst ">Start, Stop, Transfer</a></li>
+                <li><a href="https://www.xcelenergy.com/programs_and_rebates"
+                       class="page-nav__item page-nav__item-energy ">Programs & Rebates</a></li>
+                <li><a href="https://www.xcelenergy.com/outages_and_emergencies"
+                       class="page-nav__item page-nav__item-alert ">Outage & Emergencies</a></li>
+                <li class="hidden-lap-and-up"><a href="https://www.xcelenergy.com/customer_support"
+                                                 class="page-nav__item page-nav__item-misc ">Customer Support</a></li>
+            </ul>
+            <ul class="account-nav js-page-nav hidden-lap-and-up">
+                <li class="close"><a id="account-nav-close" data-toggler data-toggle-remote data-toggle-self
+                                     data-toggle-class=".account-is-open" data-toggle-trigger="#account-nav-close"
+                                     data-toggle-target="body"><span class="visuallyhidden">Close Navigation</span></a>
+                </li>
+                <li><span class="page-nav__menu"><i class="icomoon icomoon-account"></i>My Account</span></li>
+                <li><a href="https://myaccount.xcelenergy.com/oam/user/getaccountbyid.req" class="page-nav__item ">My
+                    Account</a></li>
+                <li><a href="https://myaccount.xcelenergy.com/oam/user/currentebill.req" class="page-nav__item ">My
+                    Bills</a></li>
+                <li><a href="https://myaccount.xcelenergy.com/oam/user/loadPremiseGraph.req" class="page-nav__item ">My
+                    Usage</a></li>
+                <li><a href="https://myaccount.xcelenergy.com/oam/user/yourPrograms.req" class="page-nav__item ">My
+                    Programs</a></li>
+                <li><a href="https://myaccount.xcelenergy.com/oam/user/showprofilepage.req" class="page-nav__item ">My
+                    Profile & Notifications</a></li>
+                <li><a href="https://myaccount.xcelenergy.com/oam/user/logout.req"
+                       class="hidden-desk-and-up page-nav__item ">Sign Out</a></li>
+            </ul>
+            <div class="page-nav-overlay" data-toggler data-toggle-remote data-toggle-self
+                 data-toggle-class=".nav-is-open" data-toggle-trigger=".page-nav-overlay"
+                 data-toggle-target="body"></div>
+            <div class="secondary-nav hidden-print"><a id="page-search-toggle" data-toggler data-toggle-remote
+                                                       data-toggle-class=".is-open"
+                                                       data-toggle-trigger="#page-search-toggle"
+                                                       data-toggle-target="#page-search"
+                                                       data-toggle-focus="#page-search .gsc-input"> <i
+                    class="page-search-icon"></i> <span class="visuallyhidden">Site Search</span> </a> <a
+                    id="page-account-toggle" class="hidden-lap-and-up js-my-account-button"
+                    data-url="https://myaccount.xcelenergy.com/oam/user/getaccountbyid.req" data-toggle-remote
+                    data-toggle-self data-toggle-class=".account-is-open" data-toggle-trigger="#page-account-toggle"
+                    data-toggle-target="body"> <i class="icomoon icomoon-account"></i> <span class="visuallyhidden">My Account</span>
+            </a> <a id="page-nav-toggle" class="hamburger-anchor" data-toggler data-toggle-remote data-toggle-self
+                    data-toggle-class=".nav-is-open" data-toggle-trigger="#page-nav-toggle" data-toggle-target="body">
+                <span class="visuallyhidden">Toggle Navigation</span> <span
+                    class="hamburger">						<span
+                    class="hamburger__bread hamburger__bread--top"></span>						<span
+                    class="hamburger__meat"></span>						<span
+                    class="hamburger__bread hamburger__bread--bottom"></span>					</span> </a></div>
+            <div class="page-search" id="page-search">
+                <div class="page-search__inner islet"><i class="icomoon icomoon-magnify"></i>
+                    <gcse:searchbox-only resultsUrl="https://www.xcelenergy.com/search" queryParameterName="q"
+                                         enableHistory="true" webSearchResultSetSize="6" autoCompleteMaxCompletions="5"
+                                         autoCompleteMatchType="any"></gcse:searchbox-only>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div></div>
+<div class="spaceForMobile"></div>
