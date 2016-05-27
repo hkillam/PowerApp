@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>Power Accounts</title>
+    <link rel="icon"
+          type="image/png"
+          href="https://xcelenergy.com/favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
@@ -29,6 +32,7 @@
     <script src="js/vendor.js"></script>
     <!-- script src="js/main.js?v=1500"></script> <!-- From original site, use as source but don't include -->
     <script src="js/stateSelection.js"></script>
+    <!--  script src="controllers/clientAccounts.js"></script -->
 
 
     <!-- application scripts -->
@@ -38,54 +42,17 @@
 
     <!-- TODO this script is in the index.html file, until I find a better way to generate and include it. -->
     <script type="text/javascript">
-        google.charts.load('current', {'packages': ['corechart']});
-        google.charts.setOnLoadCallback(drawVisualization);
+        //        google.charts.load('current', {'packages': ['corechart']});
+        //        google.charts.setOnLoadCallback(drawVisualization);
 
 
-        function drawVisualization() {
-            // Some raw data in the format it is received in the JSON data
-            var data = google.visualization.arrayToDataTable([
-                ['Month', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                ['2014', 165, 938, 522, 998, 450, 614.6],
-                ['2015', 135, 1120, 599, 1268, 288, 682],
-                ['2016', 157, 1167, 587, 807, 397, 623]
-            ]);
 
-            // google charts are grouped by row.  Our rows are by year.  We want it to be grouped by month.
-            // we need to flip the table (╯°□°）╯︵ ┻━┻
-            //var data2 = new google.visualization.DataTable();
-
-// Declare columns
-            //           data2.addColumn('string', 'Month');
-            //           data2.addColumn('number', '2014');
-            //           data2.addColumn('number', '2015');
-            //           data2.addColumn('number', '2016');
-            //           data2.addColumn('string', { role: 'style' });
-
-// Add data.
-            var data2 = google.visualization.arrayToDataTable([
-                ['Month', '2014', '2015', '2016'],
-                ['Jan', 165, 135, 157],
-                ['Feb', 938, 1120, 1167],
-                ['Apr', 522, 599, 587]
-            ]);
-
-            var options = {
-                title: 'Bill Trend',
-                seriesType: 'bars',
-                legend: {position: 'bottom'},
-                colors: ['#c7e9e5', '#66c2d9', '#005b85']
-            };
-            var chart = new google.visualization.ColumnChart(document.getElementById('bill_trend_chart_div'));
-            chart.draw(data2, options);
-        }
     </script>
 </head>
 <body>
 
 <div ng-view></div>
 
-<script src="js/require.js" data-main="js/app"></script>
 
 </body>
 </html>
