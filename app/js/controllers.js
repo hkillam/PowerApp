@@ -22,42 +22,48 @@ powerControllers.factory("clientAccountSrv", function ($http) {
         },
         drawPlot: function (d) {
             google.charts.load('current', {'packages': ['corechart']});
-            google.charts.setOnLoadCallback(drawVisualization);
+            google.charts.setOnLoadCallback(function () {
+                drawGoogleChart(d)
+            })
         }
     };
 });
 
-function drawVisualization() {
-    // Some raw data in the format it is received in the JSON data
-    var data = google.visualization.arrayToDataTable([
-        ['Month', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-        ['2014', 165, 938, 522, 998, 450, 614.6],
-        ['2015', 135, 1120, 599, 1268, 288, 682],
-        ['2016', 157, 1167, 587, 807, 397, 623]
-    ]);
+function prepareTrendData($trendData) {
+
+    // our data arrives as a combination of 0 (number) and "23.45" (string)
+    // we need to clean it, to be all numbers, when building this array.
+    // we also need to add the labels to the beginning of each row.
+    // enumeration is important, so for-in can't be used (order isn't guaranteed)
 
     // google charts are grouped by row.  Our rows are by year.  We want it to be grouped by month.
     // we need to flip the table (╯°□°）╯︵ ┻━┻
-    //var data2 = new google.visualization.DataTable();
 
-// Declare columns
-    //           data2.addColumn('string', 'Month');
-    //           data2.addColumn('number', '2014');
-    //           data2.addColumn('number', '2015');
-    //           data2.addColumn('number', '2016');
-    //           data2.addColumn('string', { role: 'style' });
+    var chartArray = new Array($trendData.labels.length + 1);
+    for (var i = 0; i < chartArray.length; i++) {
+        chartArray[i] = new Array($trendData.series.length + 1);
+    }
+    chartArray[0][0] = "Month";
 
-// Add data.
+    for (var i = 0; i < $trendData.series.length; i++) {
+        // a row has all the values for a year.
+        var row = $trendData.series[i].data;
+        var rlabel = $trendData.series[i].label;
+        chartArray[0][i + 1] = rlabel;
+        for (var j = 0; j < row.length; j++) {
+            var clabel = $trendData.labels[j];
+            chartArray[j + 1][0] = clabel;
+            var item = parseFloat(row[j]);
+            chartArray[j + 1][i + 1] = item;
+        }
+    }
 
-    var d = new Date();
-    var n = d.getFullYear();
+    return chartArray;
+}
 
-    var data2 = google.visualization.arrayToDataTable([
-        ['Month', '$n-2', (n - 1).toString(), n.toString()],
-        ['Jan', 165, 135, 157],
-        ['Feb', 938, 1120, 1167],
-        ['Apr', 522, 599, 587]
-    ]);
+function drawGoogleChart($chartArray) {
+
+    var data = google.visualization.arrayToDataTable($chartArray);
 
     var options = {
         title: 'Bill Trend',
@@ -66,24 +72,18 @@ function drawVisualization() {
         colors: ['#c7e9e5', '#66c2d9', '#005b85']
     };
     var chart = new google.visualization.ColumnChart(document.getElementById('bill_trend_chart_div'));
-    chart.draw(data2, options);
+    chart.draw(data, options);
 }
 
 
 powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAccountSrv',
     function ($scope, $http, clientAccountSrv) {
 
-
-
-        // TODO This needs to be asynch.
-        //$http.get('http://powerstub.killamsolutions.ca/oam/user/getJsonAccountOverview.php?account=6348558270').success(function (data) {
-        //    $scope.accountOverview = data;
-        //});
-
         $scope.clientAccount = [];
         clientAccountSrv.getData().then(function (promise) {
             $scope.clientAccount = promise;
-            clientAccountSrv.drawPlot($scope.clientAccount.data.trendData);
+            var chartData = prepareTrendData($scope.clientAccount.data.trendData);
+            clientAccountSrv.drawPlot(chartData);
         });
 
 
