@@ -18,10 +18,9 @@ powerApp.config(['$routeProvider',
         when('/clientAccount/:meterId', {
             templateUrl: 'partials/currentbillsummary.html',
             controller: 'AccountDetailCtrl'
-        }).
-        when('/sample', {
-            templateUrl: 'partials/sample.html',
-            controller: 'AccountDetailCtrl'
+        }).when('/detailReport', {
+            templateUrl: 'templates/detailReport.html',
+            controller: 'DetailReportCtrl'
         }).
         otherwise({
             redirectTo: '/'

@@ -5,20 +5,34 @@
 var powerControllers = angular.module('powerControllers', []);
 
 powerControllers.factory("clientAccountSrv", function ($http) {
-    return {
-        getData: function () {
-            var promise = $http({
-                method: 'GET',
-                url: 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountOverview.php?account=6348558270'
-            })
-                .success(function (data, status, headers, config) {
-                    return data;
-                })
-                .error(function (data, status, headers, config) {
-                    return {"status": false};
-                });
+    var accountOverview = null;
 
-            return promise;
+    function getData() {
+        return accountOverview;
+    }
+
+    return {
+        getData: getData,
+        loadData: function () {
+            if (accountOverview == null) {
+
+                var promise = $http({
+                    method: 'GET',
+                    url: 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountOverview.php?account=6348558270'
+                })
+                    .success(function (data, status, headers, config) {
+                        accountOverview = data;
+
+                        // TODO:  trigger more data loads here, to store on this service object, so that next pages load faster
+                        return data;
+                    })
+                    .error(function (data, status, headers, config) {
+                        return {"status": false};
+                    });
+                return promise;
+            } else {
+                return accountOverview;
+            }
         },
         drawPlot: function (d) {
             google.charts.load('current', {'packages': ['corechart']});
@@ -79,13 +93,19 @@ function drawGoogleChart($chartArray) {
 powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAccountSrv',
     function ($scope, $http, clientAccountSrv) {
 
-        $scope.clientAccount = [];
-        clientAccountSrv.getData().then(function (promise) {
-            $scope.clientAccount = promise;
-            var chartData = prepareTrendData($scope.clientAccount.data.trendData);
-            clientAccountSrv.drawPlot(chartData);
-        });
-
+        // if the data is already loaded, grab and draw
+        $scope.clientAccount = clientAccountSrv.getData();
+        if ($scope.clientAccount != null) {
+            var chartData = prepareTrendData($scope.clientAccount.trendData);
+            drawGoogleChart(chartData);
+        } else {
+            // data not loaded - use promise...then to load asynchronous.
+            clientAccountSrv.loadData().then(function (promise) {
+                $scope.clientAccount = promise.data;
+                var chartData = prepareTrendData($scope.clientAccount.trendData);
+                clientAccountSrv.drawPlot(chartData);
+            });
+        }
 
         $http.get('phones/phones.json').success(function (data) {
             $scope.phones = data;
@@ -93,9 +113,6 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAcc
 
 
         $scope.template = {
-            "home": "partials/home.html",
-            "about": "partials/aboutus.html",
-            "contact": "partials/contactus.html",
             "currentbill": "partials/currentbillsummary.html",
             "topbar": "partials/topbar.html",
             "accountmenu": "partials/accountmenu.html"
@@ -108,5 +125,23 @@ powerControllers.controller('AccountDetailCtrl', ['$scope', '$routeParams',
         $scope.meterId = $routeParams.meterId;
     }]);
 
+
+powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv',
+    function ($scope, $routeParams, $http, clientAccountSrv) {
+        $scope.meterId = $routeParams.meterId;
+
+        $scope.clientAccount = clientAccountSrv.getData();
+
+        $http.get('settings/meters.json').success(function (data) {
+            $scope.meters = data;
+        });
+
+        $scope.template = {
+            "topbar": "partials/topbar.html",
+            "accountmenu": "partials/accountmenu.html",
+            "groupofmeters": "partials/groupofmeters.html"
+        };
+
+    }]);
 
 

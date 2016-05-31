@@ -1,0 +1,60 @@
+{
+  "_comment": "This file will be created by the tool that alters meter naming & grouping, saved on the local computer, and read by the report tables",
+  "name": "Kathmandu Airport",
+  "accounts": [
+    {
+      "accountNumber": "6348558270",
+      "name": "primary account",
+      "billingAddress": "123 Nowhere Land",
+      "groups": [
+        {
+          "name": "Main Terminal",
+          "squareFootage": 10000,
+          "meters": [
+            {
+              "meterNumber": "6348558270001",
+              "name": "lighting",
+              "squareFootage": 10000
+            },
+            {
+              "meterNumber": "6348558270002",
+              "name": "darking",
+              "squareFootage": 10000
+            }
+          ],
+          "groups": [
+            {
+              "name": "Main Terminal Food Court",
+              "squareFootage": 4000,
+              "meters": [
+                {
+                  "name": "Fast Grill",
+                  "meterNumber": "6348558270021",
+                  "squareFootage": 1000
+                },
+                {
+                  "name": "Slow Grill",
+                  "meterNumber": "6348558270022",
+                  "squareFootage": 3000
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Terminal 2",
+          "meters": [
+            {
+              "meterNumber": "6348558270003",
+              "name": "lighting2"
+            },
+            {
+              "meterNumber": "6348558270004",
+              "name": "darking2"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

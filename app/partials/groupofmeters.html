@@ -1,0 +1,13 @@
+<button ng-if="group.expanded" ng-click="group.expanded = false">-</button>
+<button ng-if="!group.expanded" ng-click="group.expanded = true">+</button>
+
+<li><i>Group: </i>{{group.name}}</li>
+<div ng-if="group.expanded" ng-repeat-end="">
+
+    <ul ng-repeat="meter in group.meters">
+        <li><i>Meter: </i>{{meter.name}}</li>
+    </ul>
+    <ul ng-repeat="group in group.groups">
+        <div ng-include="template.groupofmeters"></div>
+    </ul>
+</div>
