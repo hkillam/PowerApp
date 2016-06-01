@@ -146,12 +146,51 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
 
         $scope.clientAccount = clientAccountSrv.getData();
 
+
+        $scope.gridOptions = {
+            enableSorting: true,
+            enableFiltering: true,
+            showTreeExpandNoChildren: false,
+            treeIndent: 20,
+            columnDefs: [
+                {name: 'name', width: '30%'},
+                {name: 'type', width: '20%', enableFiltering: false},
+                {name: 'number', width: '20%'},
+            ],
+        }
+
+        //row.treeNode.state === 'expanded'
+
+//        $http.get('settings/meters.json').success(function (data) {
+        $http.get('settings/meterlist.json').success(function (data) {
+            $scope.meters = data;
+            // todo:  expand all of the level 1 items
+            $scope.gridOptions.data = data.list;
+            // todo:  add background colours to group rows
+
+        });
+
+        $scope.template = {
+            "topbar": "partials/topbar.html",
+            "accountmenu": "partials/accountmenu.html",
+            "groupofmeters": "partials/groupofmeters.html"
+        };
+
+    }]);
+
+powerControllers.controller('SettingsCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv',
+    function ($scope, $routeParams, $http, clientAccountSrv) {
+        $scope.meterId = $routeParams.meterId;
+
+        $scope.clientAccount = clientAccountSrv.getData();
+
         $http.get('settings/meters.json').success(function (data) {
             $scope.meters = data;
 
             // initialize expanded and indentation levels
             for (var account in $scope.meters.accounts) {
                 $scope.meters.accounts[account].expanded = true;
+                $scope.meters.children = $scope.meters.accounts[account].groups;
                 markGroupLevels($scope.meters.accounts[account].groups, 1);
             }
         });

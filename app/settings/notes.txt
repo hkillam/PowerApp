@@ -1,0 +1,13 @@
+meters.json has the following structure
+
+"name": "Kathmandu Airport",
+    account: "primary account",
+        group: main terminal
+            meter: lighting
+            meter: darking
+            group: Main Terminal Food Court
+                meter: fast grill
+                meter: slow grill
+        group: terminal 2
+            meter: lighting2
+            meter: darking2

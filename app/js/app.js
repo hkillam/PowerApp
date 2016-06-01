@@ -5,7 +5,9 @@
 
 var powerApp = angular.module('powerApp', [
     'ngRoute',
-    'powerControllers'
+    'powerControllers',
+    'ui.grid',
+    'ui.grid.treeView'
 ]);
 
 powerApp.config(['$routeProvider',
@@ -21,6 +23,9 @@ powerApp.config(['$routeProvider',
         }).when('/detailReport', {
             templateUrl: 'templates/detailReport.html',
             controller: 'DetailReportCtrl'
+        }).when('/settings', {
+            templateUrl: 'templates/settings.html',
+            controller: 'SettingsCtrl'
         }).
         otherwise({
             redirectTo: '/'

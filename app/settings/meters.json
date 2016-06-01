@@ -55,6 +55,22 @@
           ]
         }
       ]
+    },
+    {
+      "name": "second account",
+      "groups": [
+        {
+          "name": "Cargo terminal",
+          "squareFootage": 10000,
+          "meters": [
+            {
+              "meterNumber": "6348558270001",
+              "name": "cargo lighting",
+              "squareFootage": 10000
+            }
+          ]
+        }
+      ]
     }
   ]
 }
