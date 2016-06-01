@@ -126,6 +126,20 @@ powerControllers.controller('AccountDetailCtrl', ['$scope', '$routeParams',
     }]);
 
 
+function markGroupLevels(groups, level) {
+    for (var group in groups) {
+        groups[group].level = level;
+
+        for (var meter in groups[group].meters)
+            groups[group].meters[meter].level = level + 1;
+
+        if (groups[group].groups)
+            markGroupLevels(groups[group].groups, level + 1);
+
+    }
+
+}
+
 powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv',
     function ($scope, $routeParams, $http, clientAccountSrv) {
         $scope.meterId = $routeParams.meterId;
@@ -134,6 +148,12 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
 
         $http.get('settings/meters.json').success(function (data) {
             $scope.meters = data;
+
+            // initialize expanded and indentation levels
+            for (var account in $scope.meters.accounts) {
+                $scope.meters.accounts[account].expanded = true;
+                markGroupLevels($scope.meters.accounts[account].groups, 1);
+            }
         });
 
         $scope.template = {

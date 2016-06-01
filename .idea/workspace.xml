@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="7ff64fec-badf-464c-8f2f-e69c3087bb7b" name="Default" comment="Building Google Chart from the data that is retrieved from the PowerStub.   New function to arrange data from the API to look the way the chart needs it.  When Google Charts is replaced, the helper funcition will also need to be replaced (or just erased).">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/groupofmeters.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/settings/meters.json" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/settings/notes.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/detailReport.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/billtrend.png" afterPath="" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/app/phones/localdata.json" afterPath="$PROJECT_DIR$/app/settings/localdata.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/sst-landing.css" afterPath="$PROJECT_DIR$/app/css/sst-landing.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/app.js" afterPath="$PROJECT_DIR$/app/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers.js" afterPath="$PROJECT_DIR$/app/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partials/accountmenu.html" afterPath="$PROJECT_DIR$/app/partials/accountmenu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/clientAccounts.html" afterPath="$PROJECT_DIR$/app/templates/clientAccounts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partials/groupofmeters.html" afterPath="$PROJECT_DIR$/app/partials/groupofmeters.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/detailReport.html" afterPath="$PROJECT_DIR$/app/templates/detailReport.html" />
     </list>
     <ignored path="PowerApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,33 +38,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clientAccounts.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/clientAccounts.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31">
-              <caret line="3" column="53" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="detailReport.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/detailReport.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="31" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="141" column="52" selection-start-line="141" selection-start-column="52" selection-end-line="141" selection-end-column="52" />
+            <state relative-caret-position="233">
+              <caret line="129" column="31" selection-start-line="129" selection-start-column="31" selection-end-line="129" selection-end-column="31" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="79" pinned="false" current-in-tab="false">
+        <entry file="mock://vm:79">
+          <provider selected="true" editor-type-id="vmFileEditor">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="content.js" pinned="false" current-in-tab="false">
+        <entry file="mock://chrome-extension://jafmfknfnkoekkdocjiaipcnmkklaajd/content.js">
+          <provider selected="true" editor-type-id="vmFileEditor">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="content.js" pinned="false" current-in-tab="false">
+        <entry file="mock://chrome-extension://jafmfknfnkoekkdocjiaipcnmkklaajd/content.js">
+          <provider selected="true" editor-type-id="vmFileEditor">
+            <state />
           </provider>
         </entry>
       </file>
@@ -101,11 +99,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="groupofmeters.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="groupofmeters.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/partials/groupofmeters.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="100">
+              <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detailReport.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/detailReport.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -128,7 +136,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/phoneapp/demoindex.html" />
         <option value="$PROJECT_DIR$/phoneapp/partials/currentbillsummarydemo.html" />
         <option value="$PROJECT_DIR$/phoneapp/js/controllers.js" />
         <option value="$PROJECT_DIR$/phoneapp/partials/phone-detail.html" />
@@ -171,14 +178,15 @@
         <option value="$PROJECT_DIR$/app/custom/meters.json" />
         <option value="$PROJECT_DIR$/app/partials/accountmenu.html" />
         <option value="$PROJECT_DIR$/app/templates/clientAccounts.html" />
-        <option value="chrome-extension://jafmfknfnkoekkdocjiaipcnmkklaajd/content.js" />
-        <option value="cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.js" />
         <option value="$PROJECT_DIR$/app/settings/meters.json" />
         <option value="$PROJECT_DIR$/app/settings/notes.txt" />
+        <option value="$PROJECT_DIR$/app/css/sst-landing.css" />
+        <option value="chrome-extension://jafmfknfnkoekkdocjiaipcnmkklaajd/content.js" />
+        <option value="cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.js" />
+        <option value="$PROJECT_DIR$/app/partials/groupofmeters.html" />
+        <option value="vm:79" />
         <option value="$PROJECT_DIR$/app/js/controllers.js" />
         <option value="$PROJECT_DIR$/app/templates/detailReport.html" />
-        <option value="$PROJECT_DIR$/app/partials/groupofmeters.html" />
-        <option value="$PROJECT_DIR$/app/css/sst-landing.css" />
       </list>
     </option>
   </component>
@@ -526,7 +534,7 @@
       <workItem from="1464201860384" duration="11000" />
       <workItem from="1464201946304" duration="36730000" />
       <workItem from="1464616605907" duration="12193000" />
-      <workItem from="1464660376171" duration="5819000" />
+      <workItem from="1464660376171" duration="11304000" />
     </task>
     <task id="LOCAL-00001" summary="Use AngularJS, drop Backbone/React.  Use WebStorm to edit and manage source files.">
       <created>1463677261953</created>
@@ -584,11 +592,18 @@
       <option name="project" value="LOCAL" />
       <updated>1464367922234</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Created a json format to make groups of meters, give them names.  Created a report page that reads the list, makes it grouped, indented, and expandable.">
+      <created>1464704883044</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1464704883044</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141489000" />
+    <option name="totallyTimeSpent" value="146974000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -606,6 +621,8 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19562648" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33658537" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.65609753" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -616,9 +633,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18414634" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -661,7 +676,8 @@
     <MESSAGE value="More missing script files." />
     <MESSAGE value="Asynchronous data retrieval in the controller, using Promise and Then." />
     <MESSAGE value="Building Google Chart from the data that is retrieved from the PowerStub.   New function to arrange data from the API to look the way the chart needs it.  When Google Charts is replaced, the helper funcition will also need to be replaced (or just erased)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Building Google Chart from the data that is retrieved from the PowerStub.   New function to arrange data from the API to look the way the chart needs it.  When Google Charts is replaced, the helper funcition will also need to be replaced (or just erased)." />
+    <MESSAGE value="Created a json format to make groups of meters, give them names.  Created a report page that reads the list, makes it grouped, indented, and expandable." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a json format to make groups of meters, give them names.  Created a report page that reads the list, makes it grouped, indented, and expandable." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -689,14 +705,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/js/controllers.js</url>
-          <line>134</line>
-          <option name="timeStamp" value="48" />
+          <line>152</line>
+          <properties />
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app/js/controllers.js</url>
+          <line>129</line>
+          <properties />
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app/js/controllers.js</url>
+          <line>158</line>
+          <properties />
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app/js/controllers.js</url>
+          <line>136</line>
+          <properties />
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="49" />
+      <option name="time" value="54" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -850,17 +885,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/headerfooter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="3430" column="14" selection-start-line="3430" selection-start-column="14" selection-end-line="3430" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/vendor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="9533" column="33" selection-start-line="9533" selection-start-column="33" selection-end-line="9533" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -885,6 +914,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -892,6 +922,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="21" column="27" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -911,11 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.js">
-      <provider selected="true" editor-type-id="httpFileEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/settings/meters.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -928,6 +954,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/sst-landing.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -948,34 +982,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/headerfooter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="3430" column="14" selection-start-line="3430" selection-start-column="14" selection-end-line="3430" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.js">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/partials/groupofmeters.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="141" column="52" selection-start-line="141" selection-start-column="52" selection-end-line="141" selection-end-column="52" />
+        <state relative-caret-position="233">
+          <caret line="129" column="31" selection-start-line="129" selection-start-column="31" selection-end-line="129" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/detailReport.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="31" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/sst-landing.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/partials/groupofmeters.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="323">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
           <folding />
         </state>
       </provider>
