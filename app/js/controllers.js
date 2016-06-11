@@ -112,11 +112,7 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAcc
         });
 
 
-        $scope.template = {
-            "currentbill": "partials/currentbillsummary.html",
-            "topbar": "partials/topbar.html",
-            "accountmenu": "partials/accountmenu.html"
-        };
+        $scope.template = getTemplates();
         $scope.orderProp = 'age';
     }]);
 
@@ -135,9 +131,7 @@ function markGroupLevels(groups, level) {
 
         if (groups[group].groups)
             markGroupLevels(groups[group].groups, level + 1);
-
     }
-
 }
 
 powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv',
@@ -145,20 +139,28 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
         $scope.meterId = $routeParams.meterId;
 
         $scope.clientAccount = clientAccountSrv.getData();
-
+        $scope.meterCount = 0;
+        $scope.loadedMeters = 0;
 
         $scope.gridOptions = {
             enableSorting: true,
             enableFiltering: true,
             showTreeExpandNoChildren: false,
             treeIndent: 20,
+            groupUseEntireRow: true,
+            groupIncludeFooter: true,
             columnDefs: [
-                {name: 'name', width: '30%'},
-                {name: 'type', width: '20%', enableFiltering: false},
-                {name: 'number', width: '20%'},
-            ],
-        }
+                {name: 'name', width: '15%'},
+                {name: 'number', width: '15%'},
+                {name: 'addressLine1', width: '15%', title: "Address"},
+                {name: 'eAmount', width: '7%', displayName:"kWh"},
+                {name: 'eCost', width: '15%', displayName:"Electricity Cost"},
+                {name: 'gAmount', width: '10%', displayName:"Therms"},
+                {name: 'gCost', width: '12%', displayName:"Gas Cost"}
+            ]
+        };
 
+        // todo let the scrollbar for the page control the table as well, and don't use a second scroll bar for the table.
         //row.treeNode.state === 'expanded'
 
 //        $http.get('settings/meters.json').success(function (data) {
@@ -166,17 +168,79 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
             $scope.meters = data;
             // todo:  expand all of the level 1 items
             $scope.gridOptions.data = data.list;
-            // todo:  add background colours to group rows
+
+            // todo:  load account info and compare it to meter list, find new/deleted meters
+
+            // load usage data for each meter
+            for (var meterndx in data.list) {
+                if (data.list[meterndx].number) {
+                    $scope.meterCount++;
+//                    document.getElementById("counter").core.refresh();
+//                    wait(2000);
+                    getJsonAccountUsages($http, $scope, meterndx);
+                }
+            }
 
         });
 
-        $scope.template = {
-            "topbar": "partials/topbar.html",
-            "accountmenu": "partials/accountmenu.html",
-            "groupofmeters": "partials/groupofmeters.html"
-        };
-
+        $scope.template = getTemplates();
     }]);
+
+function wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+        end = new Date().getTime();
+    }
+}
+
+function getJsonAccountUsages($http, $scope, meterndx) {
+    // todo:  count how many meters have been loaded, and how many are still being loaded
+
+    var $meter = $scope.meters.list[meterndx];
+    var $meterid = $meter.number;
+    // everyone should have a live salsa band playing while they do programming.  Just maybe not in the same room.
+    var theurl = 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountUsages.php?account=' + $meterid;
+    $http.get(theurl).success(function (data) {
+        //$http.get('http://powerstub.killamsolutions.ca/oam/user/getJsonAccountOverview.php?account='+$meterid).success(function (data) {
+        $meter.overview = data;
+        $meter.addressLine1 = data.addressLine1;
+
+        for (var index in data.overview) {
+
+            if (data.overview[index].type === "ELECTRICITY-1") {
+                $meter.eCost = data.overview[index].cost;
+                $meter.eEmissions = data.overview[index].emissions;
+                $meter.eAmount = data.overview[index].usage.amount;
+                $meter.eUnits = data.overview[index].usage.unit;
+            }
+            if (data.overview[index].type === "NATURAL GAS-1") {
+                $meter.gCost = data.overview[index].cost;
+                $meter.gEmissions = data.overview[index].emissions;
+                $meter.gAmount = data.overview[index].usage.amount;
+                $meter.gUnits = data.overview[index].usage.unit;
+            }
+
+        }
+
+        $scope.loadedMeters++;
+        document.getElementById("counter").core.refresh();
+        document.getElementById("grid1").core.refresh();
+
+        // todo - add chosen data as additional fields in the existing array
+        // $scope.meters.list[meterndx] = $scope.meters.list[meterndx].concat();
+
+    });
+}
+
+function getTemplates() {
+    return {
+        "topbar": "partials/topbar.html",
+        "accountmenu": "partials/accountmenu.html",
+        "groupofmeters": "partials/groupofmeters.html",
+        "currentbill": "partials/currentbillsummary.html"
+    };
+}
 
 powerControllers.controller('SettingsCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv',
     function ($scope, $routeParams, $http, clientAccountSrv) {
@@ -195,11 +259,7 @@ powerControllers.controller('SettingsCtrl', ['$scope', '$routeParams', '$http', 
             }
         });
 
-        $scope.template = {
-            "topbar": "partials/topbar.html",
-            "accountmenu": "partials/accountmenu.html",
-            "groupofmeters": "partials/groupofmeters.html"
-        };
+        $scope.template = getTemplates();
 
     }]);
 

@@ -8,7 +8,7 @@ Meter ID is passed in when this is a stand-alone page.  -->
     <p data-ui="overdue" class="overdue"></p>
     <h3 id="responsive_h3" class="bigtext"><span data-ui="currentBalance" class="bigtext-line0"><sup
             class="currency">$</sup>0.00</span></h3>
-    <p class="due-date">Due: <span data-ui="dueDate">May 2, 2016</span></p>
+    <p class="due-date">Due: <span data-ui="dueDate">{{clientAccount.dueDate}}</span></p>
     <span class="hidden" data-ui="selectedAcctValue" id="selectedAcctId">5383990830</span>
     <span class="hidden" data-ui="showPromoBox" id="showPromoBoxId">false</span>
     <a class="btn btn-primary" href="payBillFromOverview.req" data-ui="payNowButton"

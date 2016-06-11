@@ -1,0 +1,129 @@
+{
+  "alert": null,
+  "currentBalance": 0.0,
+  "disabled": false,
+  "dueDate": "2016-06-20T12:00:00-07:00",
+  "hasManySchedPayments": 0,
+  "lastPaymentAmt": 108.47,
+  "lastPaymentDate": "2016-05-16T12:00:00-07:00",
+  "lastStatementDate": "2016-05-06T12:00:00-07:00",
+  "nextSchedPaymentAmt": null,
+  "nextSchedPaymentDate": null,
+  "nextSchedStatus": null,
+  "nickname": "6348558270",
+  "number": "6348558270",
+  "overdue": false,
+  "premises": [
+    {
+      "addressLine1": "789 ARCADIA AVE",
+      "addressLine2": "",
+      "addressLine3": "TIMBUKTU CA 90210-1234",
+      "comparisons": [
+        {
+          "efficientNeighbors": "838",
+          "name": "Energy",
+          "you": "728",
+          "unitLabel": "Units",
+          "allNeighbors": "1201"
+        },
+        {
+          "efficientNeighbors": "64",
+          "name": "Natural Gas",
+          "you": "64",
+          "unitLabel": "Therms",
+          "allNeighbors": "85"
+        },
+        {
+          "efficientNeighbors": "265",
+          "name": "Electricity",
+          "you": "276",
+          "unitLabel": "kWh",
+          "allNeighbors": "597"
+        }
+      ],
+      "cost": 78.75,
+      "grade": "A+",
+      "number": "301480088",
+      "programs": {
+        "windSource": false,
+        "solarReward": true,
+        "saverSwitch": true
+      }
+    }
+  ],
+  "programs": {
+    "eBill": true,
+    "ebillAutoPay": true,
+    "manualPay": true,
+    "averageMonthlyPayment": false
+  },
+  "trendData": {
+    "series": [
+      {
+        "data": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          "195.42",
+          "147.47",
+          "131.29",
+          "101.31",
+          "111.46",
+          "199.16"
+        ],
+        "label": "2014"
+      },
+      {
+        "data": [
+          "95.38",
+          "209.37",
+          "54.28",
+          "156.55",
+          "280.10",
+          "131.17",
+          "119.51",
+          "93.93",
+          "158.12",
+          "196.26",
+          "122.29",
+          "128.58"
+        ],
+        "label": "2015"
+      },
+      {
+        "data": [
+          "76.67",
+          "134.15",
+          "90.73",
+          "264.85",
+          "296.86",
+          "94.92",
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "label": "2016"
+      }
+    ],
+    "labels": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ]
+  }
+}

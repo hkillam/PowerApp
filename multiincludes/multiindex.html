@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link data-require="bootstrap-css@3.2.0" data-semver="3.2.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <script data-require="angular.js@1.2.22" data-semver="1.2.22" src="https://code.angularjs.org/1.2.22/angular.js"></script>
+    <script src="https://code.angularjs.org/1.2.20/angular-route.js">
+    </script>
+    <title>Multiple ng-view in a single template</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+</head>
+
+<body ng-app="myApp">
+<!--Now it Tells to AngularJS to be active in this portion of the page. In this case the entire document.(due to we apply on body tag ) -->
+<div class="container">
+    <!-- apply our controller RouteCtrl-->
+    <div class="jumbotron" ng-controller="RouteCtrl">
+        <img src="http://tech-blog.maddyzone.com/wp-content/uploads/2013/10/maddyzone-logo-300x72.png">
+        <br/>
+        <h1>Multiple ng-view in a single template</h1>
+
+        <!-- by ng-view we create a space in this dynamic content come according to route by ng-view angular know that on which area content will set-->
+
+        <br/><br/>
+        <!-- but here we want to insert three template home.html,aboutus.html, contactus.html -->
+
+        <i class="badge">load uirouter.html file in this all html file loaded </i>
+        <div ng-view="">
+        </div>
+        <a href="http://tech-blog.maddyzone.com/javascript/how-use-multiple-ng-view-in-a-single-page" target="_blank">View Post on Maddyzone </a>
+
+    </div>
+</div>
+</body>
+
+</html>

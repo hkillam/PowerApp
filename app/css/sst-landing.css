@@ -49,12 +49,19 @@ nav.side-nav ul li a {
     color: #000;
 }
 
+.g, .grid {
+    padding-left: 0 !important;
+}
+
 .detailreport button {
     clear: both;
     float: left;
     margin-right: 10px;
 }
 
+.ui-grid-tree-header-row .ui-grid-cell {
+    background-color: #c7e9e5 !important;
+}
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     nav.side-nav ul li a::after, nav.side-nav ul li p::after {

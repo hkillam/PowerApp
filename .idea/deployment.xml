@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" persistUploadOnCheckin="false" />
+  <component name="PublishConfigData" serverName="drupal 7">
+    <serverData>
+      <paths name="drupal 7">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="PowerApp" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
 </project>
