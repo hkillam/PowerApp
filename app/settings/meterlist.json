@@ -22,7 +22,7 @@
       "squareFootage": 10000
     },
     {
-      "meterNumber": "6348558270002",
+      "number": "6348558270002",
       "name": "darking",
       "squareFootage": 10000,
       "type": "meter"
@@ -52,13 +52,30 @@
     },
     {
       "type": "meter",
-      "meterNumber": "6348558270003",
+      "number": "6348558270003",
       "name": "lighting2"
     },
     {
       "type": "meter",
-      "meterNumber": "6348558270004",
+      "number": "6348558270004",
       "name": "darking2"
+    },
+    {
+      "type": "account",
+      "$$treeLevel": 0,
+      "name": "third account"
+    },
+    {
+      "type": "group",
+      "$$treeLevel": 1,
+      "name": "Crypto terminal",
+      "squareFootage": 10000
+    },
+    {
+      "type": "meter",
+      "number": "6348558270001",
+      "name": "crypto lighting",
+      "squareFootage": 10000
     },
     {
       "type": "account",
@@ -73,7 +90,7 @@
     },
     {
       "type": "meter",
-      "meterNumber": "6348558270001",
+      "number": "6348558270001",
       "name": "cargo lighting",
       "squareFootage": 10000
     }

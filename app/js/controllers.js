@@ -147,16 +147,14 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
             enableFiltering: true,
             showTreeExpandNoChildren: false,
             treeIndent: 20,
-            groupUseEntireRow: true,
-            groupIncludeFooter: true,
             columnDefs: [
                 {name: 'name', width: '15%'},
                 {name: 'number', width: '15%'},
                 {name: 'addressLine1', width: '15%', title: "Address"},
-                {name: 'eAmount', width: '7%', displayName:"kWh"},
-                {name: 'eCost', width: '15%', displayName:"Electricity Cost"},
-                {name: 'gAmount', width: '10%', displayName:"Therms"},
-                {name: 'gCost', width: '12%', displayName:"Gas Cost"}
+                {name: 'eAmount', width: '7%', displayName: "kWh"},
+                {name: 'eCost', width: '15%', displayName: "Electricity Cost"},
+                {name: 'gAmount', width: '10%', displayName: "Therms"},
+                {name: 'gCost', width: '12%', displayName: "Gas Cost"}
             ]
         };
 
@@ -186,10 +184,10 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
         $scope.template = getTemplates();
     }]);
 
-function wait(ms){
+function wait(ms) {
     var start = new Date().getTime();
     var end = start;
-    while(end < start + ms) {
+    while (end < start + ms) {
         end = new Date().getTime();
     }
 }
@@ -220,16 +218,19 @@ function getJsonAccountUsages($http, $scope, meterndx) {
                 $meter.gAmount = data.overview[index].usage.amount;
                 $meter.gUnits = data.overview[index].usage.unit;
             }
-
         }
 
         $scope.loadedMeters++;
-        document.getElementById("counter").core.refresh();
-        document.getElementById("grid1").core.refresh();
+        if ($scope.loadedMeters == $scope.meterCount) {
+            CalculateGroupTotals($scope.meters.list);
+        }
 
-        // todo - add chosen data as additional fields in the existing array
-        // $scope.meters.list[meterndx] = $scope.meters.list[meterndx].concat();
-
+//        $scope.$apply();
+        var loadingbar = document.getElementById("counter");
+        if (loadingbar && loadingbar.core) {
+            loadingbar.core.refresh();
+        }
+        //document.getElementById("grid1").core.refresh();
     });
 }
 
@@ -240,6 +241,66 @@ function getTemplates() {
         "groupofmeters": "partials/groupofmeters.html",
         "currentbill": "partials/currentbillsummary.html"
     };
+}
+
+function CalculateGroupTotals(meters) {
+    if (meters.length < 1)
+        return;
+
+    // check top item in list to find out current level
+    var curlevel = meters[0].$$treeLevel;
+    var siblings = [];
+    var slicebegin = 0;
+
+    //divide this list into a set of lists beginning at this level, breaking each time an item is found at the current level
+    for (var i in meters) {
+        if (meters[i].$$treeLevel == curlevel && i > slicebegin) {
+            siblings.push(meters.slice(slicebegin, i));
+            slicebegin = i;
+        }
+    }
+    siblings.push(meters.slice(slicebegin, meters.length));
+
+    // with each sublist...
+    // get totals and put them in the top item
+    // recurse, so that subgroups have subtotals.
+    for (var j in siblings) {
+        var totals = siblings[j].reduce(function (a, b) {
+            if (b.type === "meter") {
+                return {
+                    eAmount: a.eAmount + b.eAmount,
+                    eCost: a.eCost + b.eCost,
+                    gAmount: a.gAmount + b.gAmount,
+                    gCost: a.gCost + b.gCost
+                };
+            } else {
+                return ( a );
+            }
+        }, {
+            eAmount: 0,
+            eCost: 0,
+            gAmount: 0,
+            gCost: 0
+        });
+
+        siblings[j][0].eAmount = totals.eAmount;
+        siblings[j][0].eCost = totals.eCost;
+        siblings[j][0].gAmount = totals.gAmount;
+        siblings[j][0].gCost = totals.gCost;
+    }
+
+    // recurse into subgroups
+    for (var j in siblings) {
+        // drop the current group, and any meters at this level, we only want the child groups
+        var kids = siblings[j].slice(1, siblings[j].length);
+        while (kids.length > 0 && kids[0].type === "meter") {
+            kids = kids.slice(1, kids.length);
+        }
+        CalculateGroupTotals(kids);
+    }
+
+
+
 }
 
 powerControllers.controller('SettingsCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv',
