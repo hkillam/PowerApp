@@ -4,6 +4,16 @@
 
 var powerControllers = angular.module('powerControllers', []);
 
+function getURLs() {
+    var sources = "stub";
+
+    return {
+        accountOverview: 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountOverview.php',
+        accountUsages: 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountUsages.php',
+        meterList: 'settings/meterlist.json'
+    };
+}
+
 powerControllers.factory("clientAccountSrv", function ($http) {
     var accountOverview = null;
 
@@ -150,7 +160,7 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
             columnDefs: [
                 {name: 'name', width: '15%'},
                 {name: 'number', width: '15%'},
-                {name: 'addressLine1', width: '15%', title: "Address"},
+                {name: 'addressLine1', width: '15%', displayName: "Address"},
                 {name: 'eAmount', width: '7%', displayName: "kWh"},
                 {name: 'eCost', width: '15%', displayName: "Electricity Cost"},
                 {name: 'gAmount', width: '10%', displayName: "Therms"},
@@ -164,16 +174,27 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
 //        $http.get('settings/meters.json').success(function (data) {
         $http.get('settings/meterlist.json').success(function (data) {
             $scope.meters = data;
+
+            // create a dropdown and initialize it to the first group
+            //$scope.selectedGrouping = data.groupings[0].name;
+            $scope.groupIndex = 0;
+            $scope.selectedGrouping = data.groupings[0];
+            $scope.changedGrouping = function (item) {
+                $scope.groupIndex = 1;
+                $scope.gridOptions.data = data.groupings[1].list;
+            }
+
             // todo:  expand all of the level 1 items
-            $scope.gridOptions.data = data.list;
+
+            $scope.gridOptions.data = data.groupings[0].list;
+
 
             // todo:  load account info and compare it to meter list, find new/deleted meters
 
             // load usage data for each meter
-            for (var meterndx in data.list) {
-                if (data.list[meterndx].number) {
+            for (var meterndx in data.groupings[0].list) {
+                if (data.groupings[0].list[meterndx].number) {
                     $scope.meterCount++;
-//                    document.getElementById("counter").core.refresh();
 //                    wait(2000);
                     getJsonAccountUsages($http, $scope, meterndx);
                 }
@@ -193,9 +214,7 @@ function wait(ms) {
 }
 
 function getJsonAccountUsages($http, $scope, meterndx) {
-    // todo:  count how many meters have been loaded, and how many are still being loaded
-
-    var $meter = $scope.meters.list[meterndx];
+    var $meter = $scope.meters.groupings[0].list[meterndx];
     var $meterid = $meter.number;
     // everyone should have a live salsa band playing while they do programming.  Just maybe not in the same room.
     var theurl = 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountUsages.php?account=' + $meterid;
@@ -222,7 +241,7 @@ function getJsonAccountUsages($http, $scope, meterndx) {
 
         $scope.loadedMeters++;
         if ($scope.loadedMeters == $scope.meterCount) {
-            CalculateGroupTotals($scope.meters.list);
+            CalculateGroupTotals($scope.meters.groupings[0].list);
         }
 
 //        $scope.$apply();
