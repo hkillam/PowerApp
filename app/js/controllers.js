@@ -9,7 +9,8 @@ function getURLs() {
 
     return {
         accountOverview: 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountOverview.php',
-        accountUsages: 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountUsages.php',
+        premiseUsages: 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountUsages.php',
+        paymentHistory: 'http://powerstub.killamsolutions.ca/oam/user/getMyBillsAccounts.php',
         meterList: 'settings/meterlist.json'
     };
 }
@@ -117,11 +118,6 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAcc
             });
         }
 
-        $http.get('phones/phones.json').success(function (data) {
-            $scope.phones = data;
-        });
-
-
         $scope.template = getTemplates();
         $scope.orderProp = 'age';
     }]);
@@ -176,24 +172,31 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
             $scope.meters = data;
 
             // create a dropdown and initialize it to the first group
-            //$scope.selectedGrouping = data.groupings[0].name;
+            //$scope.selectedGrouping = data.groupings[$scope.groupIndex].name;
             $scope.groupIndex = 0;
-            $scope.selectedGrouping = data.groupings[0];
+            $scope.gridOptions.data = data.groupings[$scope.groupIndex].list;
+            //$scope.selectedGrouping = data.groupings[$scope.groupIndex];
             $scope.changedGrouping = function (item) {
                 $scope.groupIndex = 1;
-                $scope.gridOptions.data = data.groupings[1].list;
+                var gs = document.getElementById('groupingSelect').value;
+                //$scope.selectedGrouping.name
+                for (var i in data.groupings) {
+                    if (data.groupings[i].name === gs) {
+                        $scope.groupIndex = i;
+                    }
+                }
+                $scope.gridOptions.data = data.groupings[$scope.groupIndex].list;
             }
 
             // todo:  expand all of the level 1 items
 
-            $scope.gridOptions.data = data.groupings[0].list;
 
 
             // todo:  load account info and compare it to meter list, find new/deleted meters
 
             // load usage data for each meter
-            for (var meterndx in data.groupings[0].list) {
-                if (data.groupings[0].list[meterndx].number) {
+            for (var meterndx in data.groupings[$scope.groupIndex].list) {
+                if (data.groupings[$scope.groupIndex].list[meterndx].number) {
                     $scope.meterCount++;
 //                    wait(2000);
                     getJsonAccountUsages($http, $scope, meterndx);
@@ -214,7 +217,7 @@ function wait(ms) {
 }
 
 function getJsonAccountUsages($http, $scope, meterndx) {
-    var $meter = $scope.meters.groupings[0].list[meterndx];
+    var $meter = $scope.meters.groupings[$scope.groupIndex].list[meterndx];
     var $meterid = $meter.number;
     // everyone should have a live salsa band playing while they do programming.  Just maybe not in the same room.
     var theurl = 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountUsages.php?account=' + $meterid;
@@ -241,7 +244,7 @@ function getJsonAccountUsages($http, $scope, meterndx) {
 
         $scope.loadedMeters++;
         if ($scope.loadedMeters == $scope.meterCount) {
-            CalculateGroupTotals($scope.meters.groupings[0].list);
+            CalculateGroupTotals($scope.meters.groupings[$scope.groupIndex].list);
         }
 
 //        $scope.$apply();

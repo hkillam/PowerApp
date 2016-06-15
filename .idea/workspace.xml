@@ -4,11 +4,11 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ff64fec-badf-464c-8f2f-e69c3087bb7b" name="Default" comment="Use Angular's ui-chart to present the list of meters, and make it collapsable.  Use embedded lists for the settings page.">
+    <list default="true" id="7ff64fec-badf-464c-8f2f-e69c3087bb7b" name="Default" comment="Add a dropdown to select a grouping.  Define a second grouping in the settings file.  Change which grouping is used when the dropdown changes.  Note:  group values are not re-calculated.  The dropdown does not control which grouping is being used, only causes a change.">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/phoneindex.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/phones/phones.json" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers.js" afterPath="$PROJECT_DIR$/app/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/settings/meterlist.json" afterPath="$PROJECT_DIR$/app/settings/meterlist.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/detailReport.html" afterPath="$PROJECT_DIR$/app/templates/detailReport.html" />
     </list>
     <ignored path="PowerApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,8 +33,8 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="183" column="58" selection-start-line="183" selection-start-column="57" selection-end-line="183" selection-end-column="58" />
+            <state relative-caret-position="281">
+              <caret line="177" column="74" selection-start-line="177" selection-start-column="74" selection-end-line="177" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -54,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/app/templates/detailReport.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="275">
-              <caret line="11" column="84" selection-start-line="11" selection-start-column="69" selection-end-line="11" selection-end-column="84" />
+              <caret line="11" column="56" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -117,7 +117,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/partials/sample.html" />
         <option value="$PROJECT_DIR$/phoneapp/js/app.js" />
         <option value="chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/uiscripts/blacklisting/rightclick_hook.js" />
         <option value="chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/notificationoverlay.js" />
@@ -167,6 +166,7 @@
         <option value="chrome-extension://jafmfknfnkoekkdocjiaipcnmkklaajd/content.js" />
         <option value="$PROJECT_DIR$/app/settings/meterlist.json" />
         <option value="$PROJECT_DIR$/app/templates/detailReport.html" />
+        <option value="vm:140" />
         <option value="$PROJECT_DIR$/app/js/controllers.js" />
       </list>
     </option>
@@ -299,60 +299,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="settings" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -496,7 +442,7 @@
       <workItem from="1465519088462" duration="5499000" />
       <workItem from="1465577021097" duration="23312000" />
       <workItem from="1465679073236" duration="24416000" />
-      <workItem from="1465997675978" duration="12424000" />
+      <workItem from="1465997675978" duration="15633000" />
     </task>
     <task id="LOCAL-00001" summary="Use AngularJS, drop Backbone/React.  Use WebStorm to edit and manage source files.">
       <created>1463677261953</created>
@@ -575,11 +521,18 @@
       <option name="project" value="LOCAL" />
       <updated>1464822247050</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add a dropdown to select a grouping.  Define a second grouping in the settings file.  Change which grouping is used when the dropdown changes.  Note:  group values are not re-calculated.  The dropdown does not control which grouping is being used, only causes a change.">
+      <created>1466013195689</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1466013195689</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236562000" />
+    <option name="totallyTimeSpent" value="239771000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -658,7 +611,8 @@
     <MESSAGE value="Created a json format to make groups of meters, give them names.  Created a report page that reads the list, makes it grouped, indented, and expandable." />
     <MESSAGE value="Make list of accounts collapsable/expandable." />
     <MESSAGE value="Use Angular's ui-chart to present the list of meters, and make it collapsable.  Use embedded lists for the settings page." />
-    <option name="LAST_COMMIT_MESSAGE" value="Use Angular's ui-chart to present the list of meters, and make it collapsable.  Use embedded lists for the settings page." />
+    <MESSAGE value="Add a dropdown to select a grouping.  Define a second grouping in the settings file.  Change which grouping is used when the dropdown changes.  Note:  group values are not re-calculated.  The dropdown does not control which grouping is being used, only causes a change." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add a dropdown to select a grouping.  Define a second grouping in the settings file.  Change which grouping is used when the dropdown changes.  Note:  group values are not re-calculated.  The dropdown does not control which grouping is being used, only causes a change." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -686,30 +640,30 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/js/controllers.js</url>
-          <line>135</line>
+          <line>131</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/js/controllers.js</url>
-          <line>142</line>
+          <line>138</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/js/controllers.js</url>
-          <line>249</line>
+          <line>252</line>
           <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/js/controllers.js</url>
-          <line>181</line>
+          <line>179</line>
           <properties />
-          <option name="timeStamp" value="89" />
+          <option name="timeStamp" value="91" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="91" />
+      <option name="time" value="92" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -811,13 +765,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/custom/meters.json" />
-    <entry file="file://$PROJECT_DIR$/app/phones/phones.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/settings/notes.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -857,13 +804,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/phoneindex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -995,18 +935,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/phones/phones.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/phoneindex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/detailReport.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
-          <caret line="11" column="84" selection-start-line="11" selection-start-column="69" selection-end-line="11" selection-end-column="84" />
+          <caret line="11" column="56" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="183" column="58" selection-start-line="183" selection-start-column="57" selection-end-line="183" selection-end-column="58" />
+        <state relative-caret-position="281">
+          <caret line="177" column="74" selection-start-line="177" selection-start-column="74" selection-end-line="177" selection-end-column="74" />
           <folding />
         </state>
       </provider>
