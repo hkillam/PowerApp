@@ -12,7 +12,6 @@
         <select name="groupingSelect" id="groupingSelect" ng-change="changedGrouping(groupingSelect)"
                 ng-options="option.name for option in meters.groupings track by option.name"
                 ng-model="data.selectedGrouping"></select>
-        <i>option = {{data.selectedGrouping.name}}</i>
 
         <div id="grid1" ui-grid="gridOptions" ui-grid-tree-view class="grid"></div>
 
