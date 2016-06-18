@@ -1,0 +1,124 @@
+{
+  "accounts": [
+    {
+      "currentBalance": 53.47999954223633,
+      "disabled": false,
+      "dueDate": "2016-06-30T12:00:00-07:00",
+      "flag": true,
+      "isRapEnrolled": true,
+      "nickName": "6348558270",
+      "number": "6348558270",
+      "overdue": false,
+      "premises": [
+        {
+          "address": {
+            "addressLine1": "123 Nowhere Land",
+            "addressLine2": "",
+            "addressLine3": "Neverland CO 90210-1234"
+          },
+          "number": "6348558270001",
+          "services": "NATURAL GAS, ELECTRICITY"
+        },
+        {
+          "address": {
+            "addressLine1": "1158 MARION ST",
+            "addressLine2": "APT 7",
+            "addressLine3": "DENVER CO 80218-3049"
+          },
+          "number": "6348558270002",
+          "services": "ELECTRICITY"
+        },
+        {
+          "address": {
+            "addressLine1": "1158 MARION ST",
+            "addressLine2": "APT 7",
+            "addressLine3": "DENVER CO 80218-3049"
+          },
+          "number": "6348558270021",
+          "services": "ELECTRICITY"
+        },
+        {
+          "address": {
+            "addressLine1": "1158 MARION ST",
+            "addressLine2": "APT 7",
+            "addressLine3": "DENVER CO 80218-3049"
+          },
+          "number": "6348558270022",
+          "services": "ELECTRICITY"
+        },
+        {
+          "address": {
+            "addressLine1": "1158 MARION ST",
+            "addressLine2": "APT 7",
+            "addressLine3": "DENVER CO 80218-3049"
+          },
+          "number": "6348558270003",
+          "services": "ELECTRICITY"
+        },
+        {
+          "address": {
+            "addressLine1": "1158 MARION ST",
+            "addressLine2": "APT 7",
+            "addressLine3": "DENVER CO 80218-3049"
+          },
+          "number": "6348558270004",
+          "services": "ELECTRICITY"
+        },
+        {
+          "address": {
+            "addressLine1": "1158 MARION ST",
+            "addressLine2": "APT 7",
+            "addressLine3": "DENVER CO 80218-3049"
+          },
+          "number": "6348558270032",
+          "services": "ELECTRICITY"
+        }
+      ],
+      "status": null
+    },
+    {
+      "currentBalance": 53.47999954223633,
+      "disabled": false,
+      "dueDate": "2016-06-30T12:00:00-07:00",
+      "flag": true,
+      "isRapEnrolled": true,
+      "nickName": "333",
+      "number": "333",
+      "overdue": false,
+      "premises": [
+        {
+          "address": {
+            "addressLine1": "123 Nowhere Land",
+            "addressLine2": "",
+            "addressLine3": "Neverland CO 90210-1234"
+          },
+          "number": "6348558270032",
+          "services": "NATURAL GAS, ELECTRICITY"
+        }
+      ],
+      "status": null
+    },
+    {
+      "currentBalance": 53.47999954223633,
+      "disabled": false,
+      "dueDate": "2016-06-30T12:00:00-07:00",
+      "flag": true,
+      "isRapEnrolled": true,
+      "nickName": "444",
+      "number": "444",
+      "overdue": false,
+      "premises": [
+        {
+          "address": {
+            "addressLine1": "123 Nowhere Land",
+            "addressLine2": "",
+            "addressLine3": "Neverland CO 90210-1234"
+          },
+          "number": "6348558270031",
+          "services": "NATURAL GAS, ELECTRICITY"
+        }
+      ],
+      "status": null
+    }
+  ]
+}

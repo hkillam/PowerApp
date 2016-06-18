@@ -7,13 +7,13 @@
 
 
         <h2 class="section-header section-header-billing">{{meters.name}}</h2>
-        <span id="counter" data-ui="dueDate">loaded {{loadedMeters}} of {{meterCount}} </span>
         <label for="groupingSelect">Grouping:</label>
         <select name="groupingSelect" id="groupingSelect" ng-change="changedGrouping(groupingSelect)"
                 ng-options="option.name for option in meters.groupings track by option.name"
                 ng-model="data.selectedGrouping"></select>
 
-        <div id="grid1" ui-grid="gridOptions" ui-grid-tree-view class="grid"></div>
+        <div id="grid1" ui-grid="gridOptions" ui-grid-tree-view ui-grid-resize-columns ui-grid-move-columns
+             class="grid"></div>
 
 
     </div>

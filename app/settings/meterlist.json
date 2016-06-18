@@ -66,7 +66,8 @@
         {
           "type": "account",
           "$$treeLevel": 0,
-          "name": "third account"
+          "name": "third account",
+          "number": 333
         },
         {
           "type": "group",
@@ -83,7 +84,8 @@
         {
           "type": "account",
           "$$treeLevel": 0,
-          "name": "second account"
+          "name": "second account",
+          "number": 444
         },
         {
           "type": "group",

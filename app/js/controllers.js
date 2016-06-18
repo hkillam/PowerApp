@@ -7,16 +7,25 @@ var powerControllers = angular.module('powerControllers', []);
 function getURLs() {
     var sources = "stub";
 
+    if ("sources" === "livesite") {
+        return {
+            accountList: 'https://myaccount.xcelenergy.com/oam/user/getJsonAccounts.req'
+        }
+    }
+
     return {
         accountOverview: 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountOverview.php',
-        premiseList: 'http://powerstub.killamsolutions.ca/oam/user/getJsonPremiseOverview.php',
+        accountList: 'settings/getJsonAccounts.json',  // TODO move this to stub
+        premiseList: 'http://powerstub.killamsolutions.ca/oam/user/getJsonPremiseOverview.php',  // Not needed - accountList gets teh same info, for every account.
         premiseUsages: 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountUsages.php',
         paymentHistory: 'http://powerstub.killamsolutions.ca/oam/user/getMyBillsAccounts.php',
         meterList: 'settings/meterlist.json'
     };
+
+
 }
 
-powerControllers.factory("clientAccountSrv", function ($http) {
+powerControllers.factory("clientAccountSrv", ['$http', function ($http) {
     var accountOverview = null;
 
     function getData() {
@@ -35,8 +44,6 @@ powerControllers.factory("clientAccountSrv", function ($http) {
                 })
                     .success(function (data, status, headers, config) {
                         accountOverview = data;
-
-                        // TODO:  trigger more data loads here, to store on this service object, so that next pages load faster
                         return data;
                     })
                     .error(function (data, status, headers, config) {
@@ -54,27 +61,27 @@ powerControllers.factory("clientAccountSrv", function ($http) {
             })
         }
     };
-});
+}]);
 
-powerControllers.factory("premiseListSrv", function ($http) {
-    var premiseList = null;
-
-    function getData() {
-        return premiseList;
-    }
+powerControllers.factory("accountListSrv", function ($http) {
+    var primaryAccountNumber = 6348558270;  // TODO - this should be returned at login, not by hard coding.
+    var accountList = null;
 
     return {
-        getData: getData,
-        loadData: function () {
-            if (premiseList == null) {
+        getData: function getData() {
+            return accountList;
+        },
 
-                var myurl = getURLs().premiseList + '?account=6348558270';
+        loadData: function () {
+            if (accountList == null) {
+
+                var myurl = getURLs().accountList + '?account=6348558270';
                 var promise = $http({
                     method: 'GET',
                     url: myurl
                 })
                     .success(function (data, status, headers, config) {
-                        premiseList = data;
+                        accountList = data;
                         return data;
                     })
                     .error(function (data, status, headers, config) {
@@ -82,7 +89,7 @@ powerControllers.factory("premiseListSrv", function ($http) {
                     });
                 return promise;
             } else {
-                return premiseList;
+                return accountList;
             }
         }
     };
@@ -136,8 +143,10 @@ function drawGoogleChart($chartArray) {
 }
 
 
-powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAccountSrv', 'premiseListSrv',
-    function ($scope, $http, clientAccountSrv, premiseListSrv) {
+powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAccountSrv', 'accountListSrv',
+    function ($scope, $http, clientAccountSrv, accountListSrv) {
+        $scope.meterCount = 0;
+        $scope.loadedMeters = 0;
 
         // if the account data is already loaded, grab and draw
         $scope.clientAccount = clientAccountSrv.getData();
@@ -154,16 +163,18 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAcc
         }
 
         // make sure the premise list is loaded
-        $scope.premiseList = premiseListSrv.getData();
-        if ($scope.premiseList == null) {
-            // data not loaded - use promise...then to load asynchronous.
-            premiseListSrv.loadData().then(function (promise) {
-                $scope.premiseList = promise.data;
-                // load usage data for each meter
-                for (var meterndx in $scope.premiseList.premises) {
-                    if ($scope.premiseList.premises[meterndx].number) {
-                        $scope.meterCount++;
-                        getJsonAccountUsages($http, $scope, meterndx);
+        $scope.accountList = accountListSrv.getData();
+        if ($scope.accountList == null) {
+            // data needss to be loaded - use promise...then to load asynchronous.
+            accountListSrv.loadData().then(function (promise) {
+                $scope.accountList = promise.data;
+                // load usage data for each meter in each account
+                for (var i in $scope.accountList.accounts) {
+                    for (var meterndx in $scope.accountList.accounts[i].premises) {
+                        if ($scope.accountList.accounts[i].premises[meterndx].number) {
+                            $scope.meterCount++;
+                            getJsonAccountUsages($http, $scope, $scope.accountList.accounts[i].premises[meterndx].number);
+                        }
                     }
                 }
             });
@@ -180,6 +191,8 @@ powerControllers.controller('AccountDetailCtrl', ['$scope', '$routeParams',
 
 
 // Try to turn tree-view of json into flat view with $$level defined.
+// treeview might be helpful in organizing groupings.  flat view is currently
+// used to show the account report.
 function markGroupLevels(groups, level) {
     for (var group in groups) {
         groups[group].level = level;
@@ -192,8 +205,8 @@ function markGroupLevels(groups, level) {
     }
 }
 
-powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv', 'premiseListSrv',
-    function ($scope, $routeParams, $http, clientAccountSrv, premiseListSrv) {
+powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv', 'accountListSrv',
+    function ($scope, $routeParams, $http, clientAccountSrv, accountListSrv) {
         $scope.meterId = $routeParams.meterId;
 
         $scope.clientAccount = clientAccountSrv.getData();
@@ -203,25 +216,27 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
         $scope.gridOptions = {
             enableSorting: true,
             enableFiltering: true,
+            enableColumnResizing: true,
             showTreeExpandNoChildren: false,
             treeIndent: 20,
             columnDefs: [
-                {name: 'name', width: '15%'},
-                {name: 'number', width: '15%'},
-                {name: 'meter.addressLine1', width: '15%', displayName: "Address"},
-                {name: 'meter.eAmount', width: '7%', displayName: "kWh"},
-                {name: 'meter.eCost', width: '15%', displayName: "Electricity Cost"},
-                {name: 'meter.gAmount', width: '10%', displayName: "Therms"},
-                {name: 'meter.gCost', width: '12%', displayName: "Gas Cost"}
+                {name: 'name'},
+                {name: 'number'},
+                {name: 'meter.addressLine1', displayName: "Address", maxWidth: 200, minWidth: 70},
+                {name: 'meter.eAmount', displayName: "kWh", maxWidth: 200, minWidth: 70},
+                {name: 'meter.eCost', displayName: "Electricity Cost"},
+                {name: 'meter.gAmount', displayName: "Therms"},
+                {name: 'meter.gCost', displayName: "Gas Cost"}
             ]
         };
 
         // todo let the scrollbar for the page control the table as well, and don't use a second scroll bar for the table.
 
+        // load the groupings from the settings file, match to the account data.
         $http.get('settings/meterlist.json').success(function (data) {
             $scope.meters = data;
-            if (!$scope.premiseList) {
-                $scope.premiseList = premiseListSrv.getData();
+            if (!$scope.accountList) {
+                $scope.accountList = accountListSrv.getData();
             }
 
             // create a dropdown and initialize it to the first group
@@ -243,21 +258,15 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
 
             // todo:  compare premise list to grouping list, find new/deleted meters
 
-            // match meters in the groupings to the premise list
+            // match meters in the groupings to the account list
             for (var grp in data.groupings) {
                 for (var meterndx in data.groupings[grp].list) {
                     if (data.groupings[grp].list[meterndx].number) {
-                        for (var i in $scope.premiseList.premises) {
-                            if ($scope.premiseList.premises[i].number == data.groupings[grp].list[meterndx].number) {
-                                data.groupings[grp].list[meterndx].meter = $scope.premiseList.premises[i];
-                            }
-                        }
+                        data.groupings[grp].list[meterndx].meter = getMeterFromID($scope, data.groupings[grp].list[meterndx].number);
                     }
                 }
                 CalculateGroupTotals(data.groupings[grp].list);
             }
-
-
         });
 
         $scope.template = getTemplates();
@@ -271,17 +280,25 @@ function wait(ms) {
     }
 }
 
-function getJsonAccountUsages($http, $scope, meterndx) {
-    var $meter = $scope.premiseList.premises[meterndx];
-    var $meterid = $meter.number;
+//-----------------------------------------
+// Interates through the data to find the specified number
+function getMeterFromID($scope, $meterid) {
+    //$scope.accountList.accounts[i].premises[meterndx].number
+    for (var i in $scope.accountList.accounts) {
+        for (var j in $scope.accountList.accounts[i].premises) {
+            if ($scope.accountList.accounts[i].premises[j].number == $meterid) {
+                return $scope.accountList.accounts[i].premises[j];
+            }
+        }
+    }
+}
+
+function getJsonAccountUsages($http, $scope, $meterid) {
     // everyone should have a live salsa band playing while they do programming.  Just maybe not in the same room.
-    //var theurl = 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountUsages.php?account=' + $meterid;
     var theurl = getURLs().premiseUsages + '?account=' + $meterid;
     $http.get(theurl).success(function (data) {
-        //var $meter = $scope.premiseList.premises[meterndx];
         var $meterid = data.number;
-        $meter.overview = data;
-        //$meter.addressLine1 = data.addressLine1;
+        var $meter = getMeterFromID($scope, $meterid);
 
         for (var index in data.overview) {
 
@@ -300,13 +317,12 @@ function getJsonAccountUsages($http, $scope, meterndx) {
         }
 
         $scope.loadedMeters++;
+        $meter.usage = data;
 
-//        $scope.$apply();
         var loadingbar = document.getElementById("counter");
         if (loadingbar && loadingbar.core) {
             loadingbar.core.refresh();
         }
-        //document.getElementById("grid1").core.refresh();
     });
 }
 
