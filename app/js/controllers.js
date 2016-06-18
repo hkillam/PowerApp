@@ -208,10 +208,7 @@ function markGroupLevels(groups, level) {
 powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv', 'accountListSrv',
     function ($scope, $routeParams, $http, clientAccountSrv, accountListSrv) {
         $scope.meterId = $routeParams.meterId;
-
         $scope.clientAccount = clientAccountSrv.getData();
-        $scope.meterCount = 0;
-        $scope.loadedMeters = 0;
 
         $scope.gridOptions = {
             enableSorting: true,
@@ -230,16 +227,32 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
             ]
         };
 
-        // todo let the scrollbar for the page control the table as well, and don't use a second scroll bar for the table.
+        // todo let the scrollbar for the page control the table as well, and don't use a second
+        // scroll bar for the table.  Seems impossible with this tool.
+
+        // make sure the account list has been loaded
+        if (!$scope.accountList) {
+            $scope.accountList = accountListSrv.getData();
+        }
+
+        // create default groupings from the meter list.
+        $scope.groupings = {name: 'Accounts', list: []};
+        for (var i in $scope.accountList.accounts) {
+            var acct = $scope.accountList.accounts[i];
+            $scope.groupings.list.push({type: "account", number: acct.number, name: acct.number, $$treeLevel: 0});
+            for (var j in acct.premises) {
+                var meter = acct.premises[j];
+                $scope.groupings.list.push({type: "meter", number: meter.number, name: meter.number});
+            }
+        }
 
         // load the groupings from the settings file, match to the account data.
+        // TODO - split into separate function
         $http.get('settings/meterlist.json').success(function (data) {
-            $scope.meters = data;
-            if (!$scope.accountList) {
-                $scope.accountList = accountListSrv.getData();
-            }
+            data.groupings.push($scope.groupings);
+            $scope.groupings = data.groupings;
 
-            // create a dropdown and initialize it to the first group
+            // create a "groupings" dropdown and initialize it to the first group
             $scope.groupIndex = 0;
             $scope.gridOptions.data = data.groupings[$scope.groupIndex].list;
             $scope.changedGrouping = function (item) {
@@ -281,7 +294,7 @@ function wait(ms) {
 }
 
 //-----------------------------------------
-// Interates through the data to find the specified number
+// Iterates through the data to find the specified number
 function getMeterFromID($scope, $meterid) {
     //$scope.accountList.accounts[i].premises[meterndx].number
     for (var i in $scope.accountList.accounts) {
@@ -399,13 +412,13 @@ powerControllers.controller('SettingsCtrl', ['$scope', '$routeParams', '$http', 
         $scope.clientAccount = clientAccountSrv.getData();
 
         $http.get('settings/meters.json').success(function (data) {
-            $scope.meters = data;
+            $scope.groupings = data.groupings;
 
             // initialize expanded and indentation levels
-            for (var account in $scope.meters.accounts) {
-                $scope.meters.accounts[account].expanded = true;
-                $scope.meters.children = $scope.meters.accounts[account].groups;
-                markGroupLevels($scope.meters.accounts[account].groups, 1);
+            for (var account in $scope.groupings.accounts) {
+                $scope.groupings.accounts[account].expanded = true;
+                $scope.groupings.children = $scope.groupings.accounts[account].groups;
+                markGroupLevels($scope.groupings.accounts[account].groups, 1);
             }
         });
 
