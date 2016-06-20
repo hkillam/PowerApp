@@ -1,0 +1,80 @@
+{
+  "accounts": [
+    {
+      "currentBalance": 53.47999954223633,
+      "disabled": false,
+      "dueDate": "2016-06-30T12:00:00-07:00",
+      "flag": true,
+      "isRapEnrolled": true,
+      "nickName": "555555",
+      "number": "555555",
+      "overdue": false,
+      "premises": [
+        {
+          "address": {
+            "addressLine1": "123 Nowhere Land",
+            "addressLine2": "",
+            "addressLine3": "Neverland CO 90210-1234"
+          },
+          "number": "555555001",
+          "services": "ELECTRICITY"
+        },
+        {
+          "address": {
+            "addressLine1": "123 Nowhere Land",
+            "addressLine2": "APT 7",
+            "addressLine3": "Neverland CO 90210-1234"
+          },
+          "number": "555555002",
+          "services": "NATURAL GAS"
+        },
+        {
+          "address": {
+            "addressLine1": "123 Nowhere Land",
+            "addressLine2": "APT 7",
+            "addressLine3": "Neverland CO 90210-1234"
+          },
+          "number": "555555021",
+          "services": "ELECTRICITY"
+        },
+        {
+          "address": {
+            "addressLine1": "123 Nowhere Land",
+            "addressLine2": "APT 7",
+            "addressLine3": "Neverland CO 90210-1234"
+          },
+          "number": "555555022",
+          "services": "ELECTRICITY"
+        },
+        {
+          "address": {
+            "addressLine1": "123 Nowhere Land",
+            "addressLine2": "APT 7",
+            "addressLine3": "Neverland CO 90210-1234"
+          },
+          "number": "555555003",
+          "services": "ELECTRICITY"
+        },
+        {
+          "address": {
+            "addressLine1": "123 Nowhere Land",
+            "addressLine2": "APT 7",
+            "addressLine3": "Neverland CO 90210-1234"
+          },
+          "number": "555555004",
+          "services": "ELECTRICITY"
+        },
+        {
+          "address": {
+            "addressLine1": "123 Nowhere Land",
+            "addressLine2": "APT 7",
+            "addressLine3": "Neverland CO 90210-1234"
+          },
+          "number": "555555032",
+          "services": "ELECTRICITY"
+        }
+      ],
+      "status": null
+    }
+  ]
+}

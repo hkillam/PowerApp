@@ -9,7 +9,8 @@ var powerApp = angular.module('powerApp', [
     'ui.grid',
     'ui.grid.treeView',
     'ui.grid.resizeColumns',
-    'ui.grid.moveColumns'
+    'ui.grid.moveColumns',
+    'ui.grid.pinning'
 ]);
 
 powerApp.config(['$routeProvider',

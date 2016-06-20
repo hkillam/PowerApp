@@ -4,6 +4,10 @@
 
 var powerControllers = angular.module('powerControllers', []);
 
+// The login wil return the client ID.  For now, switch which line is active to view different sample accounts.
+//var clientID = 6348558270;   // Airport:  three accounts, two groupings
+var clientID = 555555;   // Campus:  one account
+
 function getURLs() {
     var sources = "stub";
 
@@ -15,14 +19,12 @@ function getURLs() {
 
     return {
         accountOverview: 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountOverview.php',
-        accountList: 'settings/getJsonAccounts.json',  // TODO move this to stub
+        accountList: 'settings/getJsonAccounts_' + clientID + '.json',  // not in stub because it is a crafted list for each sample client
         premiseList: 'http://powerstub.killamsolutions.ca/oam/user/getJsonPremiseOverview.php',  // Not needed - accountList gets teh same info, for every account.
         premiseUsages: 'http://powerstub.killamsolutions.ca/oam/user/getJsonAccountUsages.php',
         paymentHistory: 'http://powerstub.killamsolutions.ca/oam/user/getMyBillsAccounts.php',
-        meterList: 'settings/meterlist.json'
+        meterList: 'settings/meterlist_' + clientID + '.json'  // needs to be created by a settings page, currently crafted for demo
     };
-
-
 }
 
 powerControllers.factory("clientAccountSrv", ['$http', function ($http) {
@@ -37,7 +39,7 @@ powerControllers.factory("clientAccountSrv", ['$http', function ($http) {
         loadData: function () {
             if (accountOverview == null) {
 
-                var myurl = getURLs().accountOverview + '?account=6348558270';
+                var myurl = getURLs().accountOverview + '?account=' + clientID;
                 var promise = $http({
                     method: 'GET',
                     url: myurl
@@ -64,7 +66,7 @@ powerControllers.factory("clientAccountSrv", ['$http', function ($http) {
 }]);
 
 powerControllers.factory("accountListSrv", function ($http) {
-    var primaryAccountNumber = 6348558270;  // TODO - this should be returned at login, not by hard coding.
+    var primaryAccountNumber = clientID;
     var accountList = null;
 
     return {
@@ -75,7 +77,7 @@ powerControllers.factory("accountListSrv", function ($http) {
         loadData: function () {
             if (accountList == null) {
 
-                var myurl = getURLs().accountList + '?account=6348558270';
+                var myurl = getURLs().accountList + '?account=' + clientID;
                 var promise = $http({
                     method: 'GET',
                     url: myurl
@@ -210,17 +212,22 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
         $scope.meterId = $routeParams.meterId;
         $scope.clientAccount = clientAccountSrv.getData();
 
+        // TODO:  save changes in the column layout:  http://stackoverflow.com/questions/32346341/angular-ui-grid-save-and-restore-state
+
+        // TODO:  make the sidebar collapsable to the edge to give more table space:  http://startbootstrap.com/template-overviews/simple-sidebar/
+
         $scope.gridOptions = {
             enableSorting: true,
             enableFiltering: true,
             enableColumnResizing: true,
+            enableGridMenu: true,
             showTreeExpandNoChildren: false,
             treeIndent: 20,
             columnDefs: [
-                {name: 'name'},
-                {name: 'number'},
-                {name: 'meter.addressLine1', displayName: "Address", maxWidth: 200, minWidth: 70},
-                {name: 'meter.eAmount', displayName: "kWh", maxWidth: 200, minWidth: 70},
+                {name: 'name', pinnedLeft: true},
+                //{name: 'number'},
+                //{name: 'meter.addressLine1', displayName: "Address"},
+                {name: 'meter.eAmount', displayName: "kWh"},
                 {name: 'meter.eCost', displayName: "Electricity Cost"},
                 {name: 'meter.gAmount', displayName: "Therms"},
                 {name: 'meter.gCost', displayName: "Gas Cost"}
@@ -229,6 +236,8 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
 
         // todo let the scrollbar for the page control the table as well, and don't use a second
         // scroll bar for the table.  Seems impossible with this tool.
+
+        // todo: use the row type to create a class, then use icons for meters.  Groups have > adn v arrows.
 
         // make sure the account list has been loaded
         if (!$scope.accountList) {
@@ -247,8 +256,8 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
         }
 
         // load the groupings from the settings file, match to the account data.
-        // TODO - split into separate function
-        $http.get('settings/meterlist.json').success(function (data) {
+        // TODO - split into separate function, because this one is a runon sentence
+        $http.get('settings/meterlist_' + clientID + '.json').success(function (data) {
             data.groupings.push($scope.groupings);
             $scope.groupings = data.groupings;
 

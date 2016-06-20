@@ -4,18 +4,33 @@
         <div ng-include="template.accountmenu"></div>
     </div>
     <div class="col-xs-12 col-md-9">
+        <div class="row clearfix">
 
+            <h2 class="section-header section-header-billing">My Usage</h2>
+            <label for="groupingSelect">Grouping:</label>
+            <select name="groupingSelect" id="groupingSelect" ng-change="changedGrouping(groupingSelect)"
+                    ng-options="option.name for option in groupings track by option.name"
+                    ng-model="selectedGrouping"></select>
 
-        <h2 class="section-header section-header-billing">Detailed Usage Report</h2>
-        <label for="groupingSelect">Grouping:</label>
-        <select name="groupingSelect" id="groupingSelect" ng-change="changedGrouping(groupingSelect)"
-                ng-options="option.name for option in groupings track by option.name"
-                ng-model="selectedGrouping"></select>
-
-        <div id="grid1" ui-grid="gridOptions" ui-grid-tree-view ui-grid-resize-columns ui-grid-move-columns
-             class="grid"></div>
-
-
+            <div id="grid1" ui-grid="gridOptions" ui-grid-tree-view ui-grid-resize-columns ui-grid-move-columns
+                 ui-grid-pinning
+                 class="grid clearfix"></div>
+        </div>
+        <div class="row clearfix">
+            <div class="banner banner-energy">
+                <div class="wrap-icon lightbulb-icon">
+                    <div class="banner-inner">
+                        <p class="headline"><span class="hidden-xs">Sign up for energy updates, billing reminders and payment notifications.</span><a
+                                href="/oam/user/showprofilepage.req" class="banner-link visible-xs">Energy Notifications
+                            <span class="big">Sign up</span></a>
+                        </p>
+                        <p class="hidden-xs">It only takes a minute to sign-up. <a href="/oam/user/showprofilepage.req">Learn
+                            More</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
 </div>

@@ -1,0 +1,78 @@
+{
+  "name": "Colorado State University",
+  "groupings": [
+    {
+      "name": "Departments",
+      "list": [
+        {
+          "type": "group",
+          "$$treeLevel": 0,
+          "name": "Greenwood Village Office",
+          "squareFootage": 10000
+        },
+        {
+          "type": "meter",
+          "number": "6348558270001",
+          "name": "Greenwood Village Electric",
+          "squareFootage": 10000
+        },
+        {
+          "number": "6348558270002",
+          "name": "Greenwood Village Gas",
+          "squareFootage": 10000,
+          "type": "meter"
+        },
+        {
+          "type": "group",
+          "$$treeLevel": 0,
+          "name": "School of Dance",
+          "squareFootage": 4000
+        },
+        {
+          "type": "meter",
+          "name": "North Building",
+          "number": "6348558270021",
+          "squareFootage": 1000
+        },
+        {
+          "type": "group",
+          "$$treeLevel": 1,
+          "name": "Studios A & B"
+        },
+        {
+          "type": "meter",
+          "name": "Studio A",
+          "number": "6348558270022",
+          "squareFootage": 3000
+        },
+        {
+          "type": "meter",
+          "number": "6348558270003",
+          "name": "Studio B"
+        },
+        {
+          "type": "group",
+          "$$treeLevel": 1,
+          "name": "Annex"
+        },
+        {
+          "type": "meter",
+          "number": "6348558270004",
+          "name": "Side Annex"
+        },
+        {
+          "type": "group",
+          "$$treeLevel": 0,
+          "name": "McPharlis Campus",
+          "squareFootage": 10000
+        },
+        {
+          "type": "meter",
+          "number": "6348558270032",
+          "name": "School of Music",
+          "squareFootage": 10000
+        }
+      ]
+    }
+  ]
+}
