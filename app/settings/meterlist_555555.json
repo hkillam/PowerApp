@@ -12,12 +12,12 @@
         },
         {
           "type": "meter",
-          "number": "6348558270001",
+          "number": "555555001",
           "name": "Greenwood Village Electric",
           "squareFootage": 10000
         },
         {
-          "number": "6348558270002",
+          "number": "555555002",
           "name": "Greenwood Village Gas",
           "squareFootage": 10000,
           "type": "meter"
@@ -31,7 +31,7 @@
         {
           "type": "meter",
           "name": "North Building",
-          "number": "6348558270021",
+          "number": "555555021",
           "squareFootage": 1000
         },
         {
@@ -42,12 +42,12 @@
         {
           "type": "meter",
           "name": "Studio A",
-          "number": "6348558270022",
+          "number": "555555022",
           "squareFootage": 3000
         },
         {
           "type": "meter",
-          "number": "6348558270003",
+          "number": "555555003",
           "name": "Studio B"
         },
         {
@@ -57,7 +57,7 @@
         },
         {
           "type": "meter",
-          "number": "6348558270004",
+          "number": "555555004",
           "name": "Side Annex"
         },
         {
@@ -68,7 +68,7 @@
         },
         {
           "type": "meter",
-          "number": "6348558270032",
+          "number": "555555032",
           "name": "School of Music",
           "squareFootage": 10000
         }

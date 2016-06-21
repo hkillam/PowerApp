@@ -1,9 +1,10 @@
 <div ng-include="template.topbar"></div>
 <div class="container" id="main">
-    <div class="col-xs-hidden col-md-3">
+    <div ng-class="showgraphSidebar ? 'col-xs-3' : 'hidden'">
         <div ng-include="template.accountmenu"></div>
     </div>
-    <div class="col-xs-12 col-md-9">
+    <div ng-class="showgraphSidebar ? 'col-xs-9' : 'col-xs-12'">
+        <button ng-click='toggle()' class="menu-collapse"> {{menucollapsebutton}}</button>
         <div class="row clearfix">
 
             <h2 class="section-header section-header-billing">My Usage</h2>

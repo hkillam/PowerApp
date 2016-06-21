@@ -11,7 +11,7 @@ var clientID = 555555;   // Campus:  one account
 function getURLs() {
     var sources = "stub";
 
-    if ("sources" === "livesite") {
+    if (sources === "livesite") {
         return {
             accountList: 'https://myaccount.xcelenergy.com/oam/user/getJsonAccounts.req'
         }
@@ -114,16 +114,13 @@ function prepareTrendData($trendData) {
     }
     chartArray[0][0] = "Month";
 
-    for (var i = 0; i < $trendData.series.length; i++) {
+    for (i = 0; i < $trendData.series.length; i++) {
         // a row has all the values for a year.
         var row = $trendData.series[i].data;
-        var rlabel = $trendData.series[i].label;
-        chartArray[0][i + 1] = rlabel;
+        chartArray[0][i + 1] = $trendData.series[i].label;
         for (var j = 0; j < row.length; j++) {
-            var clabel = $trendData.labels[j];
-            chartArray[j + 1][0] = clabel;
-            var item = parseFloat(row[j]);
-            chartArray[j + 1][i + 1] = item;
+            chartArray[j + 1][0] = $trendData.labels[j];
+            chartArray[j + 1][i + 1] = parseFloat(row[j]);
         }
     }
 
@@ -212,9 +209,20 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
         $scope.meterId = $routeParams.meterId;
         $scope.clientAccount = clientAccountSrv.getData();
 
-        // TODO:  save changes in the column layout:  http://stackoverflow.com/questions/32346341/angular-ui-grid-save-and-restore-state
+        // this chart is wide, let people collapse the side menu
+        $scope.showgraphSidebar = true;
+        $scope.menucollapsebutton = "«";
+        $scope.toggle = function () {
+            $scope.showgraphSidebar = !$scope.showgraphSidebar;
+            if ($scope.showgraphSidebar) {
+                $scope.menucollapsebutton = "«";
+            }
+            else {
+                $scope.menucollapsebutton = "»";
+            }
+        }
 
-        // TODO:  make the sidebar collapsable to the edge to give more table space:  http://startbootstrap.com/template-overviews/simple-sidebar/
+        // TODO:  save changes in the column layout:  http://stackoverflow.com/questions/32346341/angular-ui-grid-save-and-restore-state
 
         $scope.gridOptions = {
             enableSorting: true,
@@ -224,13 +232,30 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
             showTreeExpandNoChildren: false,
             treeIndent: 20,
             columnDefs: [
-                {name: 'name', pinnedLeft: true},
-                //{name: 'number'},
-                //{name: 'meter.addressLine1', displayName: "Address"},
-                {name: 'meter.eAmount', displayName: "kWh"},
-                {name: 'meter.eCost', displayName: "Electricity Cost"},
+                {
+                    name: 'name', displayName: "Name", pinnedLeft: true,
+                    cellTooltip: function (row, col) {
+                        if (row.entity.number || row.entity.meter.addressLine1) {
+                            return 'Accunt Number: ' + row.entity.number + ' Address: ' + row.entity.meter.addressLine1;
+                        }
+                    },
+                    cellClass: function (grid, row, col, rowRenderIndex, colRenderIndex) {
+                        return row.entity.type;
+                    }
+                },
+                {name: 'number', visible: false},
+                {name: 'meter.addressLine1', displayName: "Address", visible: false},
+                {name: 'meter.eAmount', displayName: "Usage (kWh)"},
+                {name: 'meter.billableDemand', displayName: "Demand"},
+                {name: 'meter.actualDemand', displayName: "Actual Demand", visible: false},
                 {name: 'meter.gAmount', displayName: "Therms"},
-                {name: 'meter.gCost', displayName: "Gas Cost"}
+                {name: 'meter.kbtu', displayName: "kBTU"},
+                {name: 'meter.squareFootage', displayName: "Square Footage"},
+                {name: 'meter.usagesqft', displayName: "Usage / Sq.Ft."},
+                {name: 'meter.eCost', displayName: "Electricity Cost"},
+                {name: 'meter.gCost', displayName: "Gas Cost"},
+                {name: 'meter.totalcost', displayName: "Total Cost"},
+                {name: 'meter.costsqft', displayName: "Cost / Sq.Ft."}
             ]
         };
 
@@ -284,7 +309,13 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
             for (var grp in data.groupings) {
                 for (var meterndx in data.groupings[grp].list) {
                     if (data.groupings[grp].list[meterndx].number) {
-                        data.groupings[grp].list[meterndx].meter = getMeterFromID($scope, data.groupings[grp].list[meterndx].number);
+                        var meter = getMeterFromID($scope, data.groupings[grp].list[meterndx].number);
+                        data.groupings[grp].list[meterndx].meter = meter;
+                        if (data.groupings[grp].list[meterndx].squareFootage > 0) {
+                            meter.squareFootage = data.groupings[grp].list[meterndx].squareFootage;
+                            meter.usagesqft = meter.eAmount / meter.squareFootage;
+                            meter.costsqft = meter.totalcost / meter.squareFootage;
+                        }
                     }
                 }
                 CalculateGroupTotals(data.groupings[grp].list);
@@ -322,21 +353,47 @@ function getJsonAccountUsages($http, $scope, $meterid) {
         var $meterid = data.number;
         var $meter = getMeterFromID($scope, $meterid);
 
+        $meter.kbtu = 0;
         for (var index in data.overview) {
-
             if (data.overview[index].type === "ELECTRICITY-1") {
                 $meter.eCost = data.overview[index].cost;
                 $meter.eEmissions = data.overview[index].emissions;
                 $meter.eAmount = data.overview[index].usage.amount;
                 $meter.eUnits = data.overview[index].usage.unit;
+                if ($meter.squareFootage > 0) {
+                    $meter.usagesqft = $meter.eAmount / $meter.squareFootage;
+                }
+                $meter.kbtu += data.overview[index].usage.amount * 3.4121416416;  // formula: http://www.rapidtables.com/convert/energy/kWh_to_BTU.htm
             }
             if (data.overview[index].type === "NATURAL GAS-1") {
                 $meter.gCost = data.overview[index].cost;
                 $meter.gEmissions = data.overview[index].emissions;
                 $meter.gAmount = data.overview[index].usage.amount;
                 $meter.gUnits = data.overview[index].usage.unit;
+                $meter.kbtu += data.overview[index].usage.amount * 100;  // formula: https://en.wikipedia.org/wiki/Therm
             }
         }
+        $meter.kbtu = Math.round($meter.kbtu);
+        $meter.totalcost = $meter.eCost + $meter.gCost;
+        if ($meter.squareFootage > 0) {
+            $meter.costsqft = $meter.totalcost / $meter.squareFootage;
+        }
+
+        // demand: meter.usage.services[0].reads[0].details[0].amount
+        for (var index in data.services) {
+            if (data.services[index].name === "ELECTRICITY-1") {
+                for (var z in data.services[index].reads[0].details) {
+                    if (data.services[index].reads[0].details[z].label === "Actual Demand") {
+                        $meter.actualDemand = data.services[index].reads[0].details[z].amount;
+                    }
+                    if (data.services[index].reads[0].details[z].label === "Billable Demand") {
+                        $meter.billableDemand = data.services[index].reads[0].details[z].amount;
+                    }
+                }
+            }
+        }
+
+        // todo:  get the demand, don't assume it is the top item
 
         $scope.loadedMeters++;
         $meter.usage = data;
@@ -345,7 +402,7 @@ function getJsonAccountUsages($http, $scope, $meterid) {
         if (loadingbar && loadingbar.core) {
             loadingbar.core.refresh();
         }
-    });
+    })
 }
 
 function getTemplates() {
@@ -385,7 +442,9 @@ function CalculateGroupTotals(meters) {
                     eAmount: a.eAmount + b.meter.eAmount,
                     eCost: a.eCost + b.meter.eCost,
                     gAmount: a.gAmount + b.meter.gAmount,
-                    gCost: a.gCost + b.meter.gCost
+                    gCost: a.gCost + b.meter.gCost,
+                    kbtu: a.kbtu + b.meter.kbtu,
+                    totalcost: a.totalcost + b.meter.totalcost
                 };
             } else {
                 return ( a );
@@ -394,7 +453,9 @@ function CalculateGroupTotals(meters) {
             eAmount: 0,
             eCost: 0,
             gAmount: 0,
-            gCost: 0
+            gCost: 0,
+            kbtu: 0,
+            totalcost: 0
         });
 
         siblings[j][0].meter = totals;
@@ -414,6 +475,10 @@ function CalculateGroupTotals(meters) {
 
 }
 
+
+// the Settings page uses a different mechcanism than the reports page.  the ui.grid in the reports
+// will not allow items to be moved, or expanded and edited.  There will need to be some sort of reworking
+// or conversion to use the actual meterList.
 powerControllers.controller('SettingsCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv',
     function ($scope, $routeParams, $http, clientAccountSrv) {
         $scope.meterId = $routeParams.meterId;

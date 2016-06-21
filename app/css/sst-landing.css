@@ -63,6 +63,20 @@ nav.side-nav ul li a {
     background-color: #c7e9e5 !important;
 }
 
+.menu-collapse {
+    border: 1px solid #21ad96;
+    color: #21ad96;
+    font-size: 40px;
+    position: absolute;
+}
+
+.meter {
+    background-image: url("../images/meter.png");
+    background-repeat: no-repeat;
+    background-size: 20px auto;
+    padding-left: 20px;
+}
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     nav.side-nav ul li a::after, nav.side-nav ul li p::after {
         top: 42px !important;
