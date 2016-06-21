@@ -8,69 +8,72 @@
           "type": "group",
           "$$treeLevel": 0,
           "name": "Greenwood Village Office",
-          "squareFootage": 10000
+          "squareFootage": 34300
         },
         {
           "type": "meter",
           "number": "555555001",
           "name": "Greenwood Village Electric",
-          "squareFootage": 10000
+          "squareFootage": 32300
         },
         {
           "number": "555555002",
           "name": "Greenwood Village Gas",
-          "squareFootage": 10000,
+          "squareFootage": 2000,
           "type": "meter"
         },
         {
           "type": "group",
           "$$treeLevel": 0,
           "name": "School of Dance",
-          "squareFootage": 4000
+          "squareFootage": 5800
         },
         {
           "type": "meter",
           "name": "North Building",
-          "number": "555555021",
-          "squareFootage": 1000
+          "number": "555555021"
         },
         {
           "type": "group",
           "$$treeLevel": 1,
-          "name": "Studios A & B"
+          "name": "Studios A & B",
+          "squareFootage": 3800
         },
         {
           "type": "meter",
           "name": "Studio A",
           "number": "555555022",
-          "squareFootage": 3000
+          "squareFootage": 1500
         },
         {
           "type": "meter",
           "number": "555555003",
-          "name": "Studio B"
+          "name": "Studio B",
+          "squareFootage": 2300
         },
         {
           "type": "group",
           "$$treeLevel": 1,
-          "name": "Annex"
+          "name": "Annex",
+          "squareFootage": 2000
         },
         {
           "type": "meter",
           "number": "555555004",
-          "name": "Side Annex"
+          "name": "Side Annex",
+          "squareFootage": 2000
         },
         {
           "type": "group",
           "$$treeLevel": 0,
           "name": "McPharlis Campus",
-          "squareFootage": 10000
+          "squareFootage": 20000
         },
         {
           "type": "meter",
           "number": "555555032",
           "name": "School of Music",
-          "squareFootage": 10000
+          "squareFootage": 20000
         }
       ]
     }

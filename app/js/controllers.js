@@ -246,6 +246,7 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
                 {name: 'number', visible: false},
                 {name: 'meter.addressLine1', displayName: "Address", visible: false},
                 {name: 'meter.eAmount', displayName: "Usage (kWh)"},
+                {name: 'meter.usageChange', displayName: "Usage Change vs. Last Month"},
                 {name: 'meter.billableDemand', displayName: "Demand"},
                 {name: 'meter.actualDemand', displayName: "Actual Demand", visible: false},
                 {name: 'meter.gAmount', displayName: "Therms"},
@@ -255,7 +256,9 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
                 {name: 'meter.eCost', displayName: "Electricity Cost"},
                 {name: 'meter.gCost', displayName: "Gas Cost"},
                 {name: 'meter.totalcost', displayName: "Total Cost"},
-                {name: 'meter.costsqft', displayName: "Cost / Sq.Ft."}
+                {name: 'meter.costsqft', displayName: "Cost / Sq.Ft."},
+                {name: 'meter.lastMoEUsage', displayName: "Previous Month Usage"},
+                {name: 'meter.totalEmissions', displayName: "Emissions"}
             ]
         };
 
@@ -313,8 +316,12 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
                         data.groupings[grp].list[meterndx].meter = meter;
                         if (data.groupings[grp].list[meterndx].squareFootage > 0) {
                             meter.squareFootage = data.groupings[grp].list[meterndx].squareFootage;
-                            meter.usagesqft = meter.eAmount / meter.squareFootage;
-                            meter.costsqft = meter.totalcost / meter.squareFootage;
+                            if (meter.eAmount) {
+                                meter.usagesqft = meter.eAmount / meter.squareFootage;
+                            }
+                            if (meter.totalcost) {
+                                meter.costsqft = meter.totalcost / meter.squareFootage;
+                            }
                         }
                     }
                 }
@@ -374,7 +381,20 @@ function getJsonAccountUsages($http, $scope, $meterid) {
             }
         }
         $meter.kbtu = Math.round($meter.kbtu);
-        $meter.totalcost = $meter.eCost + $meter.gCost;
+        $meter.totalcost = 0;
+        if ($meter.eCost) {
+            $meter.totalcost += $meter.eCost;
+        }
+        if ($meter.gCost) {
+            $meter.totalcost += $meter.gCost;
+        }
+        $meter.totalEmissions = 0;
+        if ($meter.eEmissions) {
+            $meter.totalEmissions += $meter.eEmissions;
+        }
+        if ($meter.gEmissions) {
+            $meter.totalEmissions += $meter.gEmissions;
+        }
         if ($meter.squareFootage > 0) {
             $meter.costsqft = $meter.totalcost / $meter.squareFootage;
         }
@@ -382,6 +402,7 @@ function getJsonAccountUsages($http, $scope, $meterid) {
         // demand: meter.usage.services[0].reads[0].details[0].amount
         for (var index in data.services) {
             if (data.services[index].name === "ELECTRICITY-1") {
+                // most recent read is reads[0]
                 for (var z in data.services[index].reads[0].details) {
                     if (data.services[index].reads[0].details[z].label === "Actual Demand") {
                         $meter.actualDemand = data.services[index].reads[0].details[z].amount;
@@ -390,10 +411,22 @@ function getJsonAccountUsages($http, $scope, $meterid) {
                         $meter.billableDemand = data.services[index].reads[0].details[z].amount;
                     }
                 }
+                // previous month
+                $meter.lastMoEUsage = data.services[index].reads[1].usage.amount;
+                for (var z in data.services[index].reads[1].details) {
+                    if (data.services[index].reads[1].details[z].label === "Actual Demand") {
+                        $meter.lastMoActualDemand = data.services[index].reads[1].details[z].amount;
+                    }
+                    if (data.services[index].reads[1].details[z].label === "Billable Demand") {
+                        $meter.lastMoBillableDemand = data.services[index].reads[1].details[z].amount;
+                    }
+                }
             }
         }
 
-        // todo:  get the demand, don't assume it is the top item
+        if ($meter.eAmount && $meter.lastMoEUsage) {
+            $meter.usageChange = ($meter.lastMoEUsage - $meter.eAmount) / $meter.lastMoEUsage * 100;
+        }
 
         $scope.loadedMeters++;
         $meter.usage = data;
@@ -439,12 +472,13 @@ function CalculateGroupTotals(meters) {
         var totals = siblings[j].reduce(function (a, b) {
             if (b.type === "meter") {
                 return {
-                    eAmount: a.eAmount + b.meter.eAmount,
-                    eCost: a.eCost + b.meter.eCost,
-                    gAmount: a.gAmount + b.meter.gAmount,
-                    gCost: a.gCost + b.meter.gCost,
-                    kbtu: a.kbtu + b.meter.kbtu,
-                    totalcost: a.totalcost + b.meter.totalcost
+                    eAmount: b.meter.eAmount ? a.eAmount + b.meter.eAmount : a.eAmount,
+                    eCost: b.meter.eCost ? a.eCost + b.meter.eCost : a.eCost,
+                    gAmount: b.meter.gAmount ? a.gAmount + b.meter.gAmount : a.gAmount,
+                    gCost: b.meter.gCost ? a.gCost + b.meter.gCost : a.gCost,
+                    kbtu: b.meter.kbtu ? a.kbtu + b.meter.kbtu : a.kbtu,
+                    totalcost: b.meter.totalcost ? a.totalcost + b.meter.totalcost : a.totalcost,
+                    totalEmissions: b.meter.totalEmissions ? a.totalEmissions + b.meter.totalEmissions : a.totalEmissions
                 };
             } else {
                 return ( a );
@@ -455,7 +489,8 @@ function CalculateGroupTotals(meters) {
             gAmount: 0,
             gCost: 0,
             kbtu: 0,
-            totalcost: 0
+            totalcost: 0,
+            totalEmissions: 0
         });
 
         siblings[j][0].meter = totals;

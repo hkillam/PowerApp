@@ -1,1 +1,0 @@
-clientAccountSrv.drawPlot($scope.clientAccount.data.trendData);
