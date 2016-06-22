@@ -27,6 +27,30 @@ function getURLs() {
     };
 }
 
+powerControllers.filter('currencyFilter', function () {
+    return function (value) {
+        if (value) {
+            var dec = value.toFixed(2);
+            return '$' + dec.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    };
+});
+powerControllers.filter('fractionFilter', function () {
+    return function (value, places) {
+        if (value) {
+            var dec = value.toFixed(places);
+            return dec.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    };
+});
+powerControllers.filter('percentFilter', function () {
+    return function (value, places) {
+        if (value) {
+            return value.toFixed(places) + '%';
+        }
+    };
+});
+
 powerControllers.factory("clientAccountSrv", ['$http', function ($http) {
     var accountOverview = null;
 
@@ -204,6 +228,7 @@ function markGroupLevels(groups, level) {
     }
 }
 
+
 powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv', 'accountListSrv',
     function ($scope, $routeParams, $http, clientAccountSrv, accountListSrv) {
         $scope.meterId = $routeParams.meterId;
@@ -233,7 +258,7 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
             treeIndent: 20,
             columnDefs: [
                 {
-                    name: 'name', displayName: "Name", pinnedLeft: true,
+                    name: 'name', displayName: "Name", pinnedLeft: true, minWidth: 200,
                     cellTooltip: function (row, col) {
                         if (row.entity.number || row.entity.meter.addressLine1) {
                             return 'Accunt Number: ' + row.entity.number + ' Address: ' + row.entity.meter.addressLine1;
@@ -244,23 +269,110 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
                     }
                 },
                 {name: 'number', visible: false},
-                {name: 'meter.addressLine1', displayName: "Address", visible: false},
-                {name: 'meter.eAmount', displayName: "Usage (kWh)"},
-                {name: 'meter.usageChange', displayName: "Usage Change vs. Last Month"},
-                {name: 'meter.billableDemand', displayName: "Demand"},
-                {name: 'meter.actualDemand', displayName: "Actual Demand", visible: false},
-                {name: 'meter.gAmount', displayName: "Therms"},
-                {name: 'meter.kbtu', displayName: "kBTU"},
-                {name: 'meter.squareFootage', displayName: "Square Footage"},
-                {name: 'meter.usagesqft', displayName: "Usage / Sq.Ft."},
-                {name: 'meter.eCost', displayName: "Electricity Cost"},
-                {name: 'meter.gCost', displayName: "Gas Cost"},
-                {name: 'meter.totalcost', displayName: "Total Cost"},
-                {name: 'meter.costsqft', displayName: "Cost / Sq.Ft."},
-                {name: 'meter.lastMoEUsage', displayName: "Previous Month Usage"},
-                {name: 'meter.totalEmissions', displayName: "Emissions"}
+                {name: 'meter.addressLine1', displayName: "Address", visible: false, minWidth: 100},
+                {
+                    name: 'meter.eAmount',
+                    displayName: "Usage (kWh)",
+                    minWidth: 100,
+                    cellClass: 'align-right',
+                    cellFilter: 'fractionFilter:0'
+                },
+                {
+                    name: 'meter.usageChange',
+                    displayName: "Usage Change vs. Last Month",
+                    minWidth: 100,
+                    cellFilter: 'percentFilter:1',
+                    cellClass: 'align-right'
+                },
+                {
+                    name: 'meter.billableDemand',
+                    displayName: "Demand",
+                    minWidth: 100,
+                    enableFiltering: false,
+                    cellClass: 'align-right'
+                },
+                {
+                    name: 'meter.actualDemand',
+                    displayName: "Actual Demand",
+                    visible: false,
+                    minWidth: 100,
+                    cellClass: 'align-right'
+                },
+                {
+                    name: 'meter.gAmount',
+                    displayName: "Therms",
+                    minWidth: 100,
+                    cellClass: 'align-right',
+                    cellFilter: 'fractionFilter:0'
+                },
+                {
+                    name: 'meter.kbtu',
+                    displayName: "kBTU",
+                    minWidth: 100,
+                    cellClass: 'align-right',
+                    cellFilter: 'fractionFilter:0'
+                },
+                {
+                    name: 'meter.squareFootage',
+                    displayName: "Square Footage",
+                    minWidth: 100,
+                    enableFiltering: false,
+                    cellClass: 'align-right',
+                    cellFilter: 'fractionFilter:0'
+                },
+                {
+                    name: 'meter.usagesqft',
+                    displayName: "Usage / Sq.Ft.",
+                    minWidth: 100,
+                    enableFiltering: false,
+                    cellClass: 'align-right',
+                    cellFilter: 'fractionFilter:2'
+                },
+                {
+                    name: 'meter.eCost',
+                    displayName: "Electricity Cost",
+                    minWidth: 100,
+                    cellFilter: 'currencyFilter',
+                    cellClass: 'align-right'
+                },
+                {
+                    name: 'meter.gCost',
+                    displayName: "Gas Cost",
+                    minWidth: 100,
+                    cellFilter: 'currencyFilter',
+                    cellClass: 'align-right'
+                },
+                {
+                    name: 'meter.totalcost',
+                    displayName: "Total Cost",
+                    minWidth: 100,
+                    cellFilter: 'currencyFilter',
+                    cellClass: 'align-right'
+                },
+                {
+                    name: 'meter.costsqft',
+                    displayName: "Cost / Sq.Ft.",
+                    minWidth: 100,
+                    cellFilter: 'fractionFilter:3',
+                    cellClass: 'align-right'
+                },
+                {
+                    name: 'meter.lastMoEUsage',
+                    displayName: "Previous Month Usage",
+                    minWidth: 100,
+                    cellClass: 'align-right',
+                    cellFilter: 'fractionFilter:0'
+                },
+                {
+                    name: 'meter.totalEmissions',
+                    displayName: "Emissions",
+                    minWidth: 100,
+                    cellClass: 'align-right',
+                    cellFilter: 'fractionFilter:0'
+                }
             ]
         };
+
 
         // todo let the scrollbar for the page control the table as well, and don't use a second
         // scroll bar for the table.  Seems impossible with this tool.

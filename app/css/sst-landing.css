@@ -70,11 +70,26 @@ nav.side-nav ul li a {
     position: absolute;
 }
 
+.ui-grid-viewport {
+    width: 100% !important;
+    height: auto !important;
+    overflow: hidden !important;
+}
+
+
 .meter {
     background-image: url("../images/meter.png");
     background-repeat: no-repeat;
     background-size: 20px auto;
     padding-left: 20px;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
 }
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
