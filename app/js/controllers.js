@@ -43,6 +43,18 @@ powerControllers.filter('fractionFilter', function () {
         }
     };
 });
+
+powerControllers.filter('numberFilter', function () {
+    return function (value, prefix, places, suffix) {
+        if (value) {
+            var dec = value.toFixed(places);
+            dec = dec.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return prefix + dec + suffix;
+        }
+    };
+});
+
+
 powerControllers.filter('percentFilter', function () {
     return function (value, places) {
         if (value) {
@@ -285,7 +297,7 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
             treeIndent: 20,
             columnDefs: [
                 {
-                    name: 'name', displayName: "Name", pinnedLeft: true, minWidth: 200,
+                    name: 'name', displayName: "Name", pinnedLeft: true, minWidth: 50, width: 200,
                     cellTooltip: function (row, col) {
                         if (row.entity.number || row.entity.meter.addressLine1) {
                             return 'Accunt Number: ' + row.entity.number + ' Address: ' + row.entity.meter.addressLine1;
@@ -300,102 +312,104 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
                 {
                     name: 'meter.eAmount',
                     displayName: "Usage (kWh)",
-                    minWidth: 80,
+                    minWidth: 50, width: 110,
                     cellClass: 'align-right',
-                    cellFilter: 'fractionFilter:0'
+                    cellFilter: "numberFilter:'':0:' kWh'"
                 },
                 {
                     name: 'meter.usageChange',
                     displayName: "Usage Change vs. Last Month",
-                    minWidth: 60,
-                    cellFilter: 'percentFilter:1',
+                    minWidth: 30, width: 60,
+                    cellFilter: "numberFilter:'':1:'%'",
                     cellClass: 'align-right'
                 },
                 {
                     name: 'meter.billableDemand',
                     displayName: "Demand",
-                    minWidth: 60,
+                    minWidth: 30, width: 70,
                     enableFiltering: false,
+                    cellFilter: "numberFilter:'':0:' kW'",
                     cellClass: 'align-right'
                 },
                 {
                     name: 'meter.actualDemand',
                     displayName: "Actual Demand",
                     visible: false,
-                    minWidth: 60,
+                    minWidth: 30, width: 70,
+                    cellFilter: "numberFilter:'':0:' kW'",
                     cellClass: 'align-right'
                 },
                 {
                     name: 'meter.gAmount',
                     displayName: "Therms",
-                    minWidth: 70,
+                    minWidth: 30, width: 130,
                     cellClass: 'align-right',
-                    cellFilter: 'fractionFilter:0'
+                    cellFilter: "numberFilter:'':0:' Therms'"
                 },
                 {
                     name: 'meter.kbtu',
                     displayName: "kBTU",
-                    minWidth: 100,
+                    minWidth: 30, width: 130,
                     cellClass: 'align-right',
-                    cellFilter: 'fractionFilter:0'
+                    cellFilter: "numberFilter:'':0:' kBTU'"
                 },
                 {
                     name: 'meter.squareFootage',
                     displayName: "Square Footage",
-                    minWidth: 100,
+                    minWidth: 30, width: 100,
                     enableFiltering: false,
                     cellClass: 'align-right',
-                    cellFilter: 'fractionFilter:0'
+                    cellFilter: "numberFilter:'':0:''",
+                    cellTemplate: '<div class="ui-grid-cell-contents visible_{{COL_FIELD}}" >{{COL_FIELD}} ft<sup>2</sup></div>'
                 },
                 {
                     name: 'meter.usagesqft',
                     displayName: "Usage / Sq.Ft.",
-                    minWidth: 100,
+                    minWidth: 30, width: 100,
                     enableFiltering: false,
                     cellClass: 'align-right',
-                    cellFilter: 'fractionFilter:2'
+                    cellTemplate: '<div class="ui-grid-cell-contents visible_{{COL_FIELD}}" >{{COL_FIELD.toFixed(2)}} kWh/ft<sup>2</sup></div>'
                 },
                 {
                     name: 'meter.eCost',
                     displayName: "Electricity Cost",
-                    minWidth: 100,
-                    cellFilter: 'currencyFilter',
+                    minWidth: 30, width: 100,
+                    cellFilter: "numberFilter:'$':2:''",
                     cellClass: 'align-right'
                 },
                 {
                     name: 'meter.gCost',
                     displayName: "Gas Cost",
-                    minWidth: 100,
-                    cellFilter: 'currencyFilter',
+                    minWidth: 30, width: 100,
+                    cellFilter: "numberFilter:'$':2:''",
                     cellClass: 'align-right'
                 },
                 {
                     name: 'meter.totalcost',
                     displayName: "Total Cost",
-                    minWidth: 100,
-                    cellFilter: 'currencyFilter',
+                    minWidth: 30, width: 100,
+                    cellFilter: "numberFilter:'$':2:''",
                     cellClass: 'align-right'
                 },
                 {
                     name: 'meter.costsqft',
                     displayName: "Cost / Sq.Ft.",
-                    minWidth: 100,
-                    cellFilter: 'fractionFilter:3',
-                    cellClass: 'align-right'
+                    minWidth: 30, width: 100,
+                    cellTemplate: '<div class="ui-grid-cell-contents align-right visible_{{COL_FIELD}}" >{{COL_FIELD.toFixed(3)}} $/ft<sup>2</sup></div>'
                 },
                 {
                     name: 'meter.lastMoEUsage',
                     displayName: "Previous Month Usage",
-                    minWidth: 100,
+                    minWidth: 30, width: 110,
                     cellClass: 'align-right',
-                    cellFilter: 'fractionFilter:0'
+                    cellFilter: "numberFilter:'':0:' kWh'"
                 },
                 {
                     name: 'meter.totalEmissions',
                     displayName: "Emissions",
-                    minWidth: 100,
+                    minWidth: 30, width: 100,
                     cellClass: 'align-right',
-                    cellFilter: 'fractionFilter:0'
+                    cellFilter: "numberFilter:'':0:' tons'"
                 }
             ]
         };

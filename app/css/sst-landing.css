@@ -108,6 +108,11 @@ nav.side-nav ul li a::after, nav.side-nav ul li p::after {
     text-align: right;
 }
 
+/*  absurd  workaround:  in ft2 column I can't combine conditional text with html text, and make the ft2 go away when there is no number.  So make it a class */
+.visible_ {
+    display: none;
+}
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     nav.side-nav ul li a::after, nav.side-nav ul li p::after {
         top: 42px !important;
