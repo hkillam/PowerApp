@@ -63,6 +63,10 @@ nav.side-nav ul li a {
     background-color: #c7e9e5 !important;
 }
 
+.ui-grid-row:first-child .ui-grid-cell {
+    background-color: #0093B4 !important;
+}
+
 .menu-collapse {
     border: 1px solid #21ad96;
     color: #21ad96;
@@ -70,17 +74,29 @@ nav.side-nav ul li a {
     position: absolute;
 }
 
+button {
+    z-index: 1000;
+}
+
+#grid1 {
+    height: auto !important;
+}
 .ui-grid-viewport {
     width: 100% !important;
     height: auto !important;
-    overflow: hidden !important;
+    overflow: auto !important;
 }
 
+nav.side-nav ul li a::after, nav.side-nav ul li p::after {
+    content: "" !important;
+    font-family: FontAwesome !important;
+}
 
 .meter {
     background-image: url("../images/meter.png");
+    background-position: 3px center;
     background-repeat: no-repeat;
-    background-size: 20px auto;
+    background-size: 15px auto;
     padding-left: 20px;
 }
 

@@ -7,6 +7,11 @@
         {
           "type": "group",
           "$$treeLevel": 0,
+          "name": "TOTALS"
+        },
+        {
+          "type": "group",
+          "$$treeLevel": 1,
           "name": "Greenwood Village Office",
           "squareFootage": 34300
         },
@@ -24,7 +29,7 @@
         },
         {
           "type": "group",
-          "$$treeLevel": 0,
+          "$$treeLevel": 1,
           "name": "School of Dance",
           "squareFootage": 5800
         },
@@ -35,7 +40,7 @@
         },
         {
           "type": "group",
-          "$$treeLevel": 1,
+          "$$treeLevel": 2,
           "name": "Studios A & B",
           "squareFootage": 3800
         },
@@ -53,7 +58,7 @@
         },
         {
           "type": "group",
-          "$$treeLevel": 1,
+          "$$treeLevel": 2,
           "name": "Annex",
           "squareFootage": 2000
         },
@@ -65,7 +70,7 @@
         },
         {
           "type": "group",
-          "$$treeLevel": 0,
+          "$$treeLevel": 1,
           "name": "McPharlis Campus",
           "squareFootage": 20000
         },

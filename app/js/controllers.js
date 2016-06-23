@@ -228,11 +228,38 @@ function markGroupLevels(groups, level) {
     }
 }
 
+// called from report controller  CreateMeterListGrouping($scope.accountList.accounts);
+function CreateMeterListGrouping(accounts) {
+    // create default groupings from the meter list.
+    var meterlistgrouping = {name: 'Accounts', list: []};
+    meterlistgrouping.list.push({type: "group", name: "totals", $$treeLevel: 0});
+    for (var i in accounts) {
+        meterlistgrouping.list.push({
+            type: "account",
+            number: accounts[i].number,
+            name: accounts[i].number,
+            $$treeLevel: 1
+        });
+        for (var j in accounts[i].premises) {
+            var meter = accounts[i].premises[j];
+            meterlistgrouping.list.push({type: "meter", number: meter.number, name: meter.number});
+        }
+    }
+    return meterlistgrouping;
+}
+
+
 
 powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv', 'accountListSrv',
     function ($scope, $routeParams, $http, clientAccountSrv, accountListSrv) {
         $scope.meterId = $routeParams.meterId;
         $scope.clientAccount = clientAccountSrv.getData();
+        if (!$scope.clientAccount) {
+            // data not loaded - use promise...then to load asynchronous.
+            clientAccountSrv.loadData().then(function (promise) {
+                $scope.clientAccount = promise.data;
+            });
+        }
 
         // this chart is wide, let people collapse the side menu
         $scope.showgraphSidebar = true;
@@ -273,21 +300,21 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
                 {
                     name: 'meter.eAmount',
                     displayName: "Usage (kWh)",
-                    minWidth: 100,
+                    minWidth: 80,
                     cellClass: 'align-right',
                     cellFilter: 'fractionFilter:0'
                 },
                 {
                     name: 'meter.usageChange',
                     displayName: "Usage Change vs. Last Month",
-                    minWidth: 100,
+                    minWidth: 60,
                     cellFilter: 'percentFilter:1',
                     cellClass: 'align-right'
                 },
                 {
                     name: 'meter.billableDemand',
                     displayName: "Demand",
-                    minWidth: 100,
+                    minWidth: 60,
                     enableFiltering: false,
                     cellClass: 'align-right'
                 },
@@ -295,13 +322,13 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
                     name: 'meter.actualDemand',
                     displayName: "Actual Demand",
                     visible: false,
-                    minWidth: 100,
+                    minWidth: 60,
                     cellClass: 'align-right'
                 },
                 {
                     name: 'meter.gAmount',
                     displayName: "Therms",
-                    minWidth: 100,
+                    minWidth: 70,
                     cellClass: 'align-right',
                     cellFilter: 'fractionFilter:0'
                 },
@@ -384,26 +411,31 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
             $scope.accountList = accountListSrv.getData();
         }
 
-        // create default groupings from the meter list.
-        $scope.groupings = {name: 'Accounts', list: []};
-        for (var i in $scope.accountList.accounts) {
-            var acct = $scope.accountList.accounts[i];
-            $scope.groupings.list.push({type: "account", number: acct.number, name: acct.number, $$treeLevel: 0});
-            for (var j in acct.premises) {
-                var meter = acct.premises[j];
-                $scope.groupings.list.push({type: "meter", number: meter.number, name: meter.number});
-            }
+        // see if we need to force the data to load.
+        if (!$scope.accountList) {
+            // data not loaded - use promise...then to load asynchronous.
+            accountListSrv.loadData().then(function (promise) {
+                $scope.accountList = promise.data;
+                CreateMeterListGrouping($scope.accountList.accounts);
+            });
+        }
+
+        $scope.groupings = [];
+        if ($scope.accountList) {
+            $scope.metergroup = CreateMeterListGrouping($scope.accountList.accounts);
         }
 
         // load the groupings from the settings file, match to the account data.
         // TODO - split into separate function, because this one is a runon sentence
         $http.get('settings/meterlist_' + clientID + '.json').success(function (data) {
-            data.groupings.push($scope.groupings);
+            data.groupings.push($scope.metergroup);
             $scope.groupings = data.groupings;
+
+            // connect the data to the grid
+            $scope.gridOptions.data = data.groupings[0].list;
 
             // create a "groupings" dropdown and initialize it to the first group
             $scope.groupIndex = 0;
-            $scope.gridOptions.data = data.groupings[$scope.groupIndex].list;
             $scope.changedGrouping = function (item) {
                 $scope.groupIndex = 1;
                 var gs = document.getElementById('groupingSelect').value;
@@ -444,13 +476,6 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
         $scope.template = getTemplates();
     }]);
 
-function wait(ms) {
-    var start = new Date().getTime();
-    var end = start;
-    while (end < start + ms) {
-        end = new Date().getTime();
-    }
-}
 
 //-----------------------------------------
 // Iterates through the data to find the specified number
