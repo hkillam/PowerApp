@@ -27,23 +27,6 @@ function getURLs() {
     };
 }
 
-powerControllers.filter('currencyFilter', function () {
-    return function (value) {
-        if (value) {
-            var dec = value.toFixed(2);
-            return '$' + dec.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-    };
-});
-powerControllers.filter('fractionFilter', function () {
-    return function (value, places) {
-        if (value) {
-            var dec = value.toFixed(places);
-            return dec.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-    };
-});
-
 powerControllers.filter('numberFilter', function () {
     return function (value, prefix, places, suffix) {
         if (value) {
@@ -53,86 +36,6 @@ powerControllers.filter('numberFilter', function () {
         }
     };
 });
-
-
-powerControllers.filter('percentFilter', function () {
-    return function (value, places) {
-        if (value) {
-            return value.toFixed(places) + '%';
-        }
-    };
-});
-
-powerControllers.factory("clientAccountSrv", ['$http', function ($http) {
-    var accountOverview = null;
-
-    function getData() {
-        return accountOverview;
-    }
-
-    return {
-        getData: getData,
-        loadData: function () {
-            if (accountOverview == null) {
-
-                var myurl = getURLs().accountOverview + '?account=' + clientID;
-                var promise = $http({
-                    method: 'GET',
-                    url: myurl
-                })
-                    .success(function (data, status, headers, config) {
-                        accountOverview = data;
-                        return data;
-                    })
-                    .error(function (data, status, headers, config) {
-                        return {"status": false};
-                    });
-                return promise;
-            } else {
-                return accountOverview;
-            }
-        },
-        drawPlot: function (d) {
-            google.charts.load('current', {'packages': ['corechart']});
-            google.charts.setOnLoadCallback(function () {
-                drawGoogleChart(d)
-            })
-        }
-    };
-}]);
-
-powerControllers.factory("accountListSrv", function ($http) {
-    var primaryAccountNumber = clientID;
-    var accountList = null;
-
-    return {
-        getData: function getData() {
-            return accountList;
-        },
-
-        loadData: function () {
-            if (accountList == null) {
-
-                var myurl = getURLs().accountList + '?account=' + clientID;
-                var promise = $http({
-                    method: 'GET',
-                    url: myurl
-                })
-                    .success(function (data, status, headers, config) {
-                        accountList = data;
-                        return data;
-                    })
-                    .error(function (data, status, headers, config) {
-                        return {"status": false};
-                    });
-                return promise;
-            } else {
-                return accountList;
-            }
-        }
-    };
-});
-
 
 function prepareTrendData($trendData) {
 
@@ -189,7 +92,7 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAcc
             var chartData = prepareTrendData($scope.clientAccount.trendData);
             drawGoogleChart(chartData);
         } else {
-            // data not loaded - use promise...then to load asynchronous.
+            // data not loaded yet - use promise... and draw the chart when the data is done loading.
             clientAccountSrv.loadData().then(function (promise) {
                 $scope.clientAccount = promise.data;
                 var chartData = prepareTrendData($scope.clientAccount.trendData);
@@ -197,23 +100,8 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAcc
             });
         }
 
-        // make sure the premise list is loaded
-        $scope.accountList = accountListSrv.getData();
-        if ($scope.accountList == null) {
-            // data needss to be loaded - use promise...then to load asynchronous.
-            accountListSrv.loadData().then(function (promise) {
-                $scope.accountList = promise.data;
-                // load usage data for each meter in each account
-                for (var i in $scope.accountList.accounts) {
-                    for (var meterndx in $scope.accountList.accounts[i].premises) {
-                        if ($scope.accountList.accounts[i].premises[meterndx].number) {
-                            $scope.meterCount++;
-                            getJsonAccountUsages($http, $scope, $scope.accountList.accounts[i].premises[meterndx].number);
-                        }
-                    }
-                }
-            });
-        }
+        // Trigger loading for all usage info, so that it loads in the background
+        LoadAccountsAndUsages($http, $scope, accountListSrv);
 
         $scope.template = getTemplates();
         $scope.orderProp = 'age';
@@ -223,6 +111,28 @@ powerControllers.controller('AccountDetailCtrl', ['$scope', '$routeParams',
     function ($scope, $routeParams) {
         $scope.meterId = $routeParams.meterId;
     }]);
+
+// TODO:  see if we need to make more asynch calls inside here
+// Loading the AccountList is asynch, but loading each usage record is not.
+function LoadAccountsAndUsages($http, $scope, accountListSrv) {
+    $scope.accountList = accountListSrv.getData();
+    if ($scope.accountList == null) {
+        // data needss to be loaded - use promise...then to load asynchronous.
+        accountListSrv.loadData().then(function (promise) {
+            $scope.accountList = promise.data;
+            $scope.metergroup = CreateMeterListGrouping($scope.accountList.accounts);
+            // load usage data for each meter in each account
+            for (var i in $scope.accountList.accounts) {
+                for (var meterndx in $scope.accountList.accounts[i].premises) {
+                    if ($scope.accountList.accounts[i].premises[meterndx].number) {
+                        $scope.meterCount++;
+                        getJsonAccountUsages($http, $scope, $scope.accountList.accounts[i].premises[meterndx].number);
+                    }
+                }
+            }
+        });
+    }
+}
 
 
 // Try to turn tree-view of json into flat view with $$level defined.
@@ -240,255 +150,8 @@ function markGroupLevels(groups, level) {
     }
 }
 
-// called from report controller  CreateMeterListGrouping($scope.accountList.accounts);
-function CreateMeterListGrouping(accounts) {
-    // create default groupings from the meter list.
-    var meterlistgrouping = {name: 'Accounts', list: []};
-    meterlistgrouping.list.push({type: "group", name: "totals", $$treeLevel: 0});
-    for (var i in accounts) {
-        meterlistgrouping.list.push({
-            type: "account",
-            number: accounts[i].number,
-            name: accounts[i].number,
-            $$treeLevel: 1
-        });
-        for (var j in accounts[i].premises) {
-            var meter = accounts[i].premises[j];
-            meterlistgrouping.list.push({type: "meter", number: meter.number, name: meter.number});
-        }
-    }
-    return meterlistgrouping;
-}
 
 
-
-powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv', 'accountListSrv',
-    function ($scope, $routeParams, $http, clientAccountSrv, accountListSrv) {
-        $scope.meterId = $routeParams.meterId;
-        $scope.clientAccount = clientAccountSrv.getData();
-        if (!$scope.clientAccount) {
-            // data not loaded - use promise...then to load asynchronous.
-            clientAccountSrv.loadData().then(function (promise) {
-                $scope.clientAccount = promise.data;
-            });
-        }
-
-        // this chart is wide, let people collapse the side menu
-        $scope.showgraphSidebar = true;
-        $scope.menucollapsebutton = "«";
-        $scope.toggle = function () {
-            $scope.showgraphSidebar = !$scope.showgraphSidebar;
-            if ($scope.showgraphSidebar) {
-                $scope.menucollapsebutton = "«";
-            }
-            else {
-                $scope.menucollapsebutton = "»";
-            }
-        }
-
-        // TODO:  save changes in the column layout:  http://stackoverflow.com/questions/32346341/angular-ui-grid-save-and-restore-state
-
-        $scope.gridOptions = {
-            enableSorting: true,
-            enableFiltering: true,
-            enableColumnResizing: true,
-            enableGridMenu: true,
-            showTreeExpandNoChildren: false,
-            treeIndent: 20,
-            columnDefs: [
-                {
-                    name: 'name', displayName: "Name", pinnedLeft: true, minWidth: 50, width: 200,
-                    cellTooltip: function (row, col) {
-                        if (row.entity.number || row.entity.meter.addressLine1) {
-                            return 'Accunt Number: ' + row.entity.number + ' Address: ' + row.entity.meter.addressLine1;
-                        }
-                    },
-                    cellClass: function (grid, row, col, rowRenderIndex, colRenderIndex) {
-                        return row.entity.type;
-                    }
-                },
-                {name: 'number', visible: false},
-                {name: 'meter.addressLine1', displayName: "Address", visible: false, minWidth: 100},
-                {
-                    name: 'meter.eAmount',
-                    displayName: "Usage (kWh)",
-                    minWidth: 50, width: 110,
-                    cellClass: 'align-right',
-                    cellFilter: "numberFilter:'':0:' kWh'"
-                },
-                {
-                    name: 'meter.usageChange',
-                    displayName: "Usage Change vs. Last Month",
-                    minWidth: 30, width: 60,
-                    cellFilter: "numberFilter:'':1:'%'",
-                    cellClass: 'align-right'
-                },
-                {
-                    name: 'meter.billableDemand',
-                    displayName: "Demand",
-                    minWidth: 30, width: 70,
-                    enableFiltering: false,
-                    cellFilter: "numberFilter:'':0:' kW'",
-                    cellClass: 'align-right'
-                },
-                {
-                    name: 'meter.actualDemand',
-                    displayName: "Actual Demand",
-                    visible: false,
-                    minWidth: 30, width: 70,
-                    cellFilter: "numberFilter:'':0:' kW'",
-                    cellClass: 'align-right'
-                },
-                {
-                    name: 'meter.gAmount',
-                    displayName: "Therms",
-                    minWidth: 30, width: 130,
-                    cellClass: 'align-right',
-                    cellFilter: "numberFilter:'':0:' Therms'"
-                },
-                {
-                    name: 'meter.kbtu',
-                    displayName: "kBTU",
-                    minWidth: 30, width: 130,
-                    cellClass: 'align-right',
-                    cellFilter: "numberFilter:'':0:' kBTU'"
-                },
-                {
-                    name: 'meter.squareFootage',
-                    displayName: "Square Footage",
-                    minWidth: 30, width: 100,
-                    enableFiltering: false,
-                    cellClass: 'align-right',
-                    cellFilter: "numberFilter:'':0:''",
-                    cellTemplate: '<div class="ui-grid-cell-contents visible_{{COL_FIELD}}" >{{COL_FIELD}} ft<sup>2</sup></div>'
-                },
-                {
-                    name: 'meter.usagesqft',
-                    displayName: "Usage / Sq.Ft.",
-                    minWidth: 30, width: 100,
-                    enableFiltering: false,
-                    cellClass: 'align-right',
-                    cellTemplate: '<div class="ui-grid-cell-contents visible_{{COL_FIELD}}" >{{COL_FIELD.toFixed(2)}} kWh/ft<sup>2</sup></div>'
-                },
-                {
-                    name: 'meter.eCost',
-                    displayName: "Electricity Cost",
-                    minWidth: 30, width: 100,
-                    cellFilter: "numberFilter:'$':2:''",
-                    cellClass: 'align-right'
-                },
-                {
-                    name: 'meter.gCost',
-                    displayName: "Gas Cost",
-                    minWidth: 30, width: 100,
-                    cellFilter: "numberFilter:'$':2:''",
-                    cellClass: 'align-right'
-                },
-                {
-                    name: 'meter.totalcost',
-                    displayName: "Total Cost",
-                    minWidth: 30, width: 100,
-                    cellFilter: "numberFilter:'$':2:''",
-                    cellClass: 'align-right'
-                },
-                {
-                    name: 'meter.costsqft',
-                    displayName: "Cost / Sq.Ft.",
-                    minWidth: 30, width: 100,
-                    cellTemplate: '<div class="ui-grid-cell-contents align-right visible_{{COL_FIELD}}" >{{COL_FIELD.toFixed(3)}} $/ft<sup>2</sup></div>'
-                },
-                {
-                    name: 'meter.lastMoEUsage',
-                    displayName: "Previous Month Usage",
-                    minWidth: 30, width: 110,
-                    cellClass: 'align-right',
-                    cellFilter: "numberFilter:'':0:' kWh'"
-                },
-                {
-                    name: 'meter.totalEmissions',
-                    displayName: "Emissions",
-                    minWidth: 30, width: 100,
-                    cellClass: 'align-right',
-                    cellFilter: "numberFilter:'':0:' tons'"
-                }
-            ]
-        };
-
-
-        // todo let the scrollbar for the page control the table as well, and don't use a second
-        // scroll bar for the table.  Seems impossible with this tool.
-
-        // todo: use the row type to create a class, then use icons for meters.  Groups have > adn v arrows.
-
-        // make sure the account list has been loaded
-        if (!$scope.accountList) {
-            $scope.accountList = accountListSrv.getData();
-        }
-
-        // see if we need to force the data to load.
-        if (!$scope.accountList) {
-            // data not loaded - use promise...then to load asynchronous.
-            accountListSrv.loadData().then(function (promise) {
-                $scope.accountList = promise.data;
-                CreateMeterListGrouping($scope.accountList.accounts);
-            });
-        }
-
-        $scope.groupings = [];
-        if ($scope.accountList) {
-            $scope.metergroup = CreateMeterListGrouping($scope.accountList.accounts);
-        }
-
-        // load the groupings from the settings file, match to the account data.
-        // TODO - split into separate function, because this one is a runon sentence
-        $http.get('settings/meterlist_' + clientID + '.json').success(function (data) {
-            data.groupings.push($scope.metergroup);
-            $scope.groupings = data.groupings;
-
-            // connect the data to the grid
-            $scope.gridOptions.data = data.groupings[0].list;
-
-            // create a "groupings" dropdown and initialize it to the first group
-            $scope.groupIndex = 0;
-            $scope.changedGrouping = function (item) {
-                $scope.groupIndex = 1;
-                var gs = document.getElementById('groupingSelect').value;
-                for (var i in data.groupings) {
-                    if (data.groupings[i].name === gs) {
-                        $scope.groupIndex = i;
-                    }
-                }
-                $scope.gridOptions.data = data.groupings[$scope.groupIndex].list;
-            }
-
-            // todo:  expand all of the level 1 items
-
-
-            // todo:  compare premise list to grouping list, find new/deleted meters
-
-            // match meters in the groupings to the account list
-            for (var grp in data.groupings) {
-                for (var meterndx in data.groupings[grp].list) {
-                    if (data.groupings[grp].list[meterndx].number) {
-                        var meter = getMeterFromID($scope, data.groupings[grp].list[meterndx].number);
-                        data.groupings[grp].list[meterndx].meter = meter;
-                        if (data.groupings[grp].list[meterndx].squareFootage > 0) {
-                            meter.squareFootage = data.groupings[grp].list[meterndx].squareFootage;
-                            if (meter.eAmount) {
-                                meter.usagesqft = meter.eAmount / meter.squareFootage;
-                            }
-                            if (meter.totalcost) {
-                                meter.costsqft = meter.totalcost / meter.squareFootage;
-                            }
-                        }
-                    }
-                }
-                CalculateGroupTotals(data.groupings[grp].list);
-            }
-        });
-
-        $scope.template = getTemplates();
-    }]);
 
 
 //-----------------------------------------
@@ -598,71 +261,8 @@ function getTemplates() {
     };
 }
 
-function CalculateGroupTotals(meters) {
-    if (meters.length < 1)
-        return;
 
-    // check top item in list to find out current level
-    var curlevel = meters[0].$$treeLevel;
-    var siblings = [];
-    var slicebegin = 0;
-
-    //divide this list into a set of lists beginning at this level, breaking each time an item is found at the current level
-    for (var i in meters) {
-        if (meters[i].$$treeLevel == curlevel && i > slicebegin) {
-            siblings.push(meters.slice(slicebegin, i));
-            slicebegin = i;
-        }
-    }
-    siblings.push(meters.slice(slicebegin, meters.length));
-
-    // with each sublist...
-    // get totals and put them in the top item
-    // recurse, so that subgroups have subtotals.
-    for (var j in siblings) {
-        var totals = siblings[j].reduce(function (a, b) {
-            if (b.type === "meter") {
-                return {
-                    eAmount: b.meter.eAmount ? a.eAmount + b.meter.eAmount : a.eAmount,
-                    eCost: b.meter.eCost ? a.eCost + b.meter.eCost : a.eCost,
-                    gAmount: b.meter.gAmount ? a.gAmount + b.meter.gAmount : a.gAmount,
-                    gCost: b.meter.gCost ? a.gCost + b.meter.gCost : a.gCost,
-                    kbtu: b.meter.kbtu ? a.kbtu + b.meter.kbtu : a.kbtu,
-                    totalcost: b.meter.totalcost ? a.totalcost + b.meter.totalcost : a.totalcost,
-                    totalEmissions: b.meter.totalEmissions ? a.totalEmissions + b.meter.totalEmissions : a.totalEmissions
-                };
-            } else {
-                return ( a );
-            }
-        }, {
-            eAmount: 0,
-            eCost: 0,
-            gAmount: 0,
-            gCost: 0,
-            kbtu: 0,
-            totalcost: 0,
-            totalEmissions: 0
-        });
-
-        siblings[j][0].meter = totals;
-    }
-
-    // recurse into subgroups
-    for (var j in siblings) {
-        // drop the current group, and any meters at this level, we only want the child groups
-        var kids = siblings[j].slice(1, siblings[j].length);
-        while (kids.length > 0 && kids[0].type === "meter") {
-            kids = kids.slice(1, kids.length);
-        }
-        CalculateGroupTotals(kids);
-    }
-
-
-
-}
-
-
-// the Settings page uses a different mechcanism than the reports page.  the ui.grid in the reports
+// the Settings page uses a different mechanism than the reports page.  the ui.grid in the reports
 // will not allow items to be moved, or expanded and edited.  There will need to be some sort of reworking
 // or conversion to use the actual meterList.
 powerControllers.controller('SettingsCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv',

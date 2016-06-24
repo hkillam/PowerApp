@@ -60,7 +60,7 @@ nav.side-nav ul li a {
 }
 
 .ui-grid-tree-header-row .ui-grid-cell {
-    background-color: #c7e9e5 !important;
+    background-color: #ccc !important;
 }
 
 .ui-grid-row:first-child .ui-grid-cell {
@@ -80,11 +80,38 @@ button {
 
 #grid1 {
     height: auto !important;
+    margin-bottom: 50px;
+}
+
+.ui-grid-canvas {
+    margin-bottom: 10px !important;
 }
 .ui-grid-viewport {
     width: 100% !important;
     height: auto !important;
     overflow: auto !important;
+}
+
+/* in the table header, put the search filter over the Name label, make it translucent (until it is used) */
+.ui-grid-filter-container {
+
+    padding-left: 2px !important;
+    padding-right: 30px !important;
+    position: absolute !important;
+    top: 0;
+}
+
+.ui-grid-column-menu-button {
+    z-index: 1000;
+}
+
+.ui-grid-filter-container input {
+    background-image: url("../images/searchicon.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 12px auto;
+    padding-bottom: 3px !important;
+    padding-top: 3px !important;
 }
 
 nav.side-nav ul li a::after, nav.side-nav ul li p::after {
