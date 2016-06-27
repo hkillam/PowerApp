@@ -34,12 +34,6 @@ powerControllers.factory("clientAccountSrv", ['$http', function ($http) {
             } else {
                 return accountOverview;
             }
-        },
-        drawPlot: function (d) {
-            google.charts.load('current', {'packages': ['corechart']});
-            google.charts.setOnLoadCallback(function () {
-                drawGoogleChart(d)
-            })
         }
     };
 }]);

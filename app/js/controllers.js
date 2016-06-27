@@ -7,6 +7,7 @@ var powerControllers = angular.module('powerControllers', []);
 // The login wil return the client ID.  For now, switch which line is active to view different sample accounts.
 //var clientID = 6348558270;   // Airport:  three accounts, two groupings
 var clientID = 555555;   // Campus:  one account
+var googleChartsLoaded = false;  // so that the load stuff is only called once
 
 function getURLs() {
     var sources = "stub";
@@ -66,9 +67,26 @@ function prepareTrendData($trendData) {
     return chartArray;
 }
 
+function plotData($chartArray) {
+    if (googleChartsLoaded == false) {
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(function () {
+            drawGoogleChart($chartArray)
+            googleChartsLoaded = true;
+        })
+    } else {
+        drawGoogleChart($chartArray);
+    }
+}
+
+
 function drawGoogleChart($chartArray) {
 
-    var data = google.visualization.arrayToDataTable($chartArray);
+    try {
+        var data = google.visualization.arrayToDataTable($chartArray);
+    } catch (err) {
+        alert(err.message);
+    }
 
     var options = {
         title: 'Bill Trend',
@@ -90,13 +108,13 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAcc
         $scope.clientAccount = clientAccountSrv.getData();
         if ($scope.clientAccount != null) {
             var chartData = prepareTrendData($scope.clientAccount.trendData);
-            drawGoogleChart(chartData);
+            plotData(chartData);
         } else {
             // data not loaded yet - use promise... and draw the chart when the data is done loading.
             clientAccountSrv.loadData().then(function (promise) {
                 $scope.clientAccount = promise.data;
                 var chartData = prepareTrendData($scope.clientAccount.trendData);
-                clientAccountSrv.drawPlot(chartData);
+                plotData(chartData);
             });
         }
 
