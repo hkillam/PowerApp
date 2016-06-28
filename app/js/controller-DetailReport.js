@@ -92,6 +92,7 @@ function SetupGridOptions($scope) {
         enableGridMenu: true,
         showTreeExpandNoChildren: false,
         treeIndent: 20,
+        enablePinning: false,
         onRegisterApi: function (gridApi) {
             $scope.gridApi = gridApi;
             $scope.gridApi.grid.registerDataChangeCallback(function () {

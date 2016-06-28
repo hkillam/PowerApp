@@ -121,6 +121,18 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAcc
         // Trigger loading for all usage info, so that it loads in the background
         LoadAccountsAndUsages($http, $scope, accountListSrv);
 
+        $scope.showgraphSidebar = true;
+        $scope.menucollapsebutton = "«";
+        $scope.toggle = function () {
+            $scope.showgraphSidebar = !$scope.showgraphSidebar;
+            if ($scope.showgraphSidebar) {
+                $scope.menucollapsebutton = "«";
+            }
+            else {
+                $scope.menucollapsebutton = "»";
+            }
+        }
+
         $scope.template = getTemplates();
         $scope.orderProp = 'age';
     }]);
@@ -128,6 +140,19 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAcc
 powerControllers.controller('AccountDetailCtrl', ['$scope', '$routeParams',
     function ($scope, $routeParams) {
         $scope.meterId = $routeParams.meterId;
+
+        $scope.showgraphSidebar = true;
+        $scope.menucollapsebutton = "«";
+        $scope.toggle = function () {
+            $scope.showgraphSidebar = !$scope.showgraphSidebar;
+            if ($scope.showgraphSidebar) {
+                $scope.menucollapsebutton = "«";
+            }
+            else {
+                $scope.menucollapsebutton = "»";
+            }
+        }
+
     }]);
 
 // TODO:  see if we need to make more asynch calls inside here

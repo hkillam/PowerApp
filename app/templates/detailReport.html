@@ -1,9 +1,9 @@
 <div ng-include="template.topbar"></div>
 <div class="container" id="main">
-    <div ng-class="showgraphSidebar ? 'col-xs-3' : 'hidden'">
+    <div ng-class="showgraphSidebar ? 'col-xs-3 col-xs-slider' : 'hidden'">
         <div ng-include="template.accountmenu"></div>
     </div>
-    <div ng-class="showgraphSidebar ? 'col-xs-9' : 'col-xs-12'">
+    <div ng-class="showgraphSidebar ? 'col-xs-12 col-md-9' : 'col-xs-12'">
         <button ng-click='toggle()' class="menu-collapse"> {{menucollapsebutton}}</button>
         <div class="row clearfix">
 

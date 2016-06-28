@@ -74,6 +74,31 @@ nav.side-nav ul li a {
     position: absolute;
 }
 
+.ui-grid-menu-mid {
+    max-height: 300px;
+    z-index: 10000 !important;
+}
+
+.ui-grid-cell-contents {
+    font-size: 13px;
+}
+
+@media (max-width: 767px) {
+    .col-xs-slider {
+        background: #fff none repeat scroll 0 0;
+        border: 1px solid #ddd;
+        position: fixed !important;
+        right: 10px;
+        top: 83px;
+        width: 75% !important;
+        z-index: 1000;
+    }
+
+    button.menu-collapse {
+        display: none;
+    }
+}
+
 button {
     z-index: 1000;
 }
@@ -105,6 +130,21 @@ button {
     z-index: 1000;
 }
 
+.banner.banner-energy {
+    z-index: 1;
+}
+
+.ui-grid-menu-button.ng-scope {
+    z-index: 10000;
+}
+
+.ui-grid-render-container {
+    z-index: 100;
+}
+
+.ui-grid-menu.ng-scope {
+    z-index: 100;
+}
 .ui-grid-filter-container input {
     background-image: url("../images/searchicon.png");
     background-position: right center;

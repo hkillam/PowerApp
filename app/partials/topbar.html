@@ -75,21 +75,15 @@
                     data-url="https://myaccount.xcelenergy.com/oam/user/getaccountbyid.req" data-toggle-remote
                     data-toggle-self data-toggle-class=".account-is-open" data-toggle-trigger="#page-account-toggle"
                     data-toggle-target="body"> <i class="icomoon icomoon-account"></i> <span class="visuallyhidden">My Account</span>
-            </a> <a id="page-nav-toggle" class="hamburger-anchor" data-toggler data-toggle-remote data-toggle-self
+            </a> <a id="page-nav-toggle" ng-click='toggle()' class="hamburger-anchor" data-toggler data-toggle-remote
+                    data-toggle-self
                     data-toggle-class=".nav-is-open" data-toggle-trigger="#page-nav-toggle" data-toggle-target="body">
                 <span class="visuallyhidden">Toggle Navigation</span> <span
                     class="hamburger">						<span
                     class="hamburger__bread hamburger__bread--top"></span>						<span
                     class="hamburger__meat"></span>						<span
                     class="hamburger__bread hamburger__bread--bottom"></span>					</span> </a></div>
-            <div class="page-search" id="page-search">
-                <div class="page-search__inner islet"><i class="icomoon icomoon-magnify"></i>
-                    <gcse:searchbox-only resultsUrl="https://www.xcelenergy.com/search" queryParameterName="q"
-                                         enableHistory="true" webSearchResultSetSize="6" autoCompleteMaxCompletions="5"
-                                         autoCompleteMatchType="any"></gcse:searchbox-only>
-                </div>
-            </div>
         </nav>
     </div>
-</div></div>
+</div>
 <div class="spaceForMobile"></div>
