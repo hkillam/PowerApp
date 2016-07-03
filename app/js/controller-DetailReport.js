@@ -32,6 +32,21 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
         // see if we need to force the data to load, and put the rest of the initialization inside the callback
         LoadAccountsAndUsages($http, $scope, accountListSrv);
 
+        // create a few charts to represent the data
+        var usageData = prepareUsageData();
+        var demandData = prepareDemandData();
+        if (googleChartsLoaded == false) {
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(function () {
+                drawDemandChart(demandData);
+                drawUsageChart(usageData);
+                googleChartsLoaded = true;
+            })
+        } else {
+            drawDemandChart(demandData);
+            drawUsageChart(usageData);
+        }
+
         // load the groupings from the settings file, match to the account data.
         // TODO - split into separate function, because this one is a runon sentence
         $http.get('settings/meterlist_' + clientID + '.json').success(function (data) {
@@ -325,7 +340,78 @@ function CalculateGroupTotals(meters) {
         }
         CalculateGroupTotals(kids);
     }
-
-
 }
 
+function prepareUsageData() {
+    var data = google.visualization.arrayToDataTable([
+        ['Meter', 'kWh'],
+        ['Greenwood Village Electric', 11],
+        ['North Building', 2],
+        ['Studio A', 2],
+        ['Studio B', 2],
+        ['Side Annex', 7]
+    ]);
+    return data;
+}
+
+function prepareDemandData() {
+    // Some raw data (not necessarily accurate)
+    var data = google.visualization.arrayToDataTable([
+        ['Meter', 'kW', 'cost / sq. ft.'],
+        ['Greenwood Village Electric', 165, 938],
+        ['North Building', 135, 1120],
+        ['Studio A', 157, 1167],
+        ['Studio B', 139, 1110],
+        ['Side Annex', 136, 691]
+    ]);
+    return data;
+}
+
+function drawUsageChart($chartArray) {
+    var options = {
+        title: 'Usage (kWh)',
+        //legend: {position: 'bottom'},
+        is3D: true,
+        legend: 'none',
+        pieSliceText: 'label',
+        colors: ['#0093B4', '#50e500', '#edfd00', '#f00034', '#8b00bd', '#ffc600', '#FF7F00', '#1200c3'],
+        animation: {
+            startup: true,
+            easing: "in",
+            duration: 500
+        }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('usage_chart_div'));
+    chart.draw($chartArray, options);
+}
+
+function drawDemandChart($chartArray) {
+    var options = {
+        title: 'Demand + Cost pre square foot',
+        vAxis: {title: 'kW'},
+        seriesType: 'bars',
+        legend: {position: 'bottom'},
+        colors: ['#66c2d9', '#005b85'],
+        series: {
+            1: {
+                type: 'line',
+                targetAxisIndex: 1
+            }
+        },
+        vAxes: {
+            1: {
+                title: 'Cost / sq. ft.',
+                textStyle: {color: '#005b85'}
+            }
+        },
+        animation: {
+            startup: true,
+            easing: "in",
+            duration: 500
+        }
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('demand_chart_div'));
+    chart.draw($chartArray, options);
+}
