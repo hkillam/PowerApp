@@ -33,16 +33,18 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
         LoadAccountsAndUsages($http, $scope, accountListSrv);
 
         // create a few charts to represent the data
-        var usageData = prepareUsageData();
-        var demandData = prepareDemandData();
         if (googleChartsLoaded == false) {
             google.charts.load('current', {'packages': ['corechart']});
             google.charts.setOnLoadCallback(function () {
+                var usageData = prepareUsageData();
+                var demandData = prepareDemandData();
                 drawDemandChart(demandData);
                 drawUsageChart(usageData);
                 googleChartsLoaded = true;
             })
         } else {
+            var usageData = prepareUsageData();
+            var demandData = prepareDemandData();
             drawDemandChart(demandData);
             drawUsageChart(usageData);
         }
