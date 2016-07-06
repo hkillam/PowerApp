@@ -159,8 +159,16 @@ nav.side-nav ul li a::after, nav.side-nav ul li p::after {
     font-family: FontAwesome !important;
 }
 
-.meter {
+.meter, .ELECTRICITY {
     background-image: url("../images/meter.png");
+    background-position: 3px center;
+    background-repeat: no-repeat;
+    background-size: 15px auto;
+    padding-left: 20px;
+}
+
+.GAS {
+    background-image: url("../images/gas.ico");
     background-position: 3px center;
     background-repeat: no-repeat;
     background-size: 15px auto;

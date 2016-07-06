@@ -4,8 +4,9 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ff64fec-badf-464c-8f2f-e69c3087bb7b" name="Default" comment="Added charts to represent data from the detailed reports.">
+    <list default="true" id="7ff64fec-badf-464c-8f2f-e69c3087bb7b" name="Default" comment="Fixed an initialization problem during refresh, to make sure google charts is initialized.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/sst-landing.css" afterPath="$PROJECT_DIR$/app/css/sst-landing.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controller-DetailReport.js" afterPath="$PROJECT_DIR$/app/js/controller-DetailReport.js" />
     </list>
     <ignored path="PowerApp.iws" />
@@ -59,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sst-landing.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sst-landing.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/css/sst-landing.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2100">
-              <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+            <state relative-caret-position="274">
+              <caret line="167" column="1" selection-start-line="167" selection-start-column="1" selection-end-line="167" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -72,18 +73,38 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="85" column="39" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="39" />
+            <state relative-caret-position="331">
+              <caret line="221" column="60" selection-start-line="221" selection-start-column="47" selection-end-line="221" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller-DetailReport.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controller-DetailReport.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/controller-DetailReport.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="252">
+              <caret line="133" column="20" selection-start-line="133" selection-start-column="20" selection-end-line="133" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="localdata.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/settings/localdata.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="meters.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/settings/meters.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="166">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -140,7 +161,6 @@
         <option value="$PROJECT_DIR$/app/settings/notes.txt" />
         <option value="$PROJECT_DIR$/app/partials/groupofmeters.html" />
         <option value="vm:79" />
-        <option value="$PROJECT_DIR$/app/settings/meters.json" />
         <option value="$PROJECT_DIR$/app/partials/accountmenu.html" />
         <option value="$PROJECT_DIR$/app/templates/settings.html" />
         <option value="$PROJECT_DIR$/app/settings/getJsonAccountUsages.json" />
@@ -164,12 +184,13 @@
         <option value="$PROJECT_DIR$/app/js/servers.js" />
         <option value="$PROJECT_DIR$/app/partials/topbar.html" />
         <option value="$PROJECT_DIR$/app/js/controllers.js" />
-        <option value="$PROJECT_DIR$/app/css/sst-landing.css" />
         <option value="$PROJECT_DIR$/app/templates/clientAccounts.html" />
         <option value="$PROJECT_DIR$/app/js/temp" />
         <option value="$PROJECT_DIR$/app/templates/detailReport.html" />
         <option value="cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.js" />
+        <option value="$PROJECT_DIR$/app/settings/meters.json" />
         <option value="$PROJECT_DIR$/app/js/controller-DetailReport.js" />
+        <option value="$PROJECT_DIR$/app/css/sst-landing.css" />
       </list>
     </option>
   </component>
@@ -195,7 +216,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-10" />
-    <option name="width" value="1924" />
+    <option name="width" value="1916" />
     <option name="height" value="1030" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -564,7 +585,7 @@
       <workItem from="1467049509240" duration="14169000" />
       <workItem from="1467478608855" duration="12626000" />
       <workItem from="1467568412111" duration="2158000" />
-      <workItem from="1467668847434" duration="1784000" />
+      <workItem from="1467668847434" duration="3424000" />
     </task>
     <task id="LOCAL-00001" summary="Use AngularJS, drop Backbone/React.  Use WebStorm to edit and manage source files.">
       <created>1463677261953</created>
@@ -741,11 +762,18 @@
       <option name="project" value="LOCAL" />
       <updated>1467568503091</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Fixed an initialization problem during refresh, to make sure google charts is initialized.">
+      <created>1467820598619</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1467820598619</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="417205000" />
+    <option name="totallyTimeSpent" value="418845000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -757,10 +785,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-10" y="0" width="1924" height="1030" extended-state="0" />
+    <frame x="-10" y="0" width="1916" height="1030" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1719243" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17265047" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -838,7 +866,8 @@
     <MESSAGE value="Detail report can reload now.   Code cleanup - smaller functions, more files, to make this easier to follow." />
     <MESSAGE value="Menu tools working better on small screens," />
     <MESSAGE value="Added charts to represent data from the detailed reports." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added charts to represent data from the detailed reports." />
+    <MESSAGE value="Fixed an initialization problem during refresh, to make sure google charts is initialized." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed an initialization problem during refresh, to make sure google charts is initialized." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -866,24 +895,20 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/js/controller-DetailReport.js</url>
-          <line>416</line>
-          <option name="timeStamp" value="176" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/app/js/controller-DetailReport.js</url>
-          <line>360</line>
-          <option name="timeStamp" value="177" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/app/js/controller-DetailReport.js</url>
           <line>40</line>
           <option name="timeStamp" value="179" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app/js/controller-DetailReport.js</url>
+          <line>133</line>
+          <properties />
+          <option name="timeStamp" value="181" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="181" />
+      <option name="time" value="182" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1022,31 +1047,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/sst-landing.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2100">
-          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.js">
       <provider selected="true" editor-type-id="httpFileEditor">
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/settings/localdata.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/settings/meters.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="85" column="39" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="39" />
+        <state relative-caret-position="331">
+          <caret line="221" column="60" selection-start-line="221" selection-start-column="47" selection-end-line="221" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controller-DetailReport.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state relative-caret-position="252">
+          <caret line="133" column="20" selection-start-line="133" selection-start-column="20" selection-end-line="133" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/sst-landing.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="167" column="1" selection-start-line="167" selection-start-column="1" selection-end-line="167" selection-end-column="1" />
           <folding />
         </state>
       </provider>

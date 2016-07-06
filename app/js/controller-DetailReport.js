@@ -128,7 +128,11 @@ function SetupGridOptions($scope) {
                     }
                 },
                 cellClass: function (grid, row, col, rowRenderIndex, colRenderIndex) {
+                    if (row.entity.type === "meter") {
+                        return row.entity.meter.services;
+                    }
                     return row.entity.type;
+                    // row.entity.meter.services[0].
                 }
             },
             {name: 'number', visible: false, enableFiltering: false},
