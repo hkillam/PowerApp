@@ -16,10 +16,19 @@
         </div>
         <div class="row clearfix">
             <h2 class="section-header section-header-billing">My Usage</h2>
+            <!--            <label for="servicesSelect">Services:</label>
+                        <select name="servicesSelect" id="servicesSelect" ng-change="changedServices(servicesSelect)"
+                                ng-options="option.name for option in services track by option.name"
+                                ng-model="selectedServices"></select> -->
             <label for="groupingSelect">Grouping:</label>
             <select name="groupingSelect" id="groupingSelect" ng-change="changedGrouping(groupingSelect)"
                     ng-options="option.name for option in groupings track by option.name"
                     ng-model="selectedGrouping"></select>
+            <label for="reportSelect">Report:</label>
+            <select name="reportSelect" id="reportSelect" ng-change="changedReport(reportSelect)"
+                    ng-options="option.reportName for option in reports track by option.reportName"
+                    ng-model="selectedReport"></select>
+            <button class="btn btn-secondary pull-right">(Future) Save Report</button>
 
             <div id="grid1" ui-grid="gridOptions" ui-grid-tree-view ui-grid-resize-columns ui-grid-move-columns
                  ui-grid-pinning
@@ -41,5 +50,4 @@
         </div>
     </div>
 </div>
-
-</div>
+<div ng-include="template.tipbar"></div>

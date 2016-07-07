@@ -1,0 +1,70 @@
+{
+  "columnsets": [
+    {
+      "reportName": "Accounting",
+      "columnList": [
+        {
+          "name": "name",
+          "displayName": "Name",
+          "width": 200
+        },
+        {
+          "name": "meter.eAmount",
+          "visible": false
+        },
+        {
+          "name": "meter.usageChange",
+          "visible": false
+        },
+        {
+          "name": "meter.billableDemand",
+          "visible": false
+        },
+        {
+          "name": "meter.gAmount",
+          "visible": false
+        },
+        {
+          "name": "meter.kbtu",
+          "visible": false
+        },
+        {
+          "name": "meter.squareFootage",
+          "displayName": "sq.ft.",
+          "width": 70
+        },
+        {
+          "name": "meter.usagesqft",
+          "visible": false
+        },
+        {
+          "name": "meter.eCost",
+          "displayName": "Electricity",
+          "width": 100
+        },
+        {
+          "name": "meter.gCost",
+          "displayName": "Gas",
+          "width": 100
+        },
+        {
+          "name": "meter.totalcost",
+          "displayName": "Total",
+          "width": 100
+        },
+        {
+          "name": "meter.costsqft",
+          "width": 100
+        },
+        {
+          "name": "meter.lastMoEUsage",
+          "visible": false
+        },
+        {
+          "name": "meter.totalEmissions",
+          "visible": false
+        }
+      ]
+    }
+  ]
+}

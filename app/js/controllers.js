@@ -300,7 +300,8 @@ function getTemplates() {
         "topbar": "partials/topbar.html",
         "accountmenu": "partials/accountmenu.html",
         "groupofmeters": "partials/groupofmeters.html",
-        "currentbill": "partials/currentbillsummary.html"
+        "currentbill": "partials/currentbillsummary.html",
+        "tipbar": "partials/tipbar.html"
     };
 }
 
