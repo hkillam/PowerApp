@@ -159,6 +159,13 @@ nav.side-nav ul li a::after, nav.side-nav ul li p::after {
     font-family: FontAwesome !important;
 }
 
+.breadcrumbs-container ul.breadcrumbs li:after {
+    content: "" !important;
+    font-family: FontAwesome !important;
+    font-size: 10px;
+    margin: 15px;
+}
+
 .meter, .ELECTRICITY {
     background-image: url("../images/meter.png");
     background-position: 3px center;
@@ -214,8 +221,20 @@ nav.side-nav ul li a::after, nav.side-nav ul li p::after {
 }
 
 @media (min-width: 768px) {
+    .container {
+        width: 100%;
+    }
+
     .bill-summary-block .pay-now {
         background-color: #f0f0f0;
         margin-bottom: 20px;
     }
 }
+
+@media (min-width: 1173px) {
+    .container {
+        width: 100%;
+        max-width: 1320px;
+    }
+}
+

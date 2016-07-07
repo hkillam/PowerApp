@@ -128,7 +128,7 @@ function LoadGroupings($scope, $http, clientID) {
 // called from report controller  CreateMeterListGrouping($scope.accountList.accounts);
 function CreateMeterListGrouping(accounts) {
     // create default groupings from the meter list.
-    var meterlistgrouping = {name: 'Accounts', list: []};
+    var meterlistgrouping = {name: 'Meters', list: []};
     meterlistgrouping.list.push({type: "group", name: "totals", $$treeLevel: 0});
     for (var i in accounts) {
         meterlistgrouping.list.push({

@@ -1,8 +1,16 @@
 <div ng-include="template.topbar"></div>
+<div class="breadcrumbs-container hidden-print">
+    <ul class="container breadcrumbs">
+        <li><a href="https://www.xcelenergy.com">Home</a></li>
+        <li><a href="#">Account Summary</a></li>
+    </ul>
+</div>
 <div class="container" id="main">
+    <div class="row">
     <div ng-class="showgraphSidebar ? 'col-md-3 col-xs-slider' : 'hidden'">
         <div ng-include="template.accountmenu"></div>
     </div>
+
     <div ng-class="showgraphSidebar ? 'col-xs-12 col-md-9' : 'col-xs-12'">
 
         <div class="row bill-summary-block">
@@ -70,6 +78,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 <div ng-include="template.tipbar"></div>
