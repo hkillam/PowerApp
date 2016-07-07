@@ -4,18 +4,34 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ff64fec-badf-464c-8f2f-e69c3087bb7b" name="Default" comment="Gas icon for gas meters.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/images/gas.ico" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/images/icon-calendar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/images/icon-lightbulb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/tipbar.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/settings/columns_555555.json" />
+    <list default="true" id="7ff64fec-badf-464c-8f2f-e69c3087bb7b" name="Default" comment="Column groups!  The feature known as views or reports is in place:  JSON file to define the different reports, switcher control to flip between them, and mostly a whole lot of effort to make this thing work.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_0_0.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_0_0.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_0_0.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_0_0.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_1_0.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_1_0.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_1_0.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_1_0.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_2_0.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_2_0.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_2_0.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_2_0.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_3_0.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_3_0.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_3_0.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_3_0.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_4_0.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_4_0.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_4_0.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/webfonts/318458_4_0.woff2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/MyFontsWebfontsKit.css" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/js/temp" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/main.css" afterPath="$PROJECT_DIR$/app/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/sst-landing.css" afterPath="$PROJECT_DIR$/app/css/sst-landing.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/xe.css" afterPath="$PROJECT_DIR$/app/css/xe.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controller-DetailReport.js" afterPath="$PROJECT_DIR$/app/js/controller-DetailReport.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers.js" afterPath="$PROJECT_DIR$/app/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/clientAccounts.html" afterPath="$PROJECT_DIR$/app/templates/clientAccounts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/detailReport.html" afterPath="$PROJECT_DIR$/app/templates/detailReport.html" />
     </list>
     <ignored path="PowerApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,16 +54,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="controller-DetailReport.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/js/controller-DetailReport.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1160">
-              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="servers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/servers.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -61,17 +67,20 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="34" column="65" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
+            <state relative-caret-position="703">
+              <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ui-grid.js" pinned="false" current-in-tab="false">
-        <entry file="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.js">
-          <provider selected="true" editor-type-id="httpFileEditor">
-            <state />
+      <file leaf-file-name="MyFontsWebfontsKit.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/css/MyFontsWebfontsKit.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -79,51 +88,8 @@
         <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="54">
-              <caret line="162" column="40" selection-start-line="162" selection-start-column="40" selection-end-line="162" selection-end-column="40" />
+              <caret line="165" column="12" selection-start-line="165" selection-start-column="12" selection-end-line="165" selection-end-column="12" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stateSelection.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/stateSelection.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="headerfooter.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/headerfooter.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="3430" column="14" selection-start-line="3430" selection-start-column="14" selection-end-line="3430" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="columns_555555.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/settings/columns_555555.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="61" column="10" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="detailReport.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/detailReport.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="725">
-              <caret line="29" column="55" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -145,8 +111,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/controllers/clientAccounts.js" />
-        <option value="$PROJECT_DIR$/app/js/services.js" />
         <option value="www.gstatic.com/charts/44/js/jsapi_compiled_format_module.js" />
         <option value="www.gstatic.com/charts/44/js/jsapi_compiled_default_module.js" />
         <option value="www.gstatic.com/charts/44/js/jsapi_compiled_ui_module.js" />
@@ -164,7 +128,6 @@
         <option value="$PROJECT_DIR$/app/templates/settings.html" />
         <option value="$PROJECT_DIR$/app/settings/getJsonAccountUsages.json" />
         <option value="$PROJECT_DIR$/app/settings/getJsonAccountOverview.json" />
-        <option value="$PROJECT_DIR$/app/css/main.css" />
         <option value="$PROJECT_DIR$/app/partials/currentbillsummary.html" />
         <option value="vm:140" />
         <option value="$PROJECT_DIR$/app/settings/meterlist.json" />
@@ -183,7 +146,6 @@
         <option value="$PROJECT_DIR$/app/partials/topbar.html" />
         <option value="$PROJECT_DIR$/app/js/temp" />
         <option value="$PROJECT_DIR$/app/settings/meters.json" />
-        <option value="$PROJECT_DIR$/app/css/sst-landing.css" />
         <option value="$PROJECT_DIR$/app/settings/columns_6348558270.json" />
         <option value="$PROJECT_DIR$/app/templates/clientAccounts.html" />
         <option value="$PROJECT_DIR$/app/partials/tipbar.html" />
@@ -191,11 +153,15 @@
         <option value="cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.js" />
         <option value="vm:78" />
         <option value="chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/include.preload.js" />
-        <option value="$PROJECT_DIR$/app/index.html" />
         <option value="cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.js" />
         <option value="$PROJECT_DIR$/app/settings/columns_555555.json" />
         <option value="$PROJECT_DIR$/app/templates/detailReport.html" />
         <option value="$PROJECT_DIR$/app/js/controller-DetailReport.js" />
+        <option value="$PROJECT_DIR$/app/index.html" />
+        <option value="$PROJECT_DIR$/app/css/MyFontsWebfontsKit.css" />
+        <option value="$PROJECT_DIR$/app/css/main.css" />
+        <option value="$PROJECT_DIR$/app/css/sst-landing.css" />
+        <option value="$PROJECT_DIR$/app/css/xe.css" />
       </list>
     </option>
   </component>
@@ -299,6 +265,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Problems" />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -345,50 +314,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Problems" />
       </pane>
       <pane id="Scratches" />
     </panes>
@@ -540,7 +470,8 @@
       <workItem from="1467049509240" duration="14169000" />
       <workItem from="1467478608855" duration="12626000" />
       <workItem from="1467568412111" duration="2158000" />
-      <workItem from="1467668847434" duration="28785000" />
+      <workItem from="1467668847434" duration="29120000" />
+      <workItem from="1467902962677" duration="6125000" />
     </task>
     <task id="LOCAL-00001" summary="Use AngularJS, drop Backbone/React.  Use WebStorm to edit and manage source files.">
       <created>1463677261953</created>
@@ -731,11 +662,18 @@
       <option name="project" value="LOCAL" />
       <updated>1467822225178</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Column groups!  The feature known as views or reports is in place:  JSON file to define the different reports, switcher control to flip between them, and mostly a whole lot of effort to make this thing work.">
+      <created>1467851230053</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1467851230053</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="444206000" />
+    <option name="totallyTimeSpent" value="450666000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -760,7 +698,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28231293" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31746033" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -784,7 +722,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="Routing and Multiple Views working (see https://docs.angularjs.org/tutorial/step_07)" />
     <MESSAGE value="Added page top.  Added side menu.  Added a google chart for bill trends, sample data is hard-coded." />
     <MESSAGE value="Added missing js and css files (downloaded from existing site)." />
     <MESSAGE value="More missing script files." />
@@ -809,7 +746,8 @@
     <MESSAGE value="Added charts to represent data from the detailed reports." />
     <MESSAGE value="Fixed an initialization problem during refresh, to make sure google charts is initialized." />
     <MESSAGE value="Gas icon for gas meters." />
-    <option name="LAST_COMMIT_MESSAGE" value="Gas icon for gas meters." />
+    <MESSAGE value="Column groups!  The feature known as views or reports is in place:  JSON file to define the different reports, switcher control to flip between them, and mostly a whole lot of effort to make this thing work." />
+    <option name="LAST_COMMIT_MESSAGE" value="Column groups!  The feature known as views or reports is in place:  JSON file to define the different reports, switcher control to flip between them, and mostly a whole lot of effort to make this thing work." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -838,14 +776,7 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/js/controller-DetailReport.js</url>
           <line>65</line>
-          <properties />
           <option name="timeStamp" value="213" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/app/js/controllers.js</url>
-          <line>165</line>
-          <properties />
-          <option name="timeStamp" value="214" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -856,11 +787,82 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/js/controller-DetailReport.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/servers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="34" column="65" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.js">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4050">
+          <caret line="162" column="40" selection-start-line="162" selection-start-column="40" selection-end-line="162" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/stateSelection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/headerfooter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85750">
+          <caret line="3430" column="14" selection-start-line="3430" selection-start-column="14" selection-end-line="3430" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/settings/columns_555555.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1525">
+          <caret line="61" column="10" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/detailReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="725">
+          <caret line="29" column="55" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="19" column="39" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -872,14 +874,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/temp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/temp" />
     <entry file="file://$PROJECT_DIR$/app/css/sst-landing.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2100">
@@ -909,8 +904,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -919,7 +914,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="19" column="39" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -931,14 +925,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/temp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/temp" />
     <entry file="file://$PROJECT_DIR$/app/css/sst-landing.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2100">
@@ -959,31 +946,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="19" column="39" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/temp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/sst-landing.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="165" column="31" selection-start-line="165" selection-start-column="31" selection-end-line="165" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/temp" />
     <entry file="file://$PROJECT_DIR$/app/settings/meterlist_6348558270.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="10" column="31" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -991,15 +961,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="636">
           <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/partials/tipbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="80" column="69" selection-start-line="80" selection-start-column="69" selection-end-line="80" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1012,7 +973,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1020,7 +980,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1034,16 +993,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/headerfooter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
+        <state relative-caret-position="85750">
           <caret line="3430" column="14" selection-start-line="3430" selection-start-column="14" selection-end-line="3430" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="34" column="65" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
           <folding />
         </state>
       </provider>
@@ -1055,7 +1006,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/settings/columns_555555.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
+        <state relative-caret-position="1525">
           <caret line="61" column="10" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
           <folding />
         </state>
@@ -1066,9 +1017,17 @@
         <state relative-caret-position="725">
           <caret line="29" column="55" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controller-DetailReport.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="40" column="51" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1083,15 +1042,73 @@
     <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
-          <caret line="162" column="40" selection-start-line="162" selection-start-column="40" selection-end-line="162" selection-end-column="40" />
+          <caret line="165" column="12" selection-start-line="165" selection-start-column="12" selection-end-line="165" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controller-DetailReport.js">
+    <entry file="file://$PROJECT_DIR$/app/partials/tipbar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1160">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+        <state relative-caret-position="350">
+          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/xe2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/xe1.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/xe.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="678" column="5" selection-start-line="678" selection-start-column="5" selection-end-line="678" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/sst-landing.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="7619" column="16" selection-start-line="7619" selection-start-column="16" selection-end-line="7619" selection-end-column="16" />
+          <folding>
+            <element signature="e#161456#161611#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/MyFontsWebfontsKit.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -3,7 +3,7 @@
 .section-header {
     font-size: 35px;
     font-size: 2.1875rem;
-    font-family: "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-align: center;
 }
 
@@ -11,14 +11,14 @@
     padding-bottom: 10px;
     border-bottom: solid 20px #0093b4;
     position: relative;
-    font-family: "museo_sans100", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "MuseoSans-100", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .section-header.section-header-energy {
     padding-bottom: 10px;
     border-bottom: solid 20px #799d4b;
     position: relative;
-    font-family: "museo_sans100", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "MuseoSans-100", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .section-header.section-header-billing:after {

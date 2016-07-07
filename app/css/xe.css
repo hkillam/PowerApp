@@ -428,61 +428,6 @@ img[height] {
     max-width: none;
 }
 
-@font-face {
-    font-family: "museo_sans100";
-    font-style: normal;
-    font-weight: normal;
-    src: url("fonts/exljbris_-_museosans-100-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exljbris_-_museosans-100-webfont.woff") format("woff"), url("fonts/exljbris_-_museosans-100-webfont.ttf") format("truetype"), url("fonts/exljbris_-_museosans-100-webfont.svg#museo_sans100") format("svg");
-}
-
-@font-face {
-    font-family: "museo_sans100_italic";
-    font-style: normal;
-    font-weight: normal;
-    src: url("fonts/exljbris_-_museosans-100italic-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exljbris_-_museosans-100italic-webfont.woff") format("woff"), url("fonts/exljbris_-_museosans-100italic-webfont.ttf") format("truetype"), url("fonts/exljbris_-_museosans-100italic-webfont.svg#museo_sans100_italic") format("svg");
-}
-
-@font-face {
-    font-family: "museo_sans300";
-    font-style: normal;
-    font-weight: normal;
-    src: url("fonts/exljbris_-_museosans-300-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exljbris_-_museosans-300-webfont.woff") format("woff"), url("fonts/exljbris_-_museosans-300-webfont.ttf") format("truetype"), url("fonts/exljbris_-_museosans-300-webfont.svg#museo_sans300") format("svg");
-}
-
-@font-face {
-    font-family: "museo_sans300_italic";
-    font-style: normal;
-    font-weight: normal;
-    src: url("fonts/exljbris_-_museosans-300italic-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exljbris_-_museosans-300italic-webfont.woff") format("woff"), url("fonts/exljbris_-_museosans-300italic-webfont.ttf") format("truetype"), url("fonts/exljbris_-_museosans-300italic-webfont.svg#museo_sans300_italic") format("svg");
-}
-
-@font-face {
-    font-family: "museo_sans500";
-    font-style: normal;
-    font-weight: normal;
-    src: url("fonts/exljbris_-_museosans-500-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exljbris_-_museosans-500-webfont.woff") format("woff"), url("fonts/exljbris_-_museosans-500-webfont.ttf") format("truetype"), url("fonts/exljbris_-_museosans-500-webfont.svg#museo_sans500") format("svg");
-}
-
-@font-face {
-    font-family: "museo_sans500_italic";
-    font-style: normal;
-    font-weight: normal;
-    src: url("fonts/exljbris_-_museosans-500italic-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exljbris_-_museosans-500italic-webfont.woff") format("woff"), url("fonts/exljbris_-_museosans-500italic-webfont.ttf") format("truetype"), url("fonts/exljbris_-_museosans-500italic-webfont.svg#museo_sans500_italic") format("svg");
-}
-
-@font-face {
-    font-family: "museo_sans700";
-    font-style: normal;
-    font-weight: normal;
-    src: url("fonts/exljbris_-_museosans-700-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exljbris_-_museosans-700-webfont.woff") format("woff"), url("fonts/exljbris_-_museosans-700-webfont.ttf") format("truetype"), url("fonts/exljbris_-_museosans-700-webfont.svg#museo_sans700") format("svg");
-}
-
-@font-face {
-    font-family: "museo_sans700_italic";
-    font-style: normal;
-    font-weight: normal;
-    src: url("fonts/exljbris_-_museosans-700italic-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/exljbris_-_museosans-700italic-webfont.woff") format("woff"), url("fonts/exljbris_-_museosans-700italic-webfont.ttf") format("truetype"), url("fonts/exljbris_-_museosans-700italic-webfont.svg#museo_sans700_italic") format("svg");
-}
 
 @font-face {
     font-family: "icomoon";
@@ -735,7 +680,7 @@ img[height] {
 
     .fancy-action {
         border-bottom: 1px solid #ddd;
-        font-family: "museo_sans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: "MuseoSans-500", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 1rem;
         padding: 16px 20px;
         padding: 1rem 1.25rem;
@@ -801,7 +746,7 @@ img[height] {
 
 @media only screen and (min-width: 768px) {
     .fancy-action {
-        font-family: "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 1.125rem;
         margin-bottom: 0.625rem;
         overflow: hidden;
@@ -839,7 +784,7 @@ img[height] {
 
 .utility-bar {
     background-color: black;
-    font-family: "museo_sans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "MuseoSans-500", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.75rem;
     height: 32px;
 }
@@ -925,7 +870,7 @@ img[height] {
     border-radius: 0;
     color: white;
     cursor: pointer;
-    font-family: "museo_sans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "MuseoSans-500", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.75rem;
     font-weight: normal;
 }
@@ -1128,7 +1073,7 @@ img[height] {
         border-bottom: 1px solid #ddd;
         color: #3a3a3a;
         display: block;
-        font-family: "museo_sans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: "MuseoSans-500", "Helvetica Neue", Helvetica, Arial, sans-serif;
         padding: 1rem 0.625rem;
         position: relative;
         transition: all 0.45s ease 0s;
@@ -1186,7 +1131,7 @@ img[height] {
 
     .page-nav__menu {
         background: #f0f0f0 none repeat scroll 0 0;
-        font-family: "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 0.875rem;
         height: 50px;
         margin-left: -0.625rem;
@@ -1201,7 +1146,7 @@ img[height] {
 
     .page-nav__back {
         background: #f0f0f0 none repeat scroll 0 0;
-        font-family: "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 0.875rem;
         margin-left: -0.625rem;
         margin-right: -0.625rem;
@@ -1349,7 +1294,7 @@ img[height] {
     .page-nav__item {
         color: inherit;
         display: inline-block;
-        font-family: "museo_sans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: "MuseoSans-500", "Helvetica Neue", Helvetica, Arial, sans-serif;
         height: 5.5rem;
         padding-top: 2.125rem;
         transition: all 0.3s ease 0s;
@@ -1677,7 +1622,7 @@ img[height] {
         box-shadow: none !important;
         color: #3a3a3a;
         display: block;
-        font-family: "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 1.5rem;
         width: 100%;
     }
@@ -1742,7 +1687,7 @@ img[height] {
     .gsc-completion-container {
         border: 0 none !important;
         box-shadow: none !important;
-        font-family: "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        font-family: "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
         font-size: 20px !important;
     }
 
@@ -1798,7 +1743,7 @@ img[height] {
     .gs-result .gs-title,
     .gs-result .gs-title * {
         color: #3a3a3a !important;
-        font-family: "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        font-family: "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
         font-size: 24px !important;
         height: auto !important;
         text-decoration: none !important;
@@ -1819,7 +1764,7 @@ img[height] {
 
     .gs-result .gs-snippet {
         color: #3a3a3a !important;
-        font-family: "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        font-family: "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
         font-size: 16px !important;
     }
 
@@ -1830,13 +1775,13 @@ img[height] {
     }
 
     .gs-result div.gs-fileFormat {
-        font-family: "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        font-family: "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     }
 
     .gs-result a.gs-visibleUrl,
     .gs-result .gs-visibleUrl {
         color: #ce1518 !important;
-        font: 1em/1.25 "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        font: 1em/1.25 "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     }
 
     @media only screen and (max-width: 767px) {
@@ -1860,7 +1805,7 @@ img[height] {
 
     .gsc-results .gsc-cursor-box .gsc-cursor-page {
         display: inline-block !important;
-        font-family: "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        font-family: "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
         font-size: 16px !important;
     }
 
@@ -1885,7 +1830,7 @@ img[height] {
     }
 
     .page-footer {
-        font-family: "museo_sans500", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: "MuseoSans-500", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
     @media only screen and (min-width: 768px) {
