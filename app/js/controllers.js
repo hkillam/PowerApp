@@ -288,11 +288,44 @@ function getJsonAccountUsages($http, $scope, $meterid) {
         $scope.loadedMeters++;
         $meter.usage = data;
 
+        // When we have all the meters loaded, do some calculations.
+        if ($scope.loadedMeters == $scope.meterCount) {
+            calculateUsageBarLength($scope);
+        }
+
         var loadingbar = document.getElementById("counter");
         if (loadingbar && loadingbar.core) {
             loadingbar.core.refresh();
         }
     })
+}
+
+function calculateUsageBarLength($scope) {
+
+    // zoom through the list of meters and find the largest values
+    $scope.maxUsage = 0;
+    for (var i in $scope.accountList.accounts) {
+        for (var j in $scope.accountList.accounts[i].premises) {
+            if ($scope.accountList.accounts[i].premises[j].eAmount) {
+                $scope.maxUsage = Math.max($scope.maxUsage, $scope.accountList.accounts[i].premises[j].eAmount);
+            }
+        }
+    }
+
+    // calculations
+    for (var i in $scope.accountList.accounts) {
+        for (var j in $scope.accountList.accounts[i].premises) {
+            if ($scope.accountList.accounts[i].premises[j].eAmount) {
+
+                // usage bar length:  max is 100, find proportions
+                $scope.accountList.accounts[i].premises[j].usageBarLength = Math.round($scope.accountList.accounts[i].premises[j].eAmount / $scope.maxUsage * 100);
+            } else {
+                $scope.accountList.accounts[i].premises[j].usageBarLength = 0;
+            }
+        }
+    }
+
+    
 }
 
 function getTemplates() {

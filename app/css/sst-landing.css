@@ -166,12 +166,20 @@ nav.side-nav ul li a::after, nav.side-nav ul li p::after {
     margin: 15px;
 }
 
-.meter, .ELECTRICITY {
+.ui-grid-cell.meter, .ELECTRICITY {
     background-image: url("../images/meter.png");
     background-position: 3px center;
     background-repeat: no-repeat;
     background-size: 15px auto;
     padding-left: 20px;
+}
+
+.usage-bar.meter {
+    background-image: none;
+}
+
+.usage-bar.group {
+    display: none;
 }
 
 .GAS {

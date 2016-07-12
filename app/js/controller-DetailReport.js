@@ -264,7 +264,7 @@ function CalculateGroupTotals(meters) {
 function prepareUsageData() {
     var data = google.visualization.arrayToDataTable([
         ['Meter', 'kWh'],
-        ['Greenwood Village Electric', 11],
+        ['Greenwood V.', 11],
         ['North Building', 2],
         ['Studio A', 2],
         ['Studio B', 2],
@@ -371,9 +371,11 @@ var report_AllColumns = {
             name: 'meter.eAmount',
             displayName: "Usage (kWh)",
             minWidth: 50, width: 110,
-            cellClass: 'align-right',
+            cellClass: 'align-right usage ',
             enableFiltering: false,
-            cellFilter: "numberFilter:'':0:' kWh'"
+            cellFilter: "numberFilter:'':0:' kWh'",
+//            cellTemplate: '<div class="ui-grid-cell-contents visible_{{COL_FIELD}}" ><div class="usage-bar" style="width: 70px; height: 3px; background-color: #13678E; "></div>{{COL_FIELD}}</div>'
+            cellTemplate: '<div class="ui-grid-cell-contents visible_{{COL_FIELD}}" ><div class="usage-bar {{row.entity.type}}" style="width: {{row.entity.meter.usageBarLength}}px; height: 3px; background-color: #13678E; "></div>{{COL_FIELD}}</div>'
         }
         ,
         {
