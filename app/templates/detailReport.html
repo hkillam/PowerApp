@@ -1,4 +1,10 @@
 <div ng-include="template.topbar"></div>
+<div class="breadcrumbs-container hidden-print">
+    <ul class="container breadcrumbs">
+        <li><a href="https://www.xcelenergy.com">Home</a></li>
+        <li><a href="#">Account Details</a></li>
+    </ul>
+</div>
 <div class="container" id="main">
     <div ng-class="showgraphSidebar ? 'col-xs-3 col-xs-slider' : 'hidden'">
         <div ng-include="template.accountmenu"></div>
@@ -7,12 +13,16 @@
         <button ng-click='toggle()' class="menu-collapse"> {{menucollapsebutton}}</button>
         <div class="row clearfix">
             <h2 class="section-header section-header-billing">My Usage</h2>
-            <div class="col-xs-12 col-md-4">
-                <div id="usage_chart_div" style="width: 100%; height: 350px;"></div>
-            </div>
-            <div class="col-xs-12 col-md-4">
-                <div id="demand_chart_div" style="width: 100%; height: 400px;"></div>
-            </div>
+            <!--            <div class="col-xs-12 col-md-4">
+                            <div id="usage_chart_div" style="width: 100%; height: 350px;"></div>
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <div id="demand_chart_div" style="width: 100%; height: 400px;"></div>
+                        </div>
+                        -->
+        </div>
+        <div class="row clearfix">
+            <div id="report_chart_div" style="width: 100%; height: 500px; padding-right: 10px;"></div>
         </div>
         <div class="row clearfix">
             <h2 class="section-header section-header-billing">My Usage</h2>
@@ -20,17 +30,19 @@
                         <select name="servicesSelect" id="servicesSelect" ng-change="changedServices(servicesSelect)"
                                 ng-options="option.name for option in services track by option.name"
                                 ng-model="selectedServices"></select> -->
-            <label for="groupingSelect">Grouping:</label>
+            <!-- TODO add tooltips on these labels and dropdowns -->
+            <label for="groupingSelect">Meter Group:</label>
             <select name="groupingSelect" id="groupingSelect" ng-change="changedGrouping(groupingSelect)"
                     ng-options="option.name for option in groupings track by option.name"
                     ng-model="selectedGrouping"></select>
-            <label for="reportSelect">Report:</label>
+            <label for="reportSelect">Saved View:</label>
             <select name="reportSelect" id="reportSelect" ng-change="changedReport(reportSelect)"
                     ng-options="option.reportName for option in reports track by option.reportName"
                     ng-model="selectedReport"></select>
-            <button class="btn btn-secondary pull-right">(Future) Save Report</button>
+            <button class="btn btn-secondary pull-right">(Future) Save Current View</button>
 
             <div id="grid1" ui-grid="gridOptions" ui-grid-tree-view ui-grid-resize-columns ui-grid-move-columns
+                 ui-grid-selection
                  ui-grid-pinning
                  class="grid clearfix"></div>
         </div>

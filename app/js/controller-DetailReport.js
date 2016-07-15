@@ -34,22 +34,27 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
         // see if we need to force the data to load, and put the rest of the initialization inside the callback
         LoadAccountsAndUsages($http, $scope, accountListSrv);
 
-        // create a few charts to represent the data
-        if (googleChartsLoaded == false) {
-            google.charts.load('current', {'packages': ['corechart']});
-            google.charts.setOnLoadCallback(function () {
-                var usageData = prepareUsageData();
-                var demandData = prepareDemandData();
-                drawDemandChart(demandData);
-                drawUsageChart(usageData);
-                googleChartsLoaded = true;
-            })
-        } else {
-            var usageData = prepareUsageData();
-            var demandData = prepareDemandData();
-            drawDemandChart(demandData);
-            drawUsageChart(usageData);
-        }
+        /*
+         // create a few charts to represent the data
+         if (googleChartsLoaded == false) {
+         google.charts.load('current', {'packages': ['corechart']});
+         google.charts.setOnLoadCallback(function ($scope) {
+         var usageData = prepareUsageData($scope);
+         var demandData = prepareDemandData();
+         drawDemandChart(demandData);
+         drawUsageChart(usageData);
+         googleChartsLoaded = true;
+         })
+         } else {
+         var usageData = prepareUsageData($scope);
+         var demandData = prepareDemandData();
+         drawDemandChart(demandData);
+         drawUsageChart(usageData);
+         }
+         */
+
+        var chartData = prepareTrendData($scope.clientAccount.trendData);
+        plotData(chartData, 'report_chart_div');
 
         LoadGroupings($scope, $http, clientID);
         LoadReports($scope, $http, clientID);
@@ -152,20 +157,69 @@ function SetupGridOptions($scope) {
         enableSorting: true,
         enableFiltering: true,
         enableColumnResizing: true,
+        enableRowHeaderSelection: true,
         enableGridMenu: true,
         showTreeExpandNoChildren: false,
         treeIndent: 20,
+        selectionRowHeaderWidth: 35,
+        enableFullRowSelection: true,
+        enableFooterTotalSelected: true,
+        showGridFooter: true,
         enablePinning: false,
         onRegisterApi: function (gridApi) {
             $scope.gridApi = gridApi;
             $scope.gridApi.grid.registerDataChangeCallback(function () {
                 $scope.gridApi.treeBase.expandAllRows();
+                $scope.gridApi.selection.selectAllRows();
+            });
+            $scope.gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                RowSelectionChanged(row);
             });
         },
         columnDefs: report_AllColumns.columnList
     };
     $scope.currentReport = report_AllColumns.reportName;
 
+}
+
+// triggered when a row selection changes.
+// Check/uncheck the group when a meter changes, or the meters when a group changes.
+function RowSelectionChanged(row) {
+
+    if (row.entity.type === "group") {
+        setChildrenSelected(row, row.isSelected);
+    }
+
+    var parent = row.treeNode.parentRow;
+    while (parent) {
+        parent.isSelected = isSiblingsSelected(row);
+        parent = parent.treeNode.parentRow;
+    }
+}
+
+function setChildrenSelected(row, selected) {
+    row.isSelected = selected;
+    var children = row.treeNode.children;
+    for (var i in children) {
+        setChildrenSelected(children[i].row, selected);
+    }
+}
+
+function isSiblingsSelected(row) {
+    if (!row.isSelected)
+        return false;
+
+    var parent = row.treeNode.parentRow;
+    if (parent) {
+        var siblings = parent.treeNode.children;
+        if (siblings) {
+            for (var i in siblings) {
+                if (!siblings[i].row.isSelected)
+                    return false;
+            }
+        }
+    }
+    return true;
 }
 
 // Find each meter in the groupings list, and match it to real meter data.
@@ -261,16 +315,16 @@ function CalculateGroupTotals(meters) {
     }
 }
 
-function prepareUsageData() {
-    var data = google.visualization.arrayToDataTable([
-        ['Meter', 'kWh'],
-        ['Greenwood V.', 11],
-        ['North Building', 2],
-        ['Studio A', 2],
-        ['Studio B', 2],
-        ['Side Annex', 7]
-    ]);
-    return data;
+function prepareUsageData($scope) {
+    var data = [['Meter', 'kWh']];
+    for (var i in $scope.accountList.accounts) {
+        for (var j in $scope.accountList.accounts[i].premises) {
+            if ($scope.accountList.accounts[i].premises[j].eAmount) {
+                data.push([$scope.accountList.accounts[i].premises[j].number, $scope.accountList.accounts[i].premises[j].eAmount]);
+            }
+        }
+    }
+    return google.visualization.arrayToDataTable(data);
 }
 
 function prepareDemandData() {

@@ -67,20 +67,20 @@ function prepareTrendData($trendData) {
     return chartArray;
 }
 
-function plotData($chartArray) {
+function plotData($chartArray, elemid) {
     if (googleChartsLoaded == false) {
         google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(function () {
-            drawGoogleChart($chartArray)
+            drawGoogleChart($chartArray, elemid);
             googleChartsLoaded = true;
         })
     } else {
-        drawGoogleChart($chartArray);
+        drawGoogleChart($chartArray, elemid);
     }
 }
 
 
-function drawGoogleChart($chartArray) {
+function drawGoogleChart($chartArray, elemid) {
 
     try {
         var data = google.visualization.arrayToDataTable($chartArray);
@@ -91,10 +91,11 @@ function drawGoogleChart($chartArray) {
     var options = {
         title: 'Bill Trend',
         seriesType: 'bars',
+        vAxis: {title: 'Cost ($)'},
         legend: {position: 'bottom'},
         colors: ['#c7e9e5', '#66c2d9', '#005b85']
     };
-    var chart = new google.visualization.ColumnChart(document.getElementById('bill_trend_chart_div'));
+    var chart = new google.visualization.ColumnChart(document.getElementById(elemid));
     chart.draw(data, options);
 }
 
@@ -108,13 +109,13 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAcc
         $scope.clientAccount = clientAccountSrv.getData();
         if ($scope.clientAccount != null) {
             var chartData = prepareTrendData($scope.clientAccount.trendData);
-            plotData(chartData);
+            plotData(chartData, 'bill_trend_chart_div');
         } else {
             // data not loaded yet - use promise... and draw the chart when the data is done loading.
             clientAccountSrv.loadData().then(function (promise) {
                 $scope.clientAccount = promise.data;
                 var chartData = prepareTrendData($scope.clientAccount.trendData);
-                plotData(chartData);
+                plotData(chartData, 'bill_trend_chart_div');
             });
         }
 
