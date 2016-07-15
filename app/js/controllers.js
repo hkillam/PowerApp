@@ -38,6 +38,7 @@ powerControllers.filter('numberFilter', function () {
     };
 });
 
+// pulls data from account summary - used for initial view
 function prepareTrendData($trendData) {
 
     // our data arrives as a combination of 0 (number) and "23.45" (string)

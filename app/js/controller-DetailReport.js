@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO:  BUG - click a row with +-, and it will expand, but it is also registered as a selection change.
+// TODO:  BUG - +- on a meter doesn't work, must click in the row somewhere.
 
 powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv', 'accountListSrv',
     function ($scope, $routeParams, $http, clientAccountSrv, accountListSrv) {
@@ -174,6 +176,8 @@ function SetupGridOptions($scope) {
             });
             $scope.gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                 RowSelectionChanged(row);
+                var chartData = prepareSelectedData($scope, "Usage");
+                plotData(chartData, 'report_chart_div');
             });
         },
         columnDefs: report_AllColumns.columnList
@@ -582,3 +586,86 @@ function GetDefaultColumnDefinition(name) {
         }
     }
 }
+
+
+// Use the table to see which meters are being used.
+// Add data found in the details for each meter, for each year available.
+function prepareSelectedData($scope, charttype) {
+    // make and initialize an array:  rows for each month, columns for each year
+    var chartArray = new Array(13);
+    for (var i = 0; i < chartArray.length; i++) {
+        chartArray[i] = new Array(4);
+        chartArray[i][0] = "mon";
+        for (var j = 1; j < chartArray[i].length; j++) {
+            chartArray[i][j] = 0;
+        }
+    }
+    chartArray[0][0] = "Month";
+    var monthlabels = false;
+    var yearlabels = false;
+
+    var selected = $scope.gridApi.selection.getSelectedRows();
+
+    for (var i in selected) {
+        if (selected[i].type === "meter") {
+            var usage = selected[i].meter.usage.data;
+            if (!monthlabels) {
+                for (var m in usage.labels) {
+                    chartArray[parseInt(m, 10) + 1][0] = usage.labels[m];
+                }
+                monthlabels = true;
+            }
+            for (var s in usage.services) {
+                if (usage.services[s].name === "ELECTRICITY-1") {
+                    for (var t in usage.services[s].data) {
+                        if (usage.services[s].data[t].name === charttype) {
+                            var series = usage.services[s].data[t].series;
+                            if (!yearlabels) {
+                                for (var y in series) {
+                                    chartArray[0][parseInt(y, 10) + 1] = series[y].label;
+                                }
+                                yearlabels = true;
+                            }
+                            for (var y in series) {
+                                for (var val in series[y].data) {
+                                    chartArray[parseInt(val, 10) + 1][parseInt(y, 10) + 1] += series[y].data[val];
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+    return chartArray;
+
+    // our data arrives as a combination of 0 (number) and "23.45" (string)
+    // we need to clean it, to be all numbers, when building this array.
+    // we also need to add the labels to the beginning of each row.
+    // enumeration is important, so for-in can't be used (order isn't guaranteed)
+
+    // google charts are grouped by row.  Our rows are by year.  We want it to be grouped by month.
+    // we need to flip the table (╯°□°）╯︵ ┻━┻
+    /*
+     var chartArray = new Array($trendData.labels.length + 1);
+     for (var i = 0; i < chartArray.length; i++) {
+     chartArray[i] = new Array($trendData.series.length + 1);
+     }
+     chartArray[0][0] = "Month";
+
+     for (i = 0; i < $trendData.series.length; i++) {
+     // a row has all the values for a year.
+     var row = $trendData.series[i].data;
+     chartArray[0][i + 1] = $trendData.series[i].label;
+     for (var j = 0; j < row.length; j++) {
+     chartArray[j + 1][0] = $trendData.labels[j];
+     chartArray[j + 1][i + 1] = parseFloat(row[j]);
+     }
+     }
+
+     return chartArray;
+     */
+}
+

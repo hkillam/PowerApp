@@ -249,6 +249,18 @@ nav.side-nav ul li a::after, nav.side-nav ul li p::after {
     border: 0;
 }
 
+.ui-grid-selection-row-header-buttons {
+    opacity: 0.4;
+}
+
+.ui-grid-tree-base-row-header-buttons {
+    cursor: pointer;
+}
+
+/* name column can be used to select/deselect a row, use a pointer */
+.ui-grid-pinned-container-left .ui-grid-cell:nth-child(3) {
+    cursor: pointer;
+}
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     nav.side-nav ul li a::after, nav.side-nav ul li p::after {
