@@ -38,85 +38,23 @@ powerControllers.filter('numberFilter', function () {
     };
 });
 
-// pulls data from account summary - used for initial view
-function prepareTrendData($trendData) {
 
-    // our data arrives as a combination of 0 (number) and "23.45" (string)
-    // we need to clean it, to be all numbers, when building this array.
-    // we also need to add the labels to the beginning of each row.
-    // enumeration is important, so for-in can't be used (order isn't guaranteed)
-
-    // google charts are grouped by row.  Our rows are by year.  We want it to be grouped by month.
-    // we need to flip the table (╯°□°）╯︵ ┻━┻
-
-    var chartArray = new Array($trendData.labels.length + 1);
-    for (var i = 0; i < chartArray.length; i++) {
-        chartArray[i] = new Array($trendData.series.length + 1);
-    }
-    chartArray[0][0] = "Month";
-
-    for (i = 0; i < $trendData.series.length; i++) {
-        // a row has all the values for a year.
-        var row = $trendData.series[i].data;
-        chartArray[0][i + 1] = $trendData.series[i].label;
-        for (var j = 0; j < row.length; j++) {
-            chartArray[j + 1][0] = $trendData.labels[j];
-            chartArray[j + 1][i + 1] = parseFloat(row[j]);
-        }
-    }
-
-    return chartArray;
-}
-
-function plotData($chartArray, elemid) {
-    if (googleChartsLoaded == false) {
-        google.charts.load('current', {'packages': ['corechart']});
-        google.charts.setOnLoadCallback(function () {
-            drawGoogleChart($chartArray, elemid);
-            googleChartsLoaded = true;
-        })
-    } else {
-        drawGoogleChart($chartArray, elemid);
-    }
-}
-
-
-function drawGoogleChart($chartArray, elemid) {
-
-    try {
-        var data = google.visualization.arrayToDataTable($chartArray);
-    } catch (err) {
-        alert(err.message);
-    }
-
-    var options = {
-        title: 'Bill Trend',
-        seriesType: 'bars',
-        vAxis: {title: 'Cost ($)'},
-        legend: {position: 'bottom'},
-        colors: ['#c7e9e5', '#66c2d9', '#005b85']
-    };
-    var chart = new google.visualization.ColumnChart(document.getElementById(elemid));
-    chart.draw(data, options);
-}
-
-
-powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAccountSrv', 'accountListSrv',
-    function ($scope, $http, clientAccountSrv, accountListSrv) {
+powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAccountSrv', 'accountListSrv', 'GraphData',
+    function ($scope, $http, clientAccountSrv, accountListSrv, GraphData) {
         $scope.meterCount = 0;
         $scope.loadedMeters = 0;
 
         // if the account data is already loaded, grab and draw
         $scope.clientAccount = clientAccountSrv.getData();
         if ($scope.clientAccount != null) {
-            var chartData = prepareTrendData($scope.clientAccount.trendData);
-            plotData(chartData, 'bill_trend_chart_div');
+            var chartData = GraphData.prepareBillingTrendForAllMeters($scope.clientAccount.trendData);
+            GraphData.loadAndDrawGoogleChart(chartData, 'bill_trend_chart_div', 'Billing Trend', 'Cost ($)');
         } else {
             // data not loaded yet - use promise... and draw the chart when the data is done loading.
             clientAccountSrv.loadData().then(function (promise) {
                 $scope.clientAccount = promise.data;
-                var chartData = prepareTrendData($scope.clientAccount.trendData);
-                plotData(chartData, 'bill_trend_chart_div');
+                var chartData = GraphData.prepareBillingTrendForAllMeters($scope.clientAccount.trendData);
+                GraphData.loadAndDrawGoogleChart(chartData, 'bill_trend_chart_div', 'Billing Trend', 'Cost ($)');
             });
         }
 
@@ -137,6 +75,15 @@ powerControllers.controller('ClientAccountsCtrl', ['$scope', '$http', 'clientAcc
 
         $scope.template = getTemplates();
         $scope.orderProp = 'age';
+
+
+        // create a few charts to represent the data
+        var usageData = prepareUsageData($scope);
+        var demandData = prepareDemandData();
+        GraphData.drawDemandChart(demandData);
+        GraphData.drawUsageChart(usageData);
+
+
     }]);
 
 powerControllers.controller('AccountDetailCtrl', ['$scope', '$routeParams',

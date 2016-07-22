@@ -13,21 +13,25 @@
         <button ng-click='toggle()' class="menu-collapse"> {{menucollapsebutton}}</button>
         <div class="row clearfix">
             <h2 class="section-header section-header-billing">My Usage</h2>
-            <!--            <div class="col-xs-12 col-md-4">
-                            <div id="usage_chart_div" style="width: 100%; height: 350px;"></div>
-                        </div>
-                        <div class="col-xs-12 col-md-4">
-                            <div id="demand_chart_div" style="width: 100%; height: 400px;"></div>
-                        </div>
-                        -->
         </div>
         <div class="row clearfix">
-            <div class="col-xs-9">
+            <div class="col-xs-12">
                 <div id="report_chart_div"></div>
+                <label for="graphSelect">Graph:</label>
+                <select name="graphSelect" id="graphSelect" ng-change="changedGraph(graphSelect)"
+                        ng-options="option.name for option in graphs track by option.name"
+                        ng-model="currentGraph"></select>
+                <div class="pull-right">
+                    <label for="secondgraphSelect">Secondary Graph:</label>
+                    <select name="secondgraphSelect" id="secondgraphSelect"
+                            ng-change="changedSecondGraph(secondgraphSelect)"
+                            ng-options="option.name for option in secondgraphs track by option.name"
+                            ng-model="currentSecondGraph"></select>
+                </div>
             </div>
         </div>
         <div class="row clearfix">
-            <h2 class="section-header section-header-billing">My Usage</h2>
+            <h2 class="section-header section-header-billing">Graphed Information</h2>
             <!--            <label for="servicesSelect">Services:</label>
                         <select name="servicesSelect" id="servicesSelect" ng-change="changedServices(servicesSelect)"
                                 ng-options="option.name for option in services track by option.name"
@@ -41,6 +45,7 @@
             <select name="reportSelect" id="reportSelect" ng-change="changedReport(reportSelect)"
                     ng-options="option.reportName for option in reports track by option.reportName"
                     ng-model="selectedReport"></select>
+            <button class="btn btn-secondary pull-right">(Future) Edit Groupings</button>
             <button class="btn btn-secondary pull-right">(Future) Save Current View</button>
 
             <div id="grid1" ui-grid="gridOptions" ui-grid-tree-view ui-grid-resize-columns ui-grid-move-columns

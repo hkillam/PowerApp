@@ -3,19 +3,36 @@
 // TODO:  BUG - click a row with +-, and it will expand, but it is also registered as a selection change.
 // TODO:  BUG - +- on a meter doesn't work, must click in the row somewhere.
 
-powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv', 'accountListSrv',
-    function ($scope, $routeParams, $http, clientAccountSrv, accountListSrv) {
+powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$http', 'clientAccountSrv', 'accountListSrv', 'GraphData',
+    function ($scope, $routeParams, $http, clientAccountSrv, accountListSrv, GraphData) {
         $scope.meterId = $routeParams.meterId;
         $scope.groupings = [];
         $scope.services = [];
         $scope.reports = [];
         $scope.template = getTemplates();
         $scope.clientAccount = clientAccountSrv.getData();
+        $scope.GraphData = GraphData;
+
         if (!$scope.clientAccount) {
             // data not loaded - use promise...then to load asynchronous.
             clientAccountSrv.loadData().then(function (promise) {
                 $scope.clientAccount = promise.data;
+                GraphData.LoadGraphList($scope);
+                var chartData = GraphData.prepareBillingTrendForAllMeters($scope.clientAccount.trendData);
+                GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', 'Billing Trend', 'Cost ($)');
+
+                LoadGroupings($scope, $http, clientID);
+                LoadReports($scope, $http, clientID);
+
             });
+        } else {
+            GraphData.LoadGraphList($scope);
+            var chartData = GraphData.prepareBillingTrendForAllMeters($scope.clientAccount.trendData);
+            GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', 'Billing Trend', 'Usage ($)');
+
+            LoadGroupings($scope, $http, clientID);
+            LoadReports($scope, $http, clientID);
+
         }
 
         // this chart is wide, let people collapse the side menu
@@ -31,35 +48,12 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
             }
         }
 
-        SetupGridOptions($scope);
+        SetupGridOptions($scope, GraphData);
 
         // see if we need to force the data to load, and put the rest of the initialization inside the callback
         LoadAccountsAndUsages($http, $scope, accountListSrv);
 
-        /*
-         // create a few charts to represent the data
-         if (googleChartsLoaded == false) {
-         google.charts.load('current', {'packages': ['corechart']});
-         google.charts.setOnLoadCallback(function ($scope) {
-         var usageData = prepareUsageData($scope);
-         var demandData = prepareDemandData();
-         drawDemandChart(demandData);
-         drawUsageChart(usageData);
-         googleChartsLoaded = true;
-         })
-         } else {
-         var usageData = prepareUsageData($scope);
-         var demandData = prepareDemandData();
-         drawDemandChart(demandData);
-         drawUsageChart(usageData);
-         }
-         */
 
-        var chartData = prepareTrendData($scope.clientAccount.trendData);
-        plotData(chartData, 'report_chart_div');
-
-        LoadGroupings($scope, $http, clientID);
-        LoadReports($scope, $http, clientID);
 
         function LoadReports($scope, $http, clientID) {
             var settingsurl = 'settings/columns_' + clientID + '.json';
@@ -75,16 +69,9 @@ powerControllers.controller('DetailReportCtrl', ['$scope', '$routeParams', '$htt
                 }
 
                 // create a "reports" dropdown and initialize it to the first report
-                $scope.reportIndex = 0;
+                $scope.selectedReport = $scope.reports[0];
                 $scope.changedReport = function (item) {
-                    $scope.reportIndex = 1;
-                    var rpt = document.getElementById('reportSelect').value;
-                    for (var i in $scope.reports) {
-                        if ($scope.reports[i].reportName === rpt) {
-                            $scope.reportIndex = i;
-                        }
-                    }
-                    $scope.gridOptions.columnDefs = $scope.reports[$scope.reportIndex].columnList;
+                    $scope.gridOptions.columnDefs = $scope.selectedReport.columnList;
                 }
             }, function errorCallback(response) {
                 //alert ("failure");
@@ -110,24 +97,36 @@ function LoadGroupings($scope, $http, clientID) {
         // create a "groupings" dropdown and initialize it to the first group
         // TODO - initialize the groupings dropdown
         $scope.groupIndex = 0;
+        $scope.selectedGrouping = $scope.groupings[0];
         $scope.changedGrouping = function (item) {
-            $scope.groupIndex = 1;
-            var gs = document.getElementById('groupingSelect').value;
-            for (var i in $scope.groupings) {
-                if ($scope.groupings[i].name === gs) {
-                    $scope.groupIndex = i;
-                }
-            }
-            $scope.gridOptions.data = $scope.groupings[$scope.groupIndex].list;
+            $scope.gridOptions.data = $scope.selectedGrouping.list;
         }
         $scope.changedServices = function (item) {
             $scope.serviceIndex = 1;
             var gs = document.getElementById('serviceSelect').value;
         }
 
+
         MatchGroupingsToAccounts($scope);
     });
 
+}
+
+function LoadGraphList($scope) {
+    $scope.graphs = [{name: "Usage"}, {name: "Amount"}, {name: "Temperature"}];
+    $scope.currentGraph = "Amount";
+    $scope.changedGraph = function (item) {
+        $scope.currentGraph = document.getElementById('graphSelect').value;
+        var chartData = prepareSelectedData($scope, $scope.currentGraph);
+        GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.currentGraph + ' Trend', 'update this!');
+    }
+    $scope.secondgraphs = [{name: "<none>"}, {name: "Demand"}];
+    $scope.currentSecondGraph = "<none>";
+    $scope.changedSecondGraph = function (item) {
+        $scope.currentGraph = document.getElementById('secondgraphSelect').value;
+        var chartData = prepareSelectedData($scope, $scope.currentGraph);
+        GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.currentGraph + ' Trend', 'update this!');
+    }
 }
 
 //
@@ -152,7 +151,7 @@ function CreateMeterListGrouping(accounts) {
     return meterlistgrouping;
 }
 
-function SetupGridOptions($scope) {
+function SetupGridOptions($scope, GraphData) {
     // TODO:  save changes in the column layout:  http://stackoverflow.com/questions/32346341/angular-ui-grid-save-and-restore-state
 
     $scope.gridOptions = {
@@ -176,8 +175,8 @@ function SetupGridOptions($scope) {
             });
             $scope.gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                 RowSelectionChanged(row);
-                var chartData = prepareSelectedData($scope, "Usage");
-                plotData(chartData, 'report_chart_div');
+                var chartData = prepareSelectedData($scope, $scope.currentGraph.name);
+                GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.currentGraph + ' Trend', 'Cost ($)');
             });
         },
         columnDefs: report_AllColumns.columnList
@@ -335,7 +334,7 @@ function prepareDemandData() {
     // Some raw data (not necessarily accurate)
     var data = google.visualization.arrayToDataTable([
         ['Meter', 'kW', 'cost / sq. ft.'],
-        ['Greenwood Village Electric', 165, 938],
+        ['Greenwood V.', 165, 938],
         ['North Building', 135, 1120],
         ['Studio A', 157, 1167],
         ['Studio B', 139, 1110],
@@ -344,54 +343,6 @@ function prepareDemandData() {
     return data;
 }
 
-function drawUsageChart($chartArray) {
-    var options = {
-        title: 'Usage (kWh)',
-        //legend: {position: 'bottom'},
-        is3D: true,
-        legend: 'none',
-        pieSliceText: 'label',
-        colors: ['#0093B4', '#50e500', '#edfd00', '#f00034', '#8b00bd', '#ffc600', '#FF7F00', '#1200c3'],
-        animation: {
-            startup: true,
-            easing: "in",
-            duration: 500
-        }
-    };
-
-    var chart = new google.visualization.PieChart(document.getElementById('usage_chart_div'));
-    chart.draw($chartArray, options);
-}
-
-function drawDemandChart($chartArray) {
-    var options = {
-        title: 'Demand + Cost pre square foot',
-        vAxis: {title: 'kW'},
-        seriesType: 'bars',
-        legend: {position: 'bottom'},
-        colors: ['#66c2d9', '#005b85'],
-        series: {
-            1: {
-                type: 'line',
-                targetAxisIndex: 1
-            }
-        },
-        vAxes: {
-            1: {
-                title: 'Cost / sq. ft.',
-                textStyle: {color: '#005b85'}
-            }
-        },
-        animation: {
-            startup: true,
-            easing: "in",
-            duration: 500
-        }
-    };
-
-    var chart = new google.visualization.ComboChart(document.getElementById('demand_chart_div'));
-    chart.draw($chartArray, options);
-}
 
 // Default view is to show all columns.  Every custom view starts by taking this and modifying values in it.  A json
 // for a custom view will only need to have the column name and the fields that are changed.
@@ -590,6 +541,8 @@ function GetDefaultColumnDefinition(name) {
 
 // Use the table to see which meters are being used.
 // Add data found in the details for each meter, for each year available.
+// Chart types:  "Usage", "Temperature", "Amount"
+// But we really do not want the TOTAL temperature - not sure how to apply this one
 function prepareSelectedData($scope, charttype) {
     // make and initialize an array:  rows for each month, columns for each year
     var chartArray = new Array(13);
@@ -619,7 +572,9 @@ function prepareSelectedData($scope, charttype) {
                 if (usage.services[s].name === "ELECTRICITY-1") {
                     for (var t in usage.services[s].data) {
                         if (usage.services[s].data[t].name === charttype) {
-                            var series = usage.services[s].data[t].series;
+                            var series = usage.services[s].data[t].series.sort(function (a, b) {
+                                return a.label - b.label
+                            });
                             if (!yearlabels) {
                                 for (var y in series) {
                                     chartArray[0][parseInt(y, 10) + 1] = series[y].label;
