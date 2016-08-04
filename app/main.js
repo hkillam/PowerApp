@@ -344,7 +344,7 @@
                                 x: this.calculateX(this.currentIndex - (this.offsetGridLines ? .5 : 0)) + Chart.helpers.aliasPixel(this.lineWidth),
                                 strokeColor: "rgba(196,196,196,1)",
                                 fillColor: "rgba(0,0,0,0)",
-                                font: '8px "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif'
+                                font: '8px "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif'
                             }), this.highlight.draw())
                         }
                     }), this.datasets = [], this.bardatasets = [], this.linedatasets = [], this.options.showTooltips && Chart.helpers.bindEvents(this, this.options.tooltipEvents, function (t) {
@@ -665,7 +665,7 @@
                         multiTooltipTemplate: "<%=value%>",
                         responsive: !0,
                         barShowStroke: !1,
-                        scaleFontFamily: "'museo_sans300', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+                        scaleFontFamily: "'MuseoSans-300', 'Helvetica Neue', Helvetica, Arial, sans-serif",
                         scaleShowGridLines: !1,
                         bezierCurve: !1,
                         bezierCurveTension: .35,
@@ -1957,7 +1957,7 @@
                                 x: this.calculateBarX(2, 0, this.currentIndex) + 8,
                                 strokeColor: "rgba(196,196,196,1)",
                                 fillColor: "rgba(0,0,0,0)",
-                                font: '8px "museo_sans300", "Helvetica Neue", Helvetica, Arial, sans-serif'
+                                font: '8px "MuseoSans-300", "Helvetica Neue", Helvetica, Arial, sans-serif'
                             }), this.highlight.draw())
                         }
                     }), this.datasets = [], this.options.showTooltips && Chart.helpers.bindEvents(this, this.options.tooltipEvents, function (t) {
@@ -2129,7 +2129,7 @@
                         responsive: !0,
                         legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend list-inline"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
                         barShowStroke: !1,
-                        scaleFontFamily: "'museo_sans300', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+                        scaleFontFamily: "'MuseoSans-300', 'Helvetica Neue', Helvetica, Arial, sans-serif",
                         scaleShowGridLines: !1,
                         showTooltips: !0
                     }), new Chart(i).BarTrend(e, a)

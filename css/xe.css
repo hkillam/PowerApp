@@ -2057,7 +2057,7 @@ img[height] {
     }
 
     .swirls {
-        background-image: url("/images/footer-swirl-large.png");
+        background-image: url("//footer-swirl-large.png");
         background-position: 89% 82%;
         background-repeat: no-repeat;
         background-size: 100% auto;

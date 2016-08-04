@@ -18,7 +18,6 @@ module.exports = function (config) {
             'test-main.js',
             {pattern: 'lib/*.js', included: true},
             {pattern: 'js/*.js', included: true},
-            {pattern: 'graphdata/*.js', included: true},
             {pattern: 'test/*.test.js', included: true}
         ],
 

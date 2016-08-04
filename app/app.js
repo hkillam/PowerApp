@@ -19,17 +19,17 @@ powerApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
         when('/', {
-            templateUrl: 'templates/myaccount.html',
+            templateUrl: './templates/myaccount.html',
             controller: 'DetailReportCtrl'
         }).
         when('/clientAccount/:meterId', {
-            templateUrl: 'partials/currentbillsummary.html',
+            templateUrl: './partials/currentbillsummary.html',
             controller: 'AccountDetailCtrl'
         }).when('/myaccount', {
-            templateUrl: 'templates/clientAccounts.html',
+            templateUrl: './templates/clientAccounts.html',
             controller: 'ClientAccountsCtrl'
         }).when('/settings', {
-            templateUrl: 'templates/settings.html',
+            templateUrl: './templates/settings.html',
             controller: 'SettingsCtrl'
         }).
         otherwise({
