@@ -1,0 +1,76 @@
+<div ng-include="template.topbar"></div>
+<div class="breadcrumbs-container hidden-print">
+    <ul class="container breadcrumbs">
+        <li><a href="https://www.xcelenergy.com">Home</a></li>
+        <li><a href="#">Account Details</a></li>
+    </ul>
+</div>
+<div class="container" id="main">
+    <div ng-class="showgraphSidebar ? 'col-xs-3 col-xs-slider' : 'hidden'">
+        <div ng-include="template.accountmenu"></div>
+    </div>
+    <div ng-class="showgraphSidebar ? 'col-xs-12 col-md-9' : 'col-xs-12'">
+        <button ng-click='toggle()' class="menu-collapse"> {{menucollapsebutton}}</button>
+        <div class="row clearfix">
+            <h2 class="section-header section-header-billing">My Usage</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="col-xs-12">
+
+                <div class="gridStyle" ng-grid="gridOptions"></div>
+                <div id="report_chart_div"></div>
+
+                <label for="graphSelect">Graph:</label>
+                <select name="graphSelect" id="graphSelect" ng-change="changedGraph(graphSelect)"
+                        ng-options="option.name for option in graphs track by option.name"
+                        ng-model="currentGraph"></select>
+                <div class="pull-right">
+                    <label for="secondgraphSelect">Secondary Graph:</label>
+                    <select name="secondgraphSelect" id="secondgraphSelect"
+                            ng-change="changedSecondGraph(secondgraphSelect)"
+                            ng-options="option.name for option in secondgraphs track by option.name"
+                            ng-model="currentSecondGraph"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <h2 class="section-header section-header-billing">Graphed Information</h2>
+            <!--            <label for="servicesSelect">Services:</label>
+                        <select name="servicesSelect" id="servicesSelect" ng-change="changedServices(servicesSelect)"
+                                ng-options="option.name for option in services track by option.name"
+                                ng-model="selectedServices"></select> -->
+            <!-- TODO add tooltips on these labels and dropdowns -->
+            <label for="groupingSelect">Meter Group:</label>
+            <select name="groupingSelect" id="groupingSelect" ng-change="changedGrouping(groupingSelect)"
+                    ng-options="option.name for option in groupings track by option.name"
+                    ng-model="selectedGrouping"></select>
+            <label for="reportSelect">Saved View:</label>
+            <select name="reportSelect" id="reportSelect" ng-change="changedReport(reportSelect)"
+                    ng-options="option.reportName for option in reports track by option.reportName"
+                    ng-model="selectedReport"></select>
+            <button class="btn btn-secondary pull-right">(Future) Edit Groupings</button>
+            <button class="btn btn-secondary pull-right">(Future) Save Current View</button>
+
+            <div id="grid1" ui-grid="gridOptions" ui-grid-tree-view ui-grid-resize-columns ui-grid-move-columns
+                 ui-grid-selection
+                 ui-grid-pinning
+                 class="grid clearfix"></div>
+        </div>
+        <div class="row clearfix">
+            <div class="banner banner-energy">
+                <div class="wrap-icon lightbulb-icon">
+                    <div class="banner-inner">
+                        <p class="headline"><span class="hidden-xs">Sign up for energy updates, billing reminders and payment notifications.</span><a
+                                href="/oam/user/showprofilepage.req" class="banner-link visible-xs">Energy Notifications
+                            <span class="big">Sign up</span></a>
+                        </p>
+                        <p class="hidden-xs">It only takes a minute to sign-up. <a href="/oam/user/showprofilepage.req">Learn
+                            More</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="template.tipbar"></div>
+

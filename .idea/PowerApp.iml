@@ -12,5 +12,6 @@
     <orderEntry type="library" name="karma" level="application" />
     <orderEntry type="library" name="uglify-js" level="application" />
     <orderEntry type="library" name="angular" level="application" />
+    <orderEntry type="library" name="PowerApp node_modules" level="project" />
   </component>
 </module>
