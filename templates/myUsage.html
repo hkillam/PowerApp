@@ -20,12 +20,12 @@
                 <div class="gridStyle" ng-grid="gridOptions"></div>
                 <div id="report_chart_div"></div>
 
-                <label for="graphSelect">Graph:</label>
+                <label for="graphSelect">Bar Chart:</label>
                 <select name="graphSelect" id="graphSelect" ng-change="changedGraph(graphSelect)"
                         ng-options="option.name for option in graphs track by option.name"
                         ng-model="currentGraph"></select>
                 <div class="pull-right">
-                    <label for="secondgraphSelect">Secondary Graph:</label>
+                    <label for="secondgraphSelect">Line Graph:</label>
                     <select name="secondgraphSelect" id="secondgraphSelect"
                             ng-change="changedSecondGraph(secondgraphSelect)"
                             ng-options="option.name for option in secondgraphs track by option.name"
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="row clearfix">
-            <h2 class="section-header section-header-billing">Graphed Information</h2>
+            <h2 class="section-header section-header-billing">Usage Details</h2>
             <!--            <label for="servicesSelect">Services:</label>
                         <select name="servicesSelect" id="servicesSelect" ng-change="changedServices(servicesSelect)"
                                 ng-options="option.name for option in services track by option.name"

@@ -228,6 +228,7 @@ define([], function (app) {
                     return report_AllColumns.columnList[y];
                 }
             }
+            console.log("Did not find column named: " + name);
         }
 
 // custom column sets do not have all of the information.  Find the rest in the original list, and copy it.
@@ -597,11 +598,19 @@ define([], function (app) {
                         minWidth: 30, width: 100,
                         enableFiltering: false,
                         cellClass: 'align-right',
-                        cellFilter: "numberFilter:'$':3:''",
+                        cellFilter: "numberFilter:'$':0:''",
                     },
                     {
                         name: 'meter.monthlyBudget',
                         displayName: "Monthly Budget",
+                        minWidth: 30, width: 100,
+                        enableFiltering: false,
+                        cellClass: 'align-right',
+                        cellFilter: "numberFilter:'$':0:''",
+                    },
+                    {
+                        name: 'meter.annbudgetsqft',
+                        displayName: "Annual Budget / Sq.Ft.",
                         minWidth: 30, width: 100,
                         enableFiltering: false,
                         cellClass: 'align-right',
@@ -613,7 +622,7 @@ define([], function (app) {
                         minWidth: 30, width: 100,
                         enableFiltering: false,
                         cellClass: 'align-right',
-                        cellFilter: "numberFilter:'$':0:''",
+                        cellFilter: "numberFilter:'$':3:''",
                     },
                     {
                         name: 'meter.costsqft',
