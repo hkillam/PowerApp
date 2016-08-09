@@ -177,6 +177,10 @@ define([], function (app) {
                         var meter = getMeterFromID($scope, $scope.groupings[grp].list[meterndx].number);
                         if (meter) {
                             $scope.groupings[grp].list[meterndx].meter = meter;
+                            if ($scope.groupings[grp].list[meterndx].annualBudget > 0) {
+                                meter.annualBudget = $scope.groupings[grp].list[meterndx].annualBudget;
+                                meter.monthlyBudget = meter.annualBudget / 12;
+                            }
                             if ($scope.groupings[grp].list[meterndx].squareFootage > 0) {
                                 meter.squareFootage = $scope.groupings[grp].list[meterndx].squareFootage;
                                 if (meter.eAmount) {
@@ -185,6 +189,8 @@ define([], function (app) {
                                 if (meter.totalcost) {
                                     meter.costsqft = meter.totalcost / meter.squareFootage;
                                 }
+                                meter.annbudgetsqft = meter.annualBudget / meter.squareFootage;
+                                meter.monbudgetsqft = meter.monthlyBudget / meter.squareFootage;
                             }
                         }
                     }
@@ -401,6 +407,8 @@ define([], function (app) {
                 }
                 if ($meter.squareFootage > 0) {
                     $meter.costsqft = $meter.totalcost / $meter.squareFootage;
+                    $meter.annbudgetsqft = $meter.annualBudget / $meter.squareFootage;
+                    $meter.monbudgetsqft = $meter.annbudgetsqft / 12;
                 }
 
                 // demand: meter.usage.services[0].reads[0].details[0].amount
@@ -582,8 +590,31 @@ define([], function (app) {
                         enableFiltering: false,
                         cellFilter: "numberFilter:'$':2:''",
                         cellClass: 'align-right'
-                    }
-                    ,
+                    },
+                    {
+                        name: 'meter.annualBudget',
+                        displayName: "Annual Budget",
+                        minWidth: 30, width: 100,
+                        enableFiltering: false,
+                        cellClass: 'align-right',
+                        cellFilter: "numberFilter:'$':3:''",
+                    },
+                    {
+                        name: 'meter.monthlyBudget',
+                        displayName: "Monthly Budget",
+                        minWidth: 30, width: 100,
+                        enableFiltering: false,
+                        cellClass: 'align-right',
+                        cellFilter: "numberFilter:'$':3:''",
+                    },
+                    {
+                        name: 'meter.monbudgetsqft',
+                        displayName: "Monthly Budget / Sq.Ft.",
+                        minWidth: 30, width: 100,
+                        enableFiltering: false,
+                        cellClass: 'align-right',
+                        cellFilter: "numberFilter:'$':0:''",
+                    },
                     {
                         name: 'meter.costsqft',
                         displayName: "Cost / Sq.Ft.",
