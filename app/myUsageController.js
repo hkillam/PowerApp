@@ -104,31 +104,6 @@ define([], function () {
         return true;
     }
 
-    function prepareUsageData($scope) {
-        var data = [['Meter', 'kWh']];
-        for (var i in $scope.accountList.accounts) {
-            for (var j in $scope.accountList.accounts[i].premises) {
-                if ($scope.accountList.accounts[i].premises[j].eAmount) {
-                    data.push([$scope.accountList.accounts[i].premises[j].number, $scope.accountList.accounts[i].premises[j].eAmount]);
-                }
-            }
-        }
-        return google.visualization.arrayToDataTable(data);
-    }
-
-    function prepareDemandData() {
-        // Some raw data (not necessarily accurate)
-        var data = google.visualization.arrayToDataTable([
-            ['Meter', 'kW', 'cost / sq. ft.'],
-            ['Greenwood V.', 165, 938],
-            ['North Building', 135, 1120],
-            ['Studio A', 157, 1167],
-            ['Studio B', 139, 1110],
-            ['Side Annex', 136, 691]
-        ]);
-        return data;
-    }
-
     function SetupGridOptions($scope, GraphData) {
         // TODO:  save changes in the column layout:  http://stackoverflow.com/questions/32346341/angular-ui-grid-save-and-restore-state
 // Default view is to show all columns.  Every custom view starts by taking this and modifying values in it.  A json
@@ -156,7 +131,7 @@ define([], function () {
                 });
                 $scope.gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                     RowSelectionChanged(row);
-                    var chartData = prepareSelectedData($scope, $scope.currentGraph.name);
+                    var chartData = prepareSelectedData($scope);
                     GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.currentGraph + ' Trend', 'Cost ($)');
                 });
             },
@@ -171,23 +146,32 @@ define([], function () {
 // Add data found in the details for each meter, for each year available.
 // Chart types:  "Usage", "Temperature", "Amount"
 // But we really do not want the TOTAL temperature - not sure how to apply this one
-    function prepareSelectedData($scope, charttype) {
+    function prepareSelectedData($scope) {
+        var charttype = $scope.currentGraph.name;
+        var linechart = $scope.currentSecondGraph.name;
         // make and initialize an array:  rows for each month, columns for each year
         var chartArray = new Array(13);
         for (var i = 0; i < chartArray.length; i++) {
-            chartArray[i] = new Array(4);
+            if (linechart === "Demand") {
+                chartArray[i] = new Array(5);
+            } else {
+                chartArray[i] = new Array(4);
+            }
             chartArray[i][0] = "mon";
             for (var j = 1; j < chartArray[i].length; j++) {
                 chartArray[i][j] = 0;
             }
         }
         chartArray[0][0] = "Month";
+        if (linechart === "Demand") {
+            chartArray[0][4] = linechart;
+        }
         var monthlabels = false;
         var yearlabels = false;
 
         var selected = $scope.gridApi.selection.getSelectedRows();
 
-        for (var i in selected) {
+        for (i in selected) {
             if (selected[i].type === "meter") {
                 var usage = selected[i].meter.usage.data;
                 if (!monthlabels) {
@@ -209,10 +193,35 @@ define([], function () {
                                     }
                                     yearlabels = true;
                                 }
-                                for (var y in series) {
-                                    for (var val in series[y].data) {
+                                for (var y in series) { // y in the series is a year
+                                    for (var val in series[y].data) {  // each val is for a month
                                         chartArray[parseInt(val, 10) + 1][parseInt(y, 10) + 1] += series[y].data[val];
                                     }
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+                // look in the actual reads on each meter for more information
+                // add another column of data if there is a line graph added on.
+                if (linechart === "Demand") {
+                    var services = selected[i].meter.usage.services;
+                    for (var srv in services) {
+                        if (services[srv].name === "ELECTRICITY-1") {
+                            var reads = services[srv].reads;
+                            for (var r in reads) {
+                                //var d = new Date(str);  //converts the string into date object
+                                var d = new Date(reads[r].lastReadDate);
+                                var mon = d.getMonth() + 1; //get the value of month
+                                var details = reads[r].details;
+                                for (var det in details) {
+                                    if (details[det].label === "Actual Demand") {
+                                        chartArray[mon][4] += details[det].amount;
+                                    }
+                                    // other values:  "Billable Demand" "Electric Charges", "Total Electric Charges", "Total Electric Charges / Day", "Average Temperature", "Cooling Degree Days", "Heating Degree Days"
+
                                 }
 
                             }
@@ -231,15 +240,13 @@ define([], function () {
         $scope.graphs = [{name: "Amount"}, {name: "Usage"}, {name: "Temperature"}];
         $scope.currentGraph = $scope.graphs[0];
         $scope.changedGraph = function (item) {
-            //$scope.currentGraph = document.getElementById('graphSelect').value;
-            var chartData = prepareSelectedData($scope, $scope.currentGraph.name);
+            var chartData = prepareSelectedData($scope);
             this.GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.currentGraph.name + ' Trend', 'update this!');
         };
         $scope.secondgraphs = [{name: "<none>"}, {name: "Demand"}];
         $scope.currentSecondGraph = $scope.secondgraphs[0];
         $scope.changedSecondGraph = function (item, GraphData) {
-            //$scope.currentGraph = document.getElementById('secondgraphSelect').value;
-            var chartData = prepareSelectedData($scope, $scope.currentGraph.name);
+            var chartData = prepareSelectedData($scope);
             this.GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.currentGraph.name + ' Trend', 'update this!');
         }
     }

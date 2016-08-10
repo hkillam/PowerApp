@@ -129,7 +129,20 @@ define([], function (app) {
                     seriesType: 'bars',
                     vAxis: {title: axistitle},
                     legend: {position: 'bottom'},
-                    colors: ['#c7e9e5', '#66c2d9', '#005b85'],
+                    lineWidth: 4,
+                    colors: ['#c7e9e5', '#66c2d9', '#005b85', '#799d4b'],
+                    series: {
+                        3: {
+                            type: 'line',
+                            targetAxisIndex: 1
+                        }
+                    },
+                    vAxes: {
+                        3: {
+                            title: 'Cost / sq. ft.',
+                            textStyle: {color: '#005b85'}
+                        }
+                    },
                     animation: {
                         startup: true,
                         easing: "in",
