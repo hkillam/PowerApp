@@ -68,7 +68,8 @@ define([], function (app) {
                         is3D: true,
                         legend: 'none',
                         pieSliceText: 'label',
-                        colors: ['#0093B4', '#50e500', '#edfd00', '#f00034', '#8b00bd', '#ffc600', '#FF7F00', '#1200c3'],
+                        // bondi blue, naples yellow, jelly bean, palm leaf, dark coral, cyber grape
+                        colors: ['#0093B4', '#f9dc5c', '#db504a', '#799D4B', '#cf5c36', '#684b7f', '#FF7F00', '#1200c3'],
                         animation: {
                             startup: true,
                             easing: "in",
@@ -129,20 +130,7 @@ define([], function (app) {
                     seriesType: 'bars',
                     vAxis: {title: axistitle},
                     legend: {position: 'bottom'},
-                    lineWidth: 4,
-                    colors: ['#c7e9e5', '#66c2d9', '#005b85', '#799d4b'],
-                    series: {
-                        3: {
-                            type: 'line',
-                            targetAxisIndex: 1
-                        }
-                    },
-                    vAxes: {
-                        3: {
-                            title: 'Cost / sq. ft.',
-                            textStyle: {color: '#005b85'}
-                        }
-                    },
+                    colors: ['#c7e9e5', '#66c2d9', '#005b85'],
                     animation: {
                         startup: true,
                         easing: "in",

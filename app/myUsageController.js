@@ -147,25 +147,29 @@ define([], function () {
 // Chart types:  "Usage", "Temperature", "Amount"
 // But we really do not want the TOTAL temperature - not sure how to apply this one
     function prepareSelectedData($scope) {
-        var charttype = $scope.currentGraph.name;
-        var linechart = $scope.currentSecondGraph.name;
+        var charttype = $scope.currentGraph.id;
+        var linechart = $scope.currentSecondGraph.id;
+
         // make and initialize an array:  rows for each month, columns for each year
         var chartArray = new Array(13);
         for (var i = 0; i < chartArray.length; i++) {
-            if (linechart === "Demand") {
-                chartArray[i] = new Array(5);
-            } else {
+            if (linechart === "none") {
                 chartArray[i] = new Array(4);
+            } else {
+                chartArray[i] = new Array(5);
             }
             chartArray[i][0] = "mon";
             for (var j = 1; j < chartArray[i].length; j++) {
                 chartArray[i][j] = 0;
             }
         }
+
+        // some labels
         chartArray[0][0] = "Month";
-        if (linechart === "Demand") {
-            chartArray[0][4] = linechart;
+        if (chartArray[0].length == 5) {
+            chartArray[0][4] = $scope.currentSecondGraph.name;
         }
+
         var monthlabels = false;
         var yearlabels = false;
 
@@ -206,7 +210,7 @@ define([], function () {
 
                 // look in the actual reads on each meter for more information
                 // add another column of data if there is a line graph added on.
-                if (linechart === "Demand") {
+                if (linechart === "demand") {
                     var services = selected[i].meter.usage.services;
                     for (var srv in services) {
                         if (services[srv].name === "ELECTRICITY-1") {
@@ -229,6 +233,15 @@ define([], function () {
                     }
                 }
 
+                // this needs to be separate functions...  but why start now?
+                if (linechart === "budget") {
+                    for (var j = 1; j < 13; j++) {
+                        if (selected[i].meter.monthlyBudget > 0)
+                            chartArray[j][4] += selected[i].meter.monthlyBudget;
+                    }
+                }
+
+
             }
         }
         return chartArray;
@@ -237,13 +250,20 @@ define([], function () {
 
     // prepare drop-down controls for the UI, that list all possible graphs
     function LoadGraphList($scope) {
-        $scope.graphs = [{name: "Amount"}, {name: "Usage"}, {name: "Temperature"}];
+        $scope.graphs = [{name: "Cost", id: "Amount"}, {name: "Usage", id: "Usage"}, {
+            name: "Temperature",
+            id: "Temperature"
+        }];
         $scope.currentGraph = $scope.graphs[0];
         $scope.changedGraph = function (item) {
             var chartData = prepareSelectedData($scope);
             this.GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.currentGraph.name + ' Trend', 'update this!');
         };
-        $scope.secondgraphs = [{name: "<none>"}, {name: "Demand"}];
+        $scope.secondgraphs = [{name: "<none>", id: "none"}, {name: "Budget", id: "budget"}, {
+            name: "Demand",
+            id: "demand"
+        }];
+        // "id":"3","name":"Option C"
         $scope.currentSecondGraph = $scope.secondgraphs[0];
         $scope.changedSecondGraph = function (item, GraphData) {
             var chartData = prepareSelectedData($scope);

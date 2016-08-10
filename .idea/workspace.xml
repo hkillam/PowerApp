@@ -42,8 +42,8 @@
       <file leaf-file-name="myUsageController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/myUsageController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="80" column="49" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="49" />
+            <state relative-caret-position="300">
+              <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -54,8 +54,8 @@
       <file leaf-file-name="GraphData.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/GraphData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="144" column="13" selection-start-line="144" selection-start-column="13" selection-end-line="144" selection-end-column="13" />
+            <state relative-caret-position="-318">
+              <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -64,10 +64,10 @@
       <file leaf-file-name="powerApp.min.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/powerApp.min.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="926" column="8" selection-start-line="926" selection-start-column="8" selection-end-line="926" selection-end-column="8" />
+            <state relative-caret-position="312">
+              <caret line="918" column="0" selection-start-line="911" selection-start-column="0" selection-end-line="918" selection-end-column="0" />
               <folding>
-                <marker date="1470845738821" expanded="true" signature="24419:24505" ph="..." />
+                <marker date="1470849642762" expanded="true" signature="24419:24505" ph="..." />
               </folding>
             </state>
           </provider>
@@ -151,8 +151,8 @@
         <option value="$PROJECT_DIR$/settings/columns_555555.json" />
         <option value="$PROJECT_DIR$/app/powerAppDataService.js" />
         <option value="$PROJECT_DIR$/app/GraphData.js" />
-        <option value="$PROJECT_DIR$/app/myUsageController.js" />
         <option value="$PROJECT_DIR$/powerApp.min.js" />
+        <option value="$PROJECT_DIR$/app/myUsageController.js" />
       </list>
     </option>
   </component>
@@ -579,7 +579,7 @@
       <workItem from="1470693619823" duration="2256000" />
       <workItem from="1470761126250" duration="14012000" />
       <workItem from="1470783784547" duration="698000" />
-      <workItem from="1470784792582" duration="10357000" />
+      <workItem from="1470784792582" duration="14352000" />
     </task>
     <task id="LOCAL-00001" summary="Use AngularJS, drop Backbone/React.  Use WebStorm to edit and manage source files.">
       <created>1463677261953</created>
@@ -847,7 +847,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470775444763</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Created line chart option for main chart.  Use the second drop down to select.  Use meter read data to find demand.">
+      <created>1470845899270</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1470845899270</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -883,7 +890,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="645663000" />
+    <option name="totallyTimeSpent" value="649658000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -898,17 +905,17 @@
     <frame x="-10" y="0" width="1925" height="1030" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23226485" sideWeight="0.68448275" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23226485" sideWeight="0.7559322" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32818073" sideWeight="0.49783784" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23226485" sideWeight="0.31551725" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23226485" sideWeight="0.2440678" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936978" sideWeight="0.52162164" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6551724" sideWeight="0.49783784" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3287037" sideWeight="0.4783784" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.4783784" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2537797" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44194314" sideWeight="0.48918918" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31712964" sideWeight="0.48702702" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31712964" sideWeight="0.48702702" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -973,7 +980,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="Groupings are matched to the list of premises, which is returned from the main application.  Totals are calculated for each of the groupings." />
     <MESSAGE value="Grid columns are resizable and moveable.  &#10;Multiple account support added." />
     <MESSAGE value="Create a default grouping from the list of accounts." />
     <MESSAGE value="Pin the first column of account report.  Created second set of demo data, and a mechanism to switch between the two." />
@@ -998,7 +1004,8 @@
     <MESSAGE value="Big Change:  Restructured to work with RequireJS and Grunt.  Modules use dependency injection to string them together." />
     <MESSAGE value="One more file for the big change." />
     <MESSAGE value="Added information for budget to the settings file for &quot;views&quot;.  In the future, it can be edited by the client.  Added the columns to the reports.  Created two new reports." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added information for budget to the settings file for &quot;views&quot;.  In the future, it can be edited by the client.  Added the columns to the reports.  Created two new reports." />
+    <MESSAGE value="Created line chart option for main chart.  Use the second drop down to select.  Use meter read data to find demand." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created line chart option for main chart.  Use the second drop down to select.  Use meter read data to find demand." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1035,37 +1042,31 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/myUsageController.js</url>
-          <line>152</line>
+          <line>153</line>
           <option name="timeStamp" value="301" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/myUsageController.js</url>
-          <line>171</line>
+          <line>177</line>
           <option name="timeStamp" value="302" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/powerApp.min.js</url>
-          <line>924</line>
+          <line>921</line>
           <properties />
-          <option name="timeStamp" value="310" />
+          <option name="timeStamp" value="318" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/powerApp.min.js</url>
-          <line>832</line>
+          <line>913</line>
           <properties />
-          <option name="timeStamp" value="314" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/powerApp.min.js</url>
-          <line>909</line>
-          <properties />
-          <option name="timeStamp" value="315" />
+          <option name="timeStamp" value="320" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="316" />
+      <option name="time" value="321" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1262,26 +1263,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/GraphData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="144" column="13" selection-start-line="144" selection-start-column="13" selection-end-line="144" selection-end-column="13" />
+        <state relative-caret-position="-318">
+          <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/powerApp.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="926" column="8" selection-start-line="926" selection-start-column="8" selection-end-line="926" selection-end-column="8" />
+        <state relative-caret-position="312">
+          <caret line="918" column="0" selection-start-line="911" selection-start-column="0" selection-end-line="918" selection-end-column="0" />
           <folding>
-            <marker date="1470845738821" expanded="true" signature="24419:24505" ph="..." />
+            <marker date="1470849642762" expanded="true" signature="24419:24505" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/myUsageController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="80" column="49" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="49" />
+        <state relative-caret-position="300">
+          <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
