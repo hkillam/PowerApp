@@ -8,55 +8,55 @@
           "type": "group",
           "$$treeLevel": 0,
           "name": "TOTALS",
-          "annualBudget": 10000
+          "annualBudget": 5000
         },
         {
           "type": "group",
           "$$treeLevel": 1,
           "name": "Greenwood Village Office",
           "squareFootage": 34300,
-          "annualBudget": 2000
+          "annualBudget": 1000
         },
         {
           "type": "meter",
           "number": "555555001",
           "name": "Greenwood Village Electric",
           "squareFootage": 32300,
-          "annualBudget": 1000
+          "annualBudget": 500
         },
         {
           "number": "555555002",
           "name": "Greenwood Village Gas",
           "squareFootage": 2000,
           "type": "meter",
-          "annualBudget": 1000
+          "annualBudget": 500
         },
         {
           "type": "group",
           "$$treeLevel": 1,
           "name": "School of Dance",
           "squareFootage": 5800,
-          "annualBudget": 6000
+          "annualBudget": 3000
         },
         {
           "type": "meter",
           "name": "North Building",
           "number": "555555021",
-          "annualBudget": 1000
+          "annualBudget": 500
         },
         {
           "type": "group",
           "$$treeLevel": 2,
           "name": "Studios A & B",
           "squareFootage": 3800,
-          "annualBudget": 4000
+          "annualBudget": 2000
         },
         {
           "type": "meter",
           "name": "Studio A",
           "number": "555555022",
           "squareFootage": 1500,
-          "annualBudget": 2000
+          "annualBudget": 1000
 
         },
         {
@@ -64,7 +64,7 @@
           "number": "555555003",
           "name": "Studio B",
           "squareFootage": 2300,
-          "annualBudget": 2000
+          "annualBudget": 1000
 
         },
         {
@@ -72,28 +72,28 @@
           "$$treeLevel": 2,
           "name": "Annex",
           "squareFootage": 2000,
-          "annualBudget": 1000
+          "annualBudget": 500
         },
         {
           "type": "meter",
           "number": "555555004",
           "name": "Side Annex",
           "squareFootage": 2000,
-          "annualBudget": 1000
+          "annualBudget": 500
         },
         {
           "type": "group",
           "$$treeLevel": 1,
           "name": "McPharlis Campus",
           "squareFootage": 20000,
-          "annualBudget": 2000
+          "annualBudget": 1000
         },
         {
           "type": "meter",
           "number": "555555032",
           "name": "School of Music",
           "squareFootage": 20000,
-          "annualBudget": 2000
+          "annualBudget": 1000
         }
       ]
     }

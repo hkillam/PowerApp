@@ -5,6 +5,7 @@ define([], function (app) {
     function myAccountsController($scope, $http, powerAppDataService, GraphData) {
         $scope.meterCount = 0;
         $scope.loadedMeters = 0;
+        $scope.template = getTemplates();
 
         $scope.clientAccount = powerAppDataService.getAccountOverview();
         if ($scope.clientAccount != null) {
@@ -33,9 +34,6 @@ define([], function (app) {
                 $scope.menucollapsebutton = "»";
             }
         };
-
-        $scope.template = getTemplates();
-        $scope.orderProp = 'age';
 
 
         // create a few charts to represent the data

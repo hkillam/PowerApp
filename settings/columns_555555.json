@@ -80,6 +80,10 @@
         {
           "name": "meter.totalEmissions",
           "visible": false
+        },
+        {
+          "name": "meter.temperature",
+          "visible": false
         }
       ]
     },
@@ -163,6 +167,10 @@
         {
           "name": "meter.totalEmissions",
           "visible": false
+        },
+        {
+          "name": "meter.temperature",
+          "visible": false
         }
       ]
     },
@@ -232,6 +240,10 @@
         },
         {
           "name": "meter.totalEmissions",
+          "visible": true
+        },
+        {
+          "name": "meter.temperature",
           "visible": true
         }
       ]

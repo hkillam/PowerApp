@@ -14,16 +14,17 @@ define([], function (app) {
             var gd = {
 
                 // after an array is prepared, make sure google charts is loaded and draw it.
-                loadAndDrawGoogleChart: function ($chartArray, elemid, charttitle, axistitle) {
+                loadAndDrawGoogleChart: function ($chartArray, elemid, charttitle, axistitle, cumulative) {
+                    cumulative = cumulative || false;
 
                     if (googleChartsLoaded == false) {
                         google.charts.load('current', {'packages': ['corechart']});
                         google.charts.setOnLoadCallback(function () {
-                            drawGoogleChart($chartArray, elemid, charttitle, axistitle);
+                            drawGoogleChart($chartArray, elemid, charttitle, axistitle, cumulative);
                             googleChartsLoaded = true;
                         })
                     } else {
-                        drawGoogleChart($chartArray, elemid, charttitle, axistitle);
+                        drawGoogleChart($chartArray, elemid, charttitle, axistitle, cumulative);
                     }
                 },
 
@@ -117,12 +118,13 @@ define([], function (app) {
 
             // All google-sepecific things are here.
             // Called from loadAndDrawGoogleChart so that Google is loaded properly.
-            function drawGoogleChart($chartArray, elemid, charttitle, axistitle) {
+            function drawGoogleChart($chartArray, elemid, charttitle, axistitle, cumulative) {
+                cumulative = cumulative || false;
 
                 try {
                     var data = google.visualization.arrayToDataTable($chartArray);
                 } catch (err) {
-                    alert(err.message);
+                    console.log("google.visualization error: " + err.message);
                 }
 
                 var options = {
@@ -130,16 +132,42 @@ define([], function (app) {
                     seriesType: 'bars',
                     vAxis: {title: axistitle},
                     legend: {position: 'bottom'},
-                    colors: ['#c7e9e5', '#66c2d9', '#005b85'],
+                    lineWidth: 4,
+                    colors: ['#005b85', '#66c2d9', '#c7e9e5', '#799d4b'],  // blues plus one green
+                    series: {
+                        3: {
+                            type: 'line',
+                            targetAxisIndex: 0
+                        }
+                    },
+                    vAxes: {
+                        3: {
+                            title: 'Cost / sq. ft.',
+                            textStyle: {color: '#005b85'}
+                        }
+                    },
                     animation: {
                         startup: true,
                         easing: "in",
                         duration: 500
                     }
                 };
-                var chart = new google.visualization.ColumnChart(document.getElementById(elemid));
+
+                // if the main chart and the line overlay have different units, use a second axes on the right
+                if (charttitle === "Usage Trend" || $chartArray[0][4] === "Demand" || $chartArray[0][4] === "Temperature") {
+                    options.series[3].targetAxisIndex = 1;
+                }
+
+                if (cumulative) {
+                    options.dataOpacity = 0.6;
+                    options.seriesType = 'area';
+                }
+
+                var chart = new google.visualization.ComboChart(document.getElementById(elemid));
                 chart.draw(data, options);
             }
+
+            s
         }
 
         GraphData.$inject = [];

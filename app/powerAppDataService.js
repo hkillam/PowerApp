@@ -133,7 +133,9 @@ define([], function (app) {
                             gCost: b.meter.gCost ? a.gCost + b.meter.gCost : a.gCost,
                             kbtu: b.meter.kbtu ? a.kbtu + b.meter.kbtu : a.kbtu,
                             totalcost: b.meter.totalcost ? a.totalcost + b.meter.totalcost : a.totalcost,
-                            totalEmissions: b.meter.totalEmissions ? a.totalEmissions + b.meter.totalEmissions : a.totalEmissions
+                            totalEmissions: b.meter.totalEmissions ? a.totalEmissions + b.meter.totalEmissions : a.totalEmissions,
+                            monthlyBudget: b.meter.monthlyBudget ? a.monthlyBudget + b.meter.monthlyBudget : a.monthlyBudget,
+                            annualBudget: b.meter.annualBudget ? a.annualBudget + b.meter.annualBudget : a.annualBudget
                         };
                     } else {
                         return ( a );
@@ -145,7 +147,9 @@ define([], function (app) {
                     gCost: 0,
                     kbtu: 0,
                     totalcost: 0,
-                    totalEmissions: 0
+                    totalEmissions: 0,
+                    monthlyBudget: 0,
+                    annualBudget: 0
                 });
 
                 siblings[j][0].meter = totals;
@@ -391,6 +395,28 @@ define([], function (app) {
                         $meter.kbtu += data.overview[index].usage.amount * 100;  // formula: https://en.wikipedia.org/wiki/Therm
                     }
                 }
+
+                // in another branch from this record, we can find three years of temperature recordings.
+                var d = new Date();
+                var mon = d.getMonth() + 1; //get the value of month
+                var year = d.getFullYear().toString(); //get the value of year
+
+                for (index in data.data.services) {
+                    if (data.data.services[index].name === "ELECTRICITY-1") {
+                        var servicedata = data.data.services[index].data;  // I really did not make this up!!
+                        for (var j in servicedata) {
+                            if (servicedata[j].name === "Temperature") {
+                                for (var yr in servicedata[j].series) {
+                                    if (servicedata[j].series[yr].label === year) {
+                                        $meter.temperature = servicedata[j].series[yr].data[mon - 1];
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
                 $meter.kbtu = Math.round($meter.kbtu);
                 $meter.totalcost = 0;
                 if ($meter.eCost) {
@@ -598,7 +624,7 @@ define([], function (app) {
                         minWidth: 30, width: 100,
                         enableFiltering: false,
                         cellClass: 'align-right',
-                        cellFilter: "numberFilter:'$':0:''",
+                        cellFilter: "numberFilter:'$':0:''"
                     },
                     {
                         name: 'meter.monthlyBudget',
@@ -606,7 +632,7 @@ define([], function (app) {
                         minWidth: 30, width: 100,
                         enableFiltering: false,
                         cellClass: 'align-right',
-                        cellFilter: "numberFilter:'$':0:''",
+                        cellFilter: "numberFilter:'$':0:''"
                     },
                     {
                         name: 'meter.annbudgetsqft',
@@ -614,7 +640,7 @@ define([], function (app) {
                         minWidth: 30, width: 100,
                         enableFiltering: false,
                         cellClass: 'align-right',
-                        cellFilter: "numberFilter:'$':3:''",
+                        cellFilter: "numberFilter:'$':3:''"
                     },
                     {
                         name: 'meter.monbudgetsqft',
@@ -622,7 +648,7 @@ define([], function (app) {
                         minWidth: 30, width: 100,
                         enableFiltering: false,
                         cellClass: 'align-right',
-                        cellFilter: "numberFilter:'$':3:''",
+                        cellFilter: "numberFilter:'$':3:''"
                     },
                     {
                         name: 'meter.costsqft',
@@ -639,8 +665,7 @@ define([], function (app) {
                         enableFiltering: false,
                         cellClass: 'align-right',
                         cellFilter: "numberFilter:'':0:' kWh'"
-                    }
-                    ,
+                    },
                     {
                         name: 'meter.totalEmissions',
                         displayName: "Emissions",
@@ -648,6 +673,14 @@ define([], function (app) {
                         enableFiltering: false,
                         cellClass: 'align-right',
                         cellFilter: "numberFilter:'':0:' tons'"
+                    },
+                    {
+                        name: 'meter.temperature',
+                        displayName: "Temperature",
+                        minWidth: 30, width: 100,
+                        enableFiltering: false,
+                        cellClass: 'align-right',
+                        cellFilter: "numberFilter:'':0:'F'"
                     }
                 ]
             };
