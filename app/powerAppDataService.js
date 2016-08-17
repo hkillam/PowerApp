@@ -10,6 +10,9 @@ define([], function (app) {
         var AccountOverview = null;
         var primaryAccountNumber = clientID;
         var accountList = null;
+        var meterList = null;
+        var metergroup = null;
+        var groupings = null;
 
         var svc = {
             getAccountList: function getAccountList() {
@@ -25,7 +28,8 @@ define([], function (app) {
             loadReports: loadReports,
             loadAccountsAndUsages: loadAccountsAndUsages,
             loadAccountUsage: loadAccountUsage,
-            getAllColumnsReport: getAllColumnsReport
+            getAllColumnsReport: getAllColumnsReport,
+            matchGroupingsToAccounts: matchGroupingsToAccounts
         };
 
         return svc;
@@ -72,21 +76,33 @@ define([], function (app) {
 
 // load the groupings from the settings file, match to the account data.
 // called from the controller during setup.
-        function loadGroupings($scope, clientID) {
+        function loadGroupings($scope) {
             var settingsurl = 'settings/meterlist_' + clientID + '.json';
+
+            if (groupings) {
+                $scope.groupings = groupings;
+                // create a "groupings" dropdown and initialize it to the first group
+                $scope.groupIndex = 0;
+                $scope.selectedGrouping = $scope.groupings[0];
+                $scope.changedGrouping = function (item) {
+                    $scope.gridOptions.data = $scope.selectedGrouping.list;
+                };
+                return;
+            }
 
             $http.get(settingsurl).success(function (data) {
                 // TODO - if metergroup has not been loaded yet, grab the callback and do it here.  Or make a promise.  or something.
-                if (!$scope.metergroup)
-                    $scope.metergroup = CreateMeterListGrouping($scope.accountList.accounts);
-                data.groupings.push($scope.metergroup);
-                $scope.groupings = data.groupings;
+                if (!metergroup)
+                    metergroup = CreateMeterListGrouping($scope.accountList.accounts);
+                data.groupings.push(metergroup);
+                groupings = data.groupings;
 
-                // connect the data to the grid
+                // connect the grouping information to meters and to the grid
+                $scope.groupings = groupings;
+                matchGroupingsToAccounts($scope);
                 $scope.gridOptions.data = $scope.groupings[0].list;
 
                 // create a "groupings" dropdown and initialize it to the first group
-                // TODO - initialize the groupings dropdown
                 $scope.groupIndex = 0;
                 $scope.selectedGrouping = $scope.groupings[0];
                 $scope.changedGrouping = function (item) {
@@ -96,8 +112,8 @@ define([], function (app) {
                     $scope.serviceIndex = 1;
                     var gs = document.getElementById('serviceSelect').value;
                 };
-                MatchGroupingsToAccounts($scope);
             });
+
         }
 
 // calculate totals for groups, and for subgroups, and for subgroups of subgroups
@@ -123,7 +139,7 @@ define([], function (app) {
             // with each sublist...
             // get totals and put them in the top item
             // recurse, so that subgroups have subtotals.
-            for (var j in siblings) {
+            for (j in siblings) {
                 var totals = siblings[j].reduce(function (a, b) {
                     if (b.type === "meter") {
                         return {
@@ -171,7 +187,7 @@ define([], function (app) {
 // This must be done after both lists are loaded.
 // Square footage come from groupings; do calculations with this now.
 // Get group totals too.
-        function MatchGroupingsToAccounts($scope) {
+        function matchGroupingsToAccounts($scope) {
             // todo:  compare premise list to grouping list, find new/deleted meters
 
             // match meters in the groupings to the account list
@@ -200,6 +216,14 @@ define([], function (app) {
                     }
                 }
                 CalculateGroupTotals($scope.groupings[grp].list);
+            }
+
+        }
+
+        // Called when groupings have already been created before loading account list.
+        function matchAccountToGrouping($scope) {
+            for (var i in $scope.groupings) {
+
             }
 
         }
@@ -288,7 +312,9 @@ define([], function (app) {
                 // data needss to be loaded - use promise...then to load asynchronous.
                 loadAccountList().then(function (promise) {
                     $scope.accountList = promise.data;
-                    $scope.metergroup = CreateMeterListGrouping($scope.accountList.accounts);
+                    matchGroupingsToAccounts($scope);
+                    metergroup = CreateMeterListGrouping($scope.accountList.accounts);
+                    $scope.metergroup = metergroup;
                     // load usage data for each meter in each account
                     for (var i in $scope.accountList.accounts) {
                         for (var meterndx in $scope.accountList.accounts[i].premises) {
@@ -439,7 +465,7 @@ define([], function (app) {
                 }
 
                 // demand: meter.usage.services[0].reads[0].details[0].amount
-                for (var index in data.services) {
+                for (index in data.services) {
                     if (data.services[index].name === "ELECTRICITY-1") {
                         // most recent read is reads[0]
                         for (var z in data.services[index].reads[0].details) {

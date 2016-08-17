@@ -41,8 +41,9 @@ define([], function () {
                 var chartData = GraphData.prepareBillingTrendForAllMeters($scope.clientAccount.trendData);
                 GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', 'Billing Trend', 'Cost ($)');
 
-                powerAppDataService.loadGroupings($scope, $scope.clientAccount.number);
+                powerAppDataService.loadGroupings($scope);
                 powerAppDataService.loadReports($scope, $scope.clientAccount.number);
+                powerAppDataService.matchGroupingsToAccounts($scope);
 
             });
         } else {
@@ -50,8 +51,10 @@ define([], function () {
             var chartData = GraphData.prepareBillingTrendForAllMeters($scope.clientAccount.trendData);
             GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', 'Billing Trend', 'Usage ($)');
 
-            powerAppDataService.loadGroupings($scope, $scope.clientAccount.number);
+            powerAppDataService.loadGroupings($scope);
             powerAppDataService.loadReports($scope, $scope.clientAccount.number);
+            powerAppDataService.matchGroupingsToAccounts($scope);
+
 
         }
 

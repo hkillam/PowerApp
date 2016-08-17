@@ -9,11 +9,8 @@ define(['app/config',
         'use strict';
 
         var app = angular.module('powerApp', ['ngRoute', 'ngResource',
-            'ui.grid.treeView',
-            'ui.grid.resizeColumns',
-            'ui.grid.moveColumns',
-            'ui.grid.pinning',
-            'ui.grid.selection']);
+            'ui.grid.treeView', 'ui.grid.resizeColumns', 'ui.grid.moveColumns',
+            'ui.grid.pinning', 'ui.grid.selection', 'dndLists']);
 
         app.filter('numberFilter', function () {
             return function (value, prefix, places, suffix) {
