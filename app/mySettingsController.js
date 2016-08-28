@@ -8,114 +8,6 @@ define([], function (app) {
         $scope.clientAccount = powerAppDataService.getAccountOverview();
         powerAppDataService.loadGroupings($scope);
 
-
-        // replace scope.models.dropzones[A] with scope.groupings[0]
-        // do not need dropzones
-        // re-label templates
-
-        $scope.models2 = {
-            selected: null,
-            templates: [
-                {type: "meter", id: 2},
-                {type: "group", id: 1, columns: [[], []]}
-            ],
-            dropzones: {
-                "A": [
-                    {
-                        "type": "group",
-                        "id": "Totals",
-                        "columns": [
-                            [
-                                {
-                                    "type": "group",
-                                    "id": "Greenwood Village Office",
-                                    "columns": [
-
-                                        {
-                                            "type": "meter",
-                                            "id": "Greenwood Village Electric"
-                                        },
-                                        {
-                                            "type": "meter",
-                                            "id": "Greenwood Village Gas"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "group",
-                                    "id": "School of Dance",
-                                    "columns": [
-
-                                        {
-                                            "type": "meter",
-                                            "id": "North Building"
-                                        },
-                                        {
-                                            "type": "meter",
-                                            "id": "Greenwood Village Gas"
-                                        }
-                                    ]
-                                }
-                            ]
-
-                        ]
-                    },
-                    {
-                        "type": "meter",
-                        "id": "4"
-                    },
-                    {
-                        "type": "group",
-                        "id": "2",
-                        "columns": [
-                            [
-                                {
-                                    "type": "meter",
-                                    "id": "9"
-                                }
-                            ],
-                            [
-                                {
-                                    "type": "meter",
-                                    "id": "12"
-                                },
-                                {
-                                    "type": "group",
-                                    "id": "3",
-                                    "columns": [
-                                        [
-                                            {
-                                                "type": "meter",
-                                                "id": "13"
-                                            }
-                                        ],
-                                        [
-                                            {
-                                                "type": "meter",
-                                                "id": "14"
-                                            }
-                                        ]
-                                    ]
-                                },
-                                {
-                                    "type": "meter",
-                                    "id": "15"
-                                },
-                                {
-                                    "type": "meter",
-                                    "id": "16"
-                                }
-                            ]
-                        ]
-                    },
-                    {
-                        "type": "meter",
-                        "id": 16
-                    }
-                ]
-            }
-        };
-
         groupingsToDND($scope);
 
         $scope.$watch('models.dropzones', function (model) {
@@ -136,27 +28,38 @@ define([], function (app) {
         $scope.models = {
             selected: null,
             templates: [
-                {type: "meter", id: 2},
-                {type: "group", id: 1, columns: [[], []]}
+                {type: "group", id: "New Group", columns: [[]]}
             ],
             dropzones: {
                 "A": []
+            },
+            sourcezones: {
+                "src": []
             }
         };
 
-        var currlevel = -1;
+        createDropzone($scope.models.dropzones.A, $scope.selectedGrouping.list);
+        for (var i in $scope.groupings) {
+            if ($scope.groupings[i].name === "Meters") {
+                createDropzone($scope.models.sourcezones.src, $scope.groupings[i].list);
+            }
+        }
+    }
 
-        var dz = $scope.models.dropzones.A;
+    function createDropzone(dz, grouping) {
+        var currlevel = -1;
         var currgrp = dz;
-        for (var i in $scope.selectedGrouping.list) {
-            var item = $scope.selectedGrouping.list[i];
+        for (var i in grouping) {
+            var item = grouping[i];
             if (item.name !== "TOTALS") {
                 var newitem = {
                     "type": item.type,
-                    "id": item.name
+                    "id": item.number,
+                    "name": item.name
                 };
                 if (item.squareFootage) newitem.squareFootage = item.squareFootage;
                 if (item.annualBudget) newitem.annualBudget = item.annualBudget;
+                if (item.meter.services) newitem.services = item.meter.services;
 
                 // see if we need a different branch
                 if (item.type === "group" || item.$$treeLevel <= currlevel) {
@@ -176,7 +79,6 @@ define([], function (app) {
                 }
             }
         }
-
     }
 
 

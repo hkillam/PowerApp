@@ -150,6 +150,8 @@ button {
     background-size: 12px auto;
     padding-bottom: 3px !important;
     padding-top: 3px !important;
+    color: #13678E;
+    font-size: 0.8em;
 }
 
 nav.side-nav ul li a::after, nav.side-nav ul li p::after {
@@ -169,7 +171,7 @@ nav.side-nav ul li a::after, nav.side-nav ul li p::after {
     background-position: 3px center;
     background-repeat: no-repeat;
     background-size: 15px auto;
-    padding-left: 20px;
+    padding-left: 20px !important;
 }
 
 .usage-bar.meter {
@@ -185,7 +187,7 @@ nav.side-nav ul li a::after, nav.side-nav ul li p::after {
     background-position: 3px center;
     background-repeat: no-repeat;
     background-size: 15px auto;
-    padding-left: 20px;
+    padding-left: 20px !important;
 }
 
 .align-left {
@@ -212,14 +214,15 @@ nav.side-nav ul li a::after, nav.side-nav ul li p::after {
     height: 40px !important;
 }
 
-/*.ui-grid-row.ui-grid-row-selected > [ui-grid-row] > .ui-grid-cell {
+.ui-grid-row.ui-grid-row-selected > [ui-grid-row] > .ui-grid-cell {
     background-color: inherit;
 }
 .ui-grid-row:nth-child(2n) .ui-grid-cell {
     background-color: #f3f3f3 !important;
-} */
+}
 
 /* turn the selected background back off for the rows */
+/*
 .ui-grid-render-container-body .ui-grid-row .ui-grid-cell {
     background-color: #ffffff !important;
 }
@@ -235,16 +238,27 @@ nav.side-nav ul li a::after, nav.side-nav ul li p::after {
 .ui-grid-render-container-body .ui-grid-tree-header-row:nth-child(2n) .ui-grid-cell {
     background-color: #ccc !important;
 }
+*/
 
 .ui-grid-row:first-child .ui-grid-cell {
     background-color: #0093B4 !important;
     border: 0;
-    color: #fff;
+    color: #fff !important;
 }
 
 .ui-grid-top-panel, .ui-grid-header-cell-row {
     background-color: #13678E;
     color: #fff;
+}
+
+.ui-grid-row {
+    color: #bbb;
+    font-style: italic;
+}
+
+.ui-grid-row-selected {
+    color: #000;
+    font-style: normal;
 }
 
 .ui-grid-header-cell {
@@ -323,7 +337,7 @@ ul[dnd-list] > li {
  * otherwise you can't drop to it once it's empty
  */
 .dropzone ul[dnd-list] {
-    min-height: 42px;
+    min-height: 20px;
     margin: 0px;
     padding-left: 0px;
 }
@@ -337,7 +351,7 @@ ul[dnd-list] > li {
  */
 .dropzone li {
     background-color: #fff;
-    border: 1px solid #ddd;
+    border: none;
     display: block;
     padding: 0px;
 }
@@ -382,7 +396,7 @@ ul[dnd-list] > li {
 }
 
 .dropzone .selected > .meterdetails {
-    display: inline-block;
+    display: inline;
 }
 
 .dropzone .selected .box {
@@ -399,11 +413,12 @@ ul[dnd-list] > li {
 /***************************** Element type specific styles *****************************/
 
 .dropzone .item {
-    padding: 10px 15px;
+    padding: 2px 15px;
 }
 
 .dropzone .container-element {
-    margin: 3%;
+    margin: 1%;
+    border: 1px solid #ddd;
 }
 
 .dropzone .container-element .column {
@@ -411,6 +426,10 @@ ul[dnd-list] > li {
     width: 100%;
 }
 
+.dropzone ul ul ul > li::before,
+.dropzone ul ul > li::before {
+    content: none;
+}
 /***************************** Toolbox *****************************/
 
 .toolbox ul {
@@ -433,29 +452,8 @@ ul[dnd-list] > li {
     opacity: 1.0;
 }
 
-/***************************** Trashcan *****************************/
-
-.trashcan ul {
-    list-style: none;
-    padding-left: 0px;
-}
-
-.trashcan img {
-    width: 100%;
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    filter: grayscale(100%);
-}
-
-.trashcan .dndDragover img {
-    width: 100%;
-    -webkit-filter: none;
-    -moz-filter: none;
-    filter: none;
-}
-
-.trashcan .dndPlaceholder {
-    display: none;
+.dnd-list {
+    color: #000 !important;
 }
 
 .box > h3 {
@@ -468,7 +466,7 @@ ul[dnd-list] > li {
     display: block;
     margin-bottom: 0;
     margin-top: 0;
-    padding: 10px 15px;
+    padding: 0 10px;
 }
 
 .box-blue > h3 {
@@ -478,13 +476,27 @@ ul[dnd-list] > li {
 
 }
 
-.box-yellow > h3 {
+.box-green > h3 {
     background-color: #799d4b;
     background-image: linear-gradient(to bottom, #799d4b 0px, #9DBD74 100%);
     border-color: #799d4b;
-
+    color: #fff;
 }
 
 .btn.new-meter {
     display: none;
+}
+
+.box-blue.new-group h3 {
+    margin: 0;
+    padding: 15px;
+    width: 100%;
+}
+
+.meterdetails input {
+    width: 100%;
+}
+
+.dropzone {
+    font-size: 0.85em;
 }

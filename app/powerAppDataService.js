@@ -335,7 +335,7 @@ define([], function (app) {
         function CreateMeterListGrouping(accounts) {
             // create default groupings from the meter list.
             var meterlistgrouping = {name: 'Meters', list: []};
-            meterlistgrouping.list.push({type: "group", name: "totals", $$treeLevel: 0});
+            meterlistgrouping.list.push({type: "group", name: "TOTALS", $$treeLevel: 0});
             for (var i in accounts) {
                 meterlistgrouping.list.push({
                     type: "account",

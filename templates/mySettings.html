@@ -26,25 +26,57 @@
                 </li>
             </ul>
         </script>
+        <script type="text/ng-template" id="listsrc.html">
+            <ul dnd-list="list">
+                <li ng-repeat="meter in list"
+                    dnd-draggable="meter"
+                    dnd-effect-allowed="copy"
+                    ng-class="{selected: models.selected === meter}"
+                    ng-include="meter.type + '.html'">
+                </li>
+            </ul>
+        </script>
         <script type="text/ng-template" id="group.html">
             <div class="container-element box box-blue">
-                <h3>{{meter.id}}</h3>
+                <h3>{{meter.name}}</h3>
                 <div class="column" ng-repeat="list in meter.columns" ng-include="'list.html'"></div>
+                <div class="clearfix"></div>
+            </div>
+        </script>
+        <script type="text/ng-template" id="accountsrc.html">
+            <div class="container-element box box-blue">
+                <h3>Account: {{meter.id}}</h3>
+                <div class="column" ng-repeat="list in meter.columns" ng-include="'listsrc.html'"></div>
                 <div class="clearfix"></div>
             </div>
         </script>
 
         <!-- Template for a normal list item -->
         <script type="text/ng-template" id="meter.html">
-            <div class="item">Meter: {{meter.id}}</div>
+            <div class="item {{meter.services}}"> {{meter.name}}
+                <sm>({{meter.id}})</sm>
+            </div>
+            <div class="meterdetails">
+                <div class="col-xs-4 col-md-2">
+                    <label for="metername">Name:</label></div>
+                <div class="col-xs-8 col-md-4"><input type="text" ng-model="meter.name" name="metername"></div>
+                <div class="col-xs-4 col-md-2"><label for="budget">Annual Budget:</label></div>
+                <div class="col-xs-8 col-md-4"><input type="text" ng-model="meter.annualBudget" name="budget"></div>
+                <br>Available info: {{meter}}
+            </div>
+        </script>
+
+        <!-- Template for a normal list item in the source column-->
+        <script type="text/ng-template" id="metersrc.html">
+            <div class="item {{meter.services}}"> {{meter.id}}</div>
             <div class="meterdetails">Name: , addess: , etc.</div>
         </script>
 
         <!-- Main area with dropzones and source code -->
-        <div class="col-md-10">
+        <div class="col-xs-8">
             <div class="row">
                 <div ng-repeat="(zone, list) in models.dropzones" class="col-md-12">
-                    <div class="dropzone box box-yellow">
+                    <div class="dropzone box box-green">
                         <!-- The dropzone also uses the list template -->
                         <h3>{{selectedGrouping.name}}</h3>
                         <div ng-include="'list.html'"></div>
@@ -57,28 +89,50 @@
         </div>
 
         <!-- Sidebar -->
-        <div class="col-md-2">
+        <div class="col-xs-4">
 
             <label for="groupingSelect">Meter Group:</label>
             <select name="groupingSelect" id="groupingSelect" ng-change="changedGrouping(groupingSelect)"
                     ng-options="option.name for option in groupings track by option.name"
                     ng-model="selectedGrouping"></select>
 
-            <div class="toolbox box box-grey box-padding">
-                <h3>New Elements</h3>
+            <div class="toolbox box box-grey box-padding dropzone box box-green ">
                 <ul>
                     <!-- The toolbox only allows to copy objects, not move it. After a new
                          element was created, dnd-copied is invoked and we generate the next id -->
                     <li ng-repeat="item in models.templates"
                         dnd-draggable="item"
                         dnd-effect-allowed="copy"
-                        dnd-copied="item.id = item.id + 1"
+                        dnd-copied="item.id = 'New Group'"
                     >
-                        <button type="button" class="btn btn-default btn-lg new-{{item.type}}" disabled="disabled">New
-                            {{item.type}}
-                        </button>
+                        <div class="new-{{item.type}} container-element blue-box box-blue">
+                            <h3 class="fa fa-plus">&nbsp;&nbsp;New {{item.type}}</h3>
+                        </div>
                     </li>
                 </ul>
+                <!-- Main area with dropzones and source code -->
+                <div>
+                    <div class="row">
+                        <div ng-repeat="(zone, list) in models.sourcezones">
+                            <div class="dropzone box box-green">
+                                <!-- The dropzone also uses the list template -->
+                                <!-- TODO if an item in this list is selected, highlight the same item in the grouping on display -->
+
+                                <h3>My Meters</h3>
+                                <ul dnd-list="list">
+                                    <li ng-repeat="meter in list"
+                                        dnd-draggable="meter"
+                                        dnd-effect-allowed="copy"
+                                        ng-include="meter.type + 'src.html'">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div view-source="nested"></div>
+
+                </div>
             </div>
             <div ng-if="models.selected" class="box box-grey box-padding">
                 <h3>Selected</h3>
