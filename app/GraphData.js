@@ -14,17 +14,17 @@ define([], function (app) {
             var gd = {
 
                 // after an array is prepared, make sure google charts is loaded and draw it.
-                loadAndDrawGoogleChart: function ($chartArray, elemid, charttitle, axistitle, cumulative) {
+                loadAndDrawGoogleChart: function ($chartArray, elemid, legend, cumulative) {
                     cumulative = cumulative || false;
 
                     if (googleChartsLoaded == false) {
                         google.charts.load('current', {'packages': ['corechart']});
                         google.charts.setOnLoadCallback(function () {
-                            drawGoogleChart($chartArray, elemid, charttitle, axistitle, cumulative);
+                            drawGoogleChart($chartArray, elemid, legend, cumulative);
                             googleChartsLoaded = true;
                         })
                     } else {
-                        drawGoogleChart($chartArray, elemid, charttitle, axistitle, cumulative);
+                        drawGoogleChart($chartArray, elemid, legend, cumulative);
                     }
                 },
 
@@ -41,16 +41,21 @@ define([], function (app) {
                     // google charts are grouped by row.  Our rows are by year.  We want it to be grouped by month.
                     // we need to flip the table (╯°□°）╯︵ ┻━┻
 
+
                     var chartArray = new Array($trendData.labels.length + 1);
                     for (var i = 0; i < chartArray.length; i++) {
                         chartArray[i] = new Array($trendData.series.length + 1);
                     }
                     chartArray[0][0] = "Month";
 
-                    for (i = 0; i < $trendData.series.length; i++) {
+                    var series = $trendData.series.sort(function (a, b) {
+                        return a.label - b.label
+                    });
+
+                    for (i = 0; i < series.length; i++) {
                         // a row has all the values for a year.
-                        var row = $trendData.series[i].data;
-                        chartArray[0][i + 1] = $trendData.series[i].label;
+                        var row = series[i].data;
+                        chartArray[0][i + 1] = series[i].label;
                         for (var j = 0; j < row.length; j++) {
                             chartArray[j + 1][0] = $trendData.labels[j];
                             chartArray[j + 1][i + 1] = parseFloat(row[j]);
@@ -118,7 +123,7 @@ define([], function (app) {
 
             // All google-sepecific things are here.
             // Called from loadAndDrawGoogleChart so that Google is loaded properly.
-            function drawGoogleChart($chartArray, elemid, charttitle, axistitle, cumulative) {
+            function drawGoogleChart($chartArray, elemid, legend, cumulative) {
                 cumulative = cumulative || false;
 
                 try {
@@ -128,22 +133,42 @@ define([], function (app) {
                 }
 
                 var options = {
-                    title: charttitle,
+                    title: legend.charttitle,
                     seriesType: 'bars',
-                    vAxis: {title: axistitle},
+                    vAxis: {title: legend.axistitle},
+                    textStyle: {fontName: 'MuseoSans-300'},
                     legend: {position: 'bottom'},
                     lineWidth: 4,
-                    colors: ['#005b85', '#66c2d9', '#c7e9e5', '#799d4b'],  // blues plus one green
+                    colors: [],
                     series: {
+                        0: {
+                            type: 'line',
+                            targetAxisIndex: 0
+                        },
+                        1: {
+                            type: 'line',
+                            targetAxisIndex: 0
+                        },
+                        2: {
+                            type: 'line',
+                            targetAxisIndex: 0
+                        },
                         3: {
+                            type: 'line',
+                            targetAxisIndex: 0
+                        },
+                        4: {
+                            type: 'line',
+                            targetAxisIndex: 0
+                        },
+                        5: {
                             type: 'line',
                             targetAxisIndex: 0
                         }
                     },
                     vAxes: {
-                        3: {
-                            title: 'Cost / sq. ft.',
-                            textStyle: {color: '#005b85'}
+                        1: {
+                            title: legend.axis2title
                         }
                     },
                     animation: {
@@ -153,21 +178,44 @@ define([], function (app) {
                     }
                 };
 
+                // start by treating everything like a line chart, and add bars in if they are enabled.
+                // this avoids messy logic around which ones to set as line charts.
+
                 // if the main chart and the line overlay have different units, use a second axes on the right
-                if (charttitle === "Usage Trend" || $chartArray[0][4] === "Demand" || $chartArray[0][4] === "Temperature") {
-                    options.series[3].targetAxisIndex = 1;
+                if (legend.charttitle === "Usage Trend" || $chartArray[0][4] === "Demand" || $chartArray[0][4] === "Temperature") {
+                    for (i in options.series)
+                        options.series[i].targetAxisIndex = 1;
                 }
+
+                // Check the legend settings to see how many series are in bars
+                var barsets = 0;
+                for (i = 2; i >= 0; i--) {
+                    if (legend.items[i].enabled)  barsets++;
+                }
+                for (i = 0; i < barsets; i++) {
+                    options.series[i].type = 'bar';
+                    options.series[i].targetAxisIndex = 0;
+                }
+
+                // chart colours come from the legend
+                for (var i in legend.items) {
+                    if (legend.items[i].enabled)
+                        options.colors.push(legend.items[i].color);
+                }
+                // aa few extra colours, just to make sure google doesn't choke
+                options.colors.push('#0093B4', '#f9dc5c', '#db504a', '#799D4B', '#cf5c36', '#684b7f', '#FF7F00', '#1200c3');
 
                 if (cumulative) {
                     options.dataOpacity = 0.6;
                     options.seriesType = 'area';
+                    for (i = 0; i < barsets; i++) {
+                        options.series[i].type = 'area';
+                    }
                 }
 
                 var chart = new google.visualization.ComboChart(document.getElementById(elemid));
                 chart.draw(data, options);
             }
-
-            s
         }
 
         GraphData.$inject = [];

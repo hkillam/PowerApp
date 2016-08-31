@@ -17,20 +17,87 @@
         <div class="row clearfix">
             <div class="col-xs-12">
 
+
+                <div class="pull-right">
+
+                </div>
+
+                <a id='here'></a>
                 <div class="gridStyle" ng-grid="gridOptions"></div>
                 <div id="report_chart_div"></div>
 
-                <label for="graphSelect">Bar Chart:</label>
-                <select name="graphSelect" id="graphSelect" ng-change="changedGraph(graphSelect)"
-                        ng-options="option.name for option in graphs track by option.name"
-                        ng-model="currentGraph"></select>
-                <div class="pull-right">
-                    <label for="secondgraphSelect">Line Graph:</label>
-                    <select name="secondgraphSelect" id="secondgraphSelect"
-                            ng-change="changedSecondGraph(secondgraphSelect)"
-                            ng-options="option.name for option in secondgraphs track by option.name"
-                            ng-model="currentSecondGraph"></select>
-                </div>
+                <table id="legend-waitforit-ary">
+                    <tr>
+                        <th></th>
+                        <th>2016</th>
+                        <th>2015</th>
+                        <th>2014</th>
+                    </tr>
+                    <tr>
+
+                        <!-- TODO, this ugly code needs to be ng-repeat -->
+                        <td>
+                            <select name="graphSelect" id="graphSelect" ng-change="changedGraph(graphSelect)"
+                                    ng-options="option.name for option in graphs track by option.name"
+                                    ng-model="currentGraph"></select></td>
+                        <td>
+                            <a ng-click='legend.items[0].enabled = !legend.items[0].enabled'
+                               ng-class="legend.items[0].enabled ? 'show-graph' : 'hide-graph'">
+                                <svg width="28" height="14" style="overflow: hidden;">
+                                    <rect x="0" y="0" width="28" height="14" stroke="none" stroke-width="0"
+                                          fill={{legend.items[0].color}}></rect>
+                                </svg>
+                                &nbsp;{{legend.items[0].display}} xxx kWh
+                            </a>
+                        </td>
+                        <td>
+                            <button ng-click="legend.items[1].enabled = !legend.items[1].enabled; legendChanged()"
+                                    ng-class="legend.items[1].enabled ? 'show-graph' : 'hide-graph'">
+                                <svg width="28" height="14" style="overflow: hidden;">
+                                    <rect x="0" y="0" width="28" height="14" stroke="none" stroke-width="0"
+                                          fill={{legend.items[1].color}}></rect>
+                                </svg>
+                                &nbsp;4322 kwh
+                            </button>
+                        </td>
+                        <td>
+                            <svg width="28" height="14" style="overflow: hidden;">
+                                <rect x="0" y="0" width="28" height="14" stroke="none" stroke-width="0"
+                                      fill="#c7e9e5"></rect>
+                            </svg>
+                            &nbsp;4322 kwh
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="secondgraphSelect" id="secondgraphSelect"
+                                    ng-change="changedSecondGraph(secondgraphSelect)"
+                                    ng-options="option.name for option in secondgraphs track by option.name"
+                                    ng-model="currentSecondGraph"></select></td>
+                        <td>
+                            <svg width="28" height="14" style="overflow: hidden;">
+                                <rect x="0" y="5" width="28" height="3" stroke="none" stroke-width="0"
+                                      fill="#db504a"></rect>
+                            </svg>
+                            &nbsp;322 kw
+                        </td>
+                        <td>
+                            <svg width="28" height="14" style="overflow: hidden;">
+                                <rect x="0" y="5" width="28" height="3" stroke="none" stroke-width="0"
+                                      fill="#D87A77"></rect>
+                            </svg>
+                            &nbsp;422 kw
+                        </td>
+                        <td>
+                            <svg width="28" height="14" style="overflow: hidden;">
+                                <rect x="0" y="5" width="28" height="3" stroke="none" stroke-width="0"
+                                      fill="#D8A4A2"></rect>
+                            </svg>
+                            &nbsp;432 kw
+                        </td>
+                    </tr>
+                </table>
+
             </div>
         </div>
         <div class="row clearfix">
@@ -48,13 +115,13 @@
             <select name="reportSelect" id="reportSelect" ng-change="changedReport(reportSelect)"
                     ng-options="option.reportName for option in reports track by option.reportName"
                     ng-model="selectedReport"></select>
-            <label for="periodSelect">Reporting Period:</label>
+            <label for="periodSelect">Period:</label>
             <select name="periodSelect" id="periodSelect" ng-change="changedPeriod(periodSelect)"
                     ng-options="option.label for option in reportPeriods track by option.label"
                     ng-model="selectedPeriod"></select>
-            <button ng-href="/PowerApp/index.html#/mysettings" class="btn btn-secondary pull-right">Edit Groupings
-            </button>
-            <button ng-href="/PowerApp/index.html#/mysettings" class="btn btn-secondary pull-right">Save View</button>
+
+            <a class="btn btn-secondary pull-right" href="#/mysettings">Edit Groupings</a>
+            <a class="btn btn-secondary pull-right" href="#/mysettings">Save View</a>
 
             <div id="grid1" ui-grid="gridOptions" ui-grid-tree-view ui-grid-resize-columns ui-grid-move-columns
                  ui-grid-selection

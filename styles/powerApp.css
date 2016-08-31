@@ -1,4 +1,18 @@
-/* mimic the css generated in the real application */
+/* bondi blue, naples yellow, jelly bean, palm leaf, dark coral, cyber grape
+colors: ['#0093B4', '#f9dc5c', '#db504a', '#799D4B', '#cf5c36', '#684b7f', '#FF7F00', '#1200c3'],
+*/
+.color-list {
+    color: #13678E;
+    color: #0093B4; /* bondi blue */
+    color: #f9dc5c; /* naples yellow */
+    color: #db504a; /* jelly bean */
+    color: #D87A77; /* jelly bean (med) */
+    color: #D8A4A2; /* jelly bean (light) */
+    color: #799D4B; /* palm leaf */
+    color: #CCE4AD;
+    color: #cf5c36; /* dark coral */
+    color: #684b7f; /* cyber grape */
+}
 
 .section-header {
     font-size: 35px;
@@ -499,4 +513,35 @@ ul[dnd-list] > li {
 
 .dropzone {
     font-size: 0.85em;
+}
+
+#legend-waitforit-ary {
+    width: 580px;
+    margin: auto;
+    max-width: 100%;
+}
+
+#legend-waitforit-ary a {
+    color: #000;
+    text-decoration: none;
+}
+
+#legend-waitforit-ary a:hover, #legend-waitforit-ary a:active,
+#legend-waitforit-ary button:hover, #legend-waitforit-ary button:active {
+    color: #db504a;
+    text-decoration: underline;
+    background-color: #eee;
+}
+
+#legend-waitforit-ary button {
+    background-color: #fdfdfd;
+    border: 1px solid #ddd;
+}
+
+#legend-waitforit-ary .hide-graph {
+    background-color: #ddd;
+}
+
+#legend-waitforit-ary .show-graph {
+    background-color: #fdfdfd;
 }

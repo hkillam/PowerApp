@@ -16,6 +16,20 @@ define([], function () {
         $scope.meterCount = 0;
         $scope.loadedMeters = 0;
         $scope.GraphData = GraphData;
+        $scope.currentGraph = "Billing";
+
+        // use the legend to turn series of data on or off in the chart
+        $scope.legend = {
+            charttitle: "", axistitle: "", axis2title: "",
+            items: [
+                {enabled: true, display: "", color: '#c7e9e5'},
+                {enabled: true, display: "", color: '#66c2d9'},
+                {enabled: true, display: "", color: '#005b85'},
+                {enabled: true, display: "", color: '#db504a'},
+                {enabled: true, display: "", color: '#D87A77'},
+                {enabled: true, display: "", color: '#D8A4A2'}
+            ]
+        };
 
         // this chart is wide, let people collapse the side menu
         $scope.showgraphSidebar = true;
@@ -39,7 +53,11 @@ define([], function () {
 
                 LoadGraphList($scope);
                 var chartData = GraphData.prepareBillingTrendForAllMeters($scope.clientAccount.trendData);
-                GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', 'Billing Trend', 'Cost ($)');
+                $scope.legend.charttitle = 'Billing Trend';
+                $scope.legend.axistitle = 'Cost ($)';
+                $scope.legend.axis2title = "";
+
+                GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.legend);
 
                 powerAppDataService.loadGroupings($scope);
                 powerAppDataService.loadReports($scope, $scope.clientAccount.number);
@@ -49,7 +67,10 @@ define([], function () {
         } else {
             LoadGraphList($scope);
             var chartData = GraphData.prepareBillingTrendForAllMeters($scope.clientAccount.trendData);
-            GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', 'Billing Trend', 'Usage ($)');
+            $scope.legend.charttitle = 'Billing Trend';
+            $scope.legend.axistitle = 'Cost ($)';
+            $scope.legend.axis2title = "";
+            GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.legend);
 
             powerAppDataService.loadGroupings($scope);
             powerAppDataService.loadReports($scope, $scope.clientAccount.number);
@@ -75,6 +96,10 @@ define([], function () {
             alert("this does nothing yet " + $scope.selectedPeriod.label);
         }
 
+        $scope.legendChanged = function () {
+            var chartData = prepareSelectedData($scope);
+            GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.legend, $scope.currentGraph.cumulative);
+        }
 
         SetupGridOptions($scope, GraphData);
         powerAppDataService.loadAccountsAndUsages($scope);
@@ -155,7 +180,7 @@ define([], function () {
                 $scope.gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                     RowSelectionChanged(row);
                     var chartData = prepareSelectedData($scope);
-                    GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.currentGraph + ' Trend', 'update this too', $scope.currentGraph.cumulative);
+                    GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.legend, $scope.currentGraph.cumulative);
                 });
             },
             columnDefs: $scope.report_AllColumns.columnList
@@ -176,6 +201,10 @@ define([], function () {
         if ($scope.currentGraph.id === "Cost Cumulative") {
             charttype = "Amount";
         }
+
+        $scope.legend.charttitle = $scope.currentGraph + ' Trend';
+        $scope.legend.axistitle = charttype;
+        $scope.legend.axis2title = linechart;
 
         // make and initialize an array:  rows for each month, columns for each year
         var chartArray = new Array(13);
@@ -216,7 +245,7 @@ define([], function () {
                         for (var t in usage.services[s].data) {
                             if (usage.services[s].data[t].name === charttype) {
                                 var series = usage.services[s].data[t].series.sort(function (a, b) {
-                                    return b.label - a.label
+                                    return a.label - b.label
                                 });
                                 if (!yearlabels) {
                                     for (var y in series) {
@@ -272,8 +301,8 @@ define([], function () {
             }
         }
 
-        // go through the chart, and for each column add the values from the previous column.
         // There isn't a built-in cumulative function in google charts.
+        // go through the chart, and for each column add the values from the previous column.
         if ($scope.currentGraph.cumulative) {
             for (j = 2; j < 13; j++) {
                 chartArray[j][1] += chartArray[j - 1][1];
@@ -281,6 +310,17 @@ define([], function () {
                 chartArray[j][3] += chartArray[j - 1][3];
                 if (chartArray[j].length == 5 && linechart === "budget")
                     chartArray[j][4] += chartArray[j - 1][4];
+            }
+        }
+
+        // There may be hidden values (user clicked legend to hide/display)
+        // Remove them from the data.
+        // Not done in live data via jquery because there were no classes and ids - too many assumptions being made.
+        for (i = chartArray[0].length - 1; i > 0; i--) {
+            if ($scope.legend.items[i].enabled == false) {
+                for (j in chartArray) {
+                    chartArray[j].splice(i + 1, 1);   // this is some ugly codes
+                }
             }
         }
 
@@ -298,7 +338,7 @@ define([], function () {
         $scope.currentGraph = $scope.graphs[0];
         $scope.changedGraph = function (item) {
             var chartData = prepareSelectedData($scope);
-            this.GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.currentGraph.name + ' Trend', 'update this!', $scope.currentGraph.cumulative);
+            this.GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.legend, $scope.currentGraph.cumulative);
         };
         $scope.secondgraphs = [{name: "<none>", id: "none"}, {name: "Budget", id: "budget"}, {
             name: "Demand",
@@ -308,9 +348,10 @@ define([], function () {
         $scope.currentSecondGraph = $scope.secondgraphs[0];
         $scope.changedSecondGraph = function (item, GraphData) {
             var chartData = prepareSelectedData($scope);
-            this.GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.currentGraph.name + ' Trend', 'update this!', $scope.currentGraph.cumulative);
+            this.GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.legend, $scope.currentGraph.cumulative);
         }
     }
+
 
 });
 
