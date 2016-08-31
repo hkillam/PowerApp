@@ -545,3 +545,8 @@ ul[dnd-list] > li {
 #legend-waitforit-ary .show-graph {
     background-color: #fdfdfd;
 }
+
+#legend-waitforit-ary > div {
+    width: 25%;
+    float: left;
+}

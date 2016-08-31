@@ -167,7 +167,9 @@ define([], function (app) {
                         }
                     },
                     vAxes: {
+
                         1: {
+                            format: '# kW',
                             title: legend.axis2title
                         }
                     },

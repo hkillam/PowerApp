@@ -7,7 +7,6 @@
     <list default="true" id="7ff64fec-badf-464c-8f2f-e69c3087bb7b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/GraphData.js" afterPath="$PROJECT_DIR$/app/GraphData.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/myUsageController.js" afterPath="$PROJECT_DIR$/app/myUsageController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/powerApp.css" afterPath="$PROJECT_DIR$/styles/powerApp.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/myUsage.html" afterPath="$PROJECT_DIR$/templates/myUsage.html" />
     </list>
@@ -67,28 +66,28 @@
       <file leaf-file-name="powerApp.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/styles/powerApp.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="34" column="31" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="31" />
+            <state relative-caret-position="395">
+              <caret line="548" column="24" selection-start-line="548" selection-start-column="24" selection-end-line="548" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myUsageController.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="myUsageController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/myUsageController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
+            <state relative-caret-position="154">
               <caret line="241" column="17" selection-start-line="241" selection-start-column="17" selection-end-line="241" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GraphData.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GraphData.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/GraphData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="206" column="123" selection-start-line="206" selection-start-column="123" selection-end-line="206" selection-end-column="123" />
+            <state relative-caret-position="4975">
+              <caret line="199" column="17" selection-start-line="199" selection-start-column="17" selection-end-line="199" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -97,7 +96,7 @@
       <file leaf-file-name="powerApp.min.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/powerApp.min.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
+            <state relative-caret-position="-1258">
               <caret line="1406" column="16" selection-start-line="1406" selection-start-column="16" selection-end-line="1406" selection-end-column="16" />
               <folding>
                 <marker date="1472604491187" expanded="true" signature="26719:26805" ph="..." />
@@ -109,21 +108,14 @@
       <file leaf-file-name="myUsage.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/myUsage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6">
-              <caret line="46" column="76" selection-start-line="46" selection-start-column="76" selection-end-line="46" selection-end-column="76" />
+            <state relative-caret-position="171">
+              <caret line="11" column="74" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
               <folding>
-                <element signature="n#style#0;n#svg#0;n#a#0;n#td#1;n#tr#1;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-                <element signature="e#2164#2170#0" expanded="true" />
-                <element signature="n#style#0;n#svg#0;n#button#0;n#td#2;n#tr#1;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-                <element signature="e#2777#2783#0" expanded="true" />
-                <element signature="n#style#0;n#svg#0;n#td#3;n#tr#1;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-                <element signature="e#3171#3177#0" expanded="true" />
-                <element signature="n#style#0;n#svg#0;n#td#1;n#tr#2;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-                <element signature="e#3995#4001#0" expanded="true" />
-                <element signature="n#style#0;n#svg#0;n#td#2;n#tr#2;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-                <element signature="e#4377#4383#0" expanded="true" />
-                <element signature="n#style#0;n#svg#0;n#td#3;n#tr#2;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-                <element signature="e#4759#4765#0" expanded="true" />
+                <element signature="e#1098#1104#1" expanded="true" />
+                <element signature="n#style#0;n#svg#0;n#button#0;n#div#0;n#div#5;n#div#3;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
+                <element signature="e#2208#2214#0" expanded="true" />
+                <element signature="n#style#0;n#svg#0;n#a#0;n#div#0;n#div#7;n#div#3;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
+                <element signature="e#3413#3419#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -195,11 +187,11 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/app/mySettingsController.js" />
         <option value="$PROJECT_DIR$/templates/mySettings.html" />
-        <option value="$PROJECT_DIR$/styles/powerApp.css" />
         <option value="$PROJECT_DIR$/app/myUsageController.js" />
-        <option value="$PROJECT_DIR$/templates/myUsage.html" />
         <option value="$PROJECT_DIR$/powerApp.min.js" />
         <option value="$PROJECT_DIR$/app/GraphData.js" />
+        <option value="$PROJECT_DIR$/styles/powerApp.css" />
+        <option value="$PROJECT_DIR$/templates/myUsage.html" />
       </list>
     </option>
   </component>
@@ -626,7 +618,7 @@
       <workItem from="1472151898088" duration="16064000" />
       <workItem from="1472399295274" duration="6528000" />
       <workItem from="1472405956190" duration="8000000" />
-      <workItem from="1472501566764" duration="26403000" />
+      <workItem from="1472501566764" duration="30458000" />
     </task>
     <task id="LOCAL-00001" summary="Use AngularJS, drop Backbone/React.  Use WebStorm to edit and manage source files.">
       <created>1463677261953</created>
@@ -922,7 +914,14 @@
       <option name="project" value="LOCAL" />
       <updated>1472408142699</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Created an interactive legend for the graph.  It allows various series to be enabled/disabled, and has space for total amounts to be displayed.">
+      <created>1472604824949</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1472604824949</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -958,7 +957,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="771022000" />
+    <option name="totallyTimeSpent" value="775077000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1049,7 +1048,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="Allow the side menu to be collapsed, to make more room for the table.  Added many more table fields (square footage, demand) and many more calculations (cost per square foot)." />
     <MESSAGE value="Updated square footage values in settings file to match sample data from Kevin.   Retrieve and calculate emissions data.  More checks to see if numbers exist before mathing them.  Retrieve and calculate change in consumption over last month." />
     <MESSAGE value="Formmatting within the table (dollar signs, commas, right align, decimal places), and resize the table automatically.  Scrollbar on side is gone." />
     <MESSAGE value="Allow table to adjust height automatically, and not have a side scroll bar.  Add row for totals, give it a unique colour.  Improve data loading on refresh (not complete)." />
@@ -1074,7 +1072,8 @@
     <MESSAGE value="Budget is an option in the chart." />
     <MESSAGE value="Added a settings page, with drag and drop for rearranging the meter list." />
     <MESSAGE value="Settings Page:  Added a &quot;source&quot; list of meters, and a whole lot of formatting." />
-    <option name="LAST_COMMIT_MESSAGE" value="Settings Page:  Added a &quot;source&quot; list of meters, and a whole lot of formatting." />
+    <MESSAGE value="Created an interactive legend for the graph.  It allows various series to be enabled/disabled, and has space for total amounts to be displayed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created an interactive legend for the graph.  It allows various series to be enabled/disabled, and has space for total amounts to be displayed." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1126,7 +1125,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/GraphData.js</url>
-          <line>185</line>
+          <line>186</line>
           <option name="timeStamp" value="350" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -1143,12 +1142,6 @@
           <url>file://$PROJECT_DIR$/app/powerAppDataService.js</url>
           <line>63</line>
           <option name="timeStamp" value="379" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/powerApp.min.js</url>
-          <line>1406</line>
-          <properties />
-          <option name="timeStamp" value="407" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -2190,14 +2183,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/powerApp.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="34" column="31" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/loader.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -2206,38 +2191,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/myUsageController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="241" column="17" selection-start-line="241" selection-start-column="17" selection-end-line="241" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/myUsage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6">
-          <caret line="46" column="76" selection-start-line="46" selection-start-column="76" selection-end-line="46" selection-end-column="76" />
-          <folding>
-            <element signature="n#style#0;n#svg#0;n#a#0;n#td#1;n#tr#1;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-            <element signature="e#2164#2170#0" expanded="true" />
-            <element signature="n#style#0;n#svg#0;n#button#0;n#td#2;n#tr#1;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-            <element signature="e#2777#2783#0" expanded="true" />
-            <element signature="n#style#0;n#svg#0;n#td#3;n#tr#1;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-            <element signature="e#3171#3177#0" expanded="true" />
-            <element signature="n#style#0;n#svg#0;n#td#1;n#tr#2;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-            <element signature="e#3995#4001#0" expanded="true" />
-            <element signature="n#style#0;n#svg#0;n#td#2;n#tr#2;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-            <element signature="e#4377#4383#0" expanded="true" />
-            <element signature="n#style#0;n#svg#0;n#td#3;n#tr#2;n#table#0;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-            <element signature="e#4759#4765#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/powerApp.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
+        <state relative-caret-position="-1258">
           <caret line="1406" column="16" selection-start-line="1406" selection-start-column="16" selection-end-line="1406" selection-end-column="16" />
           <folding>
             <marker date="1472604491187" expanded="true" signature="26719:26805" ph="..." />
@@ -2245,10 +2201,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/styles/powerApp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="548" column="24" selection-start-line="548" selection-start-column="24" selection-end-line="548" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/myUsage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="11" column="74" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
+          <folding>
+            <element signature="e#1098#1104#1" expanded="true" />
+            <element signature="n#style#0;n#svg#0;n#button#0;n#div#0;n#div#5;n#div#3;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
+            <element signature="e#2208#2214#0" expanded="true" />
+            <element signature="n#style#0;n#svg#0;n#a#0;n#div#0;n#div#7;n#div#3;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
+            <element signature="e#3413#3419#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/GraphData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="206" column="123" selection-start-line="206" selection-start-column="123" selection-end-line="206" selection-end-column="123" />
+        <state relative-caret-position="4975">
+          <caret line="199" column="17" selection-start-line="199" selection-start-column="17" selection-end-line="199" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/myUsageController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="241" column="17" selection-start-line="241" selection-start-column="17" selection-end-line="241" selection-end-column="17" />
           <folding />
         </state>
       </provider>
