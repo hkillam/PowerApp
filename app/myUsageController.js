@@ -202,9 +202,9 @@ define([], function () {
             charttype = "Amount";
         }
 
-        $scope.legend.charttitle = $scope.currentGraph + ' Trend';
+        $scope.legend.charttitle = $scope.currentGraph.id + ' Trend';
         $scope.legend.axistitle = charttype;
-        $scope.legend.axis2title = linechart;
+        $scope.legend.axis2title = $scope.currentSecondGraph.name;
 
         // make and initialize an array:  rows for each month, columns for each year
         var chartArray = new Array(13);

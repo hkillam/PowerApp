@@ -550,3 +550,7 @@ ul[dnd-list] > li {
     width: 25%;
     float: left;
 }
+
+#legend-waitforit-ary .selectors {
+    clear: both;
+}
