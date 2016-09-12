@@ -536,10 +536,14 @@ ul[dnd-list] > li {
 #legend-waitforit-ary button {
     background-color: #fdfdfd;
     border: 1px solid #ddd;
+    box-shadow: -1px -1px 2px;
+    width: 126px;
+    text-decoration: none !important;
 }
 
 #legend-waitforit-ary .hide-graph {
-    background-color: #ddd;
+    background-color: #fff;
+    box-shadow: 1px 1px 2px;
 }
 
 #legend-waitforit-ary .show-graph {
@@ -557,4 +561,25 @@ ul[dnd-list] > li {
 
 .hidden-legenditem {
     display: none;
+}
+
+#legend-waitforit-ary .hide-graph svg {
+    color: #fff;
+    fill: #ffffff !important;
+    height: 0 !important;
+}
+
+#legend-waitforit-ary a.help {
+    float: right;
+}
+
+#legend-waitforit-ary a .help-text {
+    color: #000;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    padding: 7px;
+    position: absolute;
+    right: 143px;
+    width: 200px;
+    background: #fff;
 }

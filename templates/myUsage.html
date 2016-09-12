@@ -31,7 +31,12 @@
                     <div class="selectors">&nbsp;</div>
                     <div class="heading item">2014</div>
                     <div class="heading item">2015</div>
-                    <div class="heading item">2016</div>
+                    <div class="heading item">2016 <a class="help fa fa-question-circle help-collapse"
+                                                      ng-click='help()'>
+                        <div class="help-text" ng-class="showHelp ? 'help-visible' : 'hidden'">">Use this legend to
+                            disable data sets, or to select which information is graphed.
+                        </div>
+                    </a></div>
                     <div class="selectors"><select name="graphSelect" id="graphSelect"
                                                    ng-change="changedGraph(graphSelect)"
                                                    ng-options="option.name for option in graphs track by option.name"
@@ -46,7 +51,8 @@
                                         <rect x="0" y="0" width="28" height="14" stroke="none" stroke-width="0"
                                               fill={{legend.items[n].color}}></rect>
                                     </svg>
-                                    &nbsp;{{ legend.items[n].total | number : 0}} {{legend.items[n].units}}
+                                    &nbsp;{{legend.items[n].prefix}}{{ legend.items[n].total | number : 0}}
+                                    {{legend.items[n].units}}
                                 </button>
                             </div>
                             <div>&nbsp</div>
@@ -61,15 +67,16 @@
                         <div class="item">
                             <div ng-class="legend.items[n].exists ? 'legenditem' : 'hidden-legenditem'">
 
-                                <a ng-click="legend.items[n].enabled = !legend.items[n].enabled; legendChanged()"
-                                   ng-class="legend.items[n].enabled ? 'show-graph' : 'hide-graph'">
+                                <button ng-click="legend.items[n].enabled = !legend.items[n].enabled; legendChanged()"
+                                        ng-class="legend.items[n].enabled ? 'show-graph' : 'hide-graph'">
                                     <svg width="28" height="14" style="overflow: hidden;">
                                         <rect x="0" y="5" width="28" height="3" stroke="none" stroke-width="0"
                                               fill={{legend.items[n].color}}></rect>
                                     </svg>
-                                    &nbsp;{{ legend.items[n].total | number : 0}} {{legend.items[n].units}}
+                                    &nbsp;{{legend.items[n].prefix}}{{ legend.items[n].total | number : 0}}
+                                    {{legend.items[n].units}}
 
-                                </a>
+                                </button>
                             </div>
                             &nbsp;
                         </div>

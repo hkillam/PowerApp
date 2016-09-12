@@ -184,7 +184,8 @@ define([], function (app) {
                 // this avoids messy logic around which ones to set as line charts.
 
                 // if the main chart and the line overlay have different units, use a second axes on the right
-                if (legend.charttitle === "Usage Trend" || $chartArray[0][4] === "Demand" || $chartArray[0][4] === "Temperature") {
+                if (legend.items[0].units !== legend.items[5].units
+                    || legend.items[0].prefix !== legend.items[5].prefix) {
                     for (i in options.series)
                         options.series[i].targetAxisIndex = 1;
                 }

@@ -17,17 +17,36 @@ define([], function () {
         $scope.loadedMeters = 0;
         $scope.GraphData = GraphData;
         $scope.currentGraph = "Billing";
+        $scope.showHelp = false;
 
         // use the legend to turn series of data on or off in the chart
         $scope.legend = {
             charttitle: "", axistitle: "", axis2title: "",
             items: [
-                {enabled: true, display: "", color: '#c7e9e5', units: '$', exists: true},
-                {enabled: true, display: "", color: '#66c2d9', units: '$', exists: true},
-                {enabled: true, display: "", color: '#005b85', units: '$', exists: true},
-                {enabled: true, display: "", color: '#D8A4A2', units: '$', exists: false},
-                {enabled: true, display: "", color: '#D87A77', units: '$', exists: false},
-                {enabled: true, display: "", color: '#db504a', units: '$', exists: false}]
+                {
+                    enabled: true, display: "", color: '#c7e9e5',
+                    units: '', exists: true, total: 0, prefix: '$'
+                },
+                {
+                    enabled: true, display: "", color: '#66c2d9',
+                    units: '', exists: true, total: 0, prefix: '$'
+                },
+                {
+                    enabled: true, display: "", color: '#005b85',
+                    units: '', exists: true, total: 0, prefix: '$'
+                },
+                {
+                    enabled: true, display: "", color: '#D8A4A2',
+                    units: '', exists: false, total: 0, prefix: '$'
+                },
+                {
+                    enabled: true, display: "", color: '#D87A77',
+                    units: '', exists: false, total: 0, prefix: '$'
+                },
+                {
+                    enabled: true, display: "", color: '#db504a',
+                    units: '', exists: false, total: 0, prefix: '$'
+                }]
         };
 
         // this chart is wide, let people collapse the side menu
@@ -43,6 +62,11 @@ define([], function () {
             }
         };
 
+        // help icon
+        $scope.help = function () {
+            $scope.showHelp = !$scope.showHelp;
+        };
+
         if (!$scope.clientAccount) {
             // data not loaded - use promise...then to load asynchronous.
             powerAppDataService.loadAccountOverview().then(function (promise) {
@@ -55,6 +79,12 @@ define([], function () {
                 $scope.legend.charttitle = 'Billing Trend';
                 $scope.legend.axistitle = 'Cost ($)';
                 $scope.legend.axis2title = "";
+                // calculate totals to display in the legend
+                for (var j = 1; j < 13; j++) {
+                    $scope.legend.items[0].total += chartData[j][1];
+                    $scope.legend.items[1].total += chartData[j][2];
+                    $scope.legend.items[2].total += chartData[j][3];
+                }
 
                 GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.legend);
 
@@ -69,6 +99,13 @@ define([], function () {
             $scope.legend.charttitle = 'Billing Trend';
             $scope.legend.axistitle = 'Cost ($)';
             $scope.legend.axis2title = "";
+            // calculate totals to display in the legend
+            for (var j = 1; j < 13; j++) {
+                $scope.legend.items[0].total += chartData[j][1];
+                $scope.legend.items[1].total += chartData[j][2];
+                $scope.legend.items[2].total += chartData[j][3];
+            }
+
             GraphData.loadAndDrawGoogleChart(chartData, 'report_chart_div', $scope.legend);
 
             powerAppDataService.loadGroupings($scope);
@@ -186,6 +223,59 @@ define([], function () {
         };
         $scope.currentReport = $scope.report_AllColumns.reportName;
 
+
+    }
+
+
+    function setLegendUnits($scope, items, prefix, units) {
+        for (var i in items) {
+            $scope.legend.items[items[i]].prefix = prefix;
+            $scope.legend.items[items[i]].units = units;
+        }
+    }
+
+
+    // createTitles
+    // Consider the datasets and units to create meaningful titles.
+    // Also set units for the legend
+    function createTitles($scope) {
+        var charttype = $scope.currentGraph.id;
+        var linechart = $scope.currentSecondGraph.id;
+        if ($scope.currentGraph.id === "Cost Cumulative") {
+            charttype = "Amount";
+        }
+
+        // normal title adds "trend" but there are some customized.  OK, there is only one that is "normal"
+        $scope.legend.charttitle = $scope.currentGraph.id + ' Trend';
+        if ($scope.currentGraph.id === "Amount")
+            $scope.legend.charttitle = "Billing Trend";
+        if ($scope.currentGraph.id === "Cost Cumulative")
+            $scope.legend.charttitle = "Cost (Cumulative)";
+
+        // add the second axis to the graph title
+        if ($scope.currentSecondGraph.id !== "none") {
+            $scope.legend.charttitle += " with " + $scope.currentSecondGraph.name;
+        }
+
+        $scope.legend.axistitle = charttype;
+        $scope.legend.axis2title = $scope.currentSecondGraph.name;
+
+        if ($scope.legend.axistitle === "Amount") {
+            $scope.legend.axistitle = "Cost ($)";
+            setLegendUnits($scope, [0, 1, 2], '$', '');
+        }
+        if ($scope.legend.axistitle === "Usage") {
+            $scope.legend.axistitle += " (kWh)";
+            setLegendUnits($scope, [0, 1, 2], '', 'kWh');
+        }
+        if ($scope.legend.axis2title === "Budget") {
+            $scope.legend.axis2title += " ($)";
+            setLegendUnits($scope, [3, 4, 5], '$', '');
+        }
+        if ($scope.legend.axis2title === "Demand") {
+            $scope.legend.axis2title += " (kW)";
+            setLegendUnits($scope, [3, 4, 5], '', 'kW');
+        }
     }
 
 
@@ -196,14 +286,10 @@ define([], function () {
     function prepareSelectedData($scope) {
         var charttype = $scope.currentGraph.id;
         var linechart = $scope.currentSecondGraph.id;
-
         if ($scope.currentGraph.id === "Cost Cumulative") {
             charttype = "Amount";
         }
-
-        $scope.legend.charttitle = $scope.currentGraph.id + ' Trend';
-        $scope.legend.axistitle = charttype;
-        $scope.legend.axis2title = $scope.currentSecondGraph.name;
+        createTitles($scope);
 
         // make and initialize an array:  rows for each month, columns for each year
         var chartArray = new Array(13);
@@ -331,6 +417,7 @@ define([], function () {
             $scope.legend.items[i].total = 0;
         }
 
+        // Get totals (or maximums) for the legend and for cumulative charts
         // There isn't a built-in cumulative function in google charts.
         // go through the chart, and for each column add the values from the previous column.
         if ($scope.currentGraph.cumulative) {
@@ -340,12 +427,16 @@ define([], function () {
                 chartArray[j][3] += chartArray[j - 1][3];
                 if (chartArray[j].length == 5 && linechart === "budget")
                     chartArray[j][4] += chartArray[j - 1][4];
+                if (chartArray[j].length == 6 && linechart === "demand") {
+                    $scope.legend.items[4].total = Math.max($scope.legend.items[4].total, chartArray[j][4]);
+                    $scope.legend.items[5].total = Math.max($scope.legend.items[5].total, chartArray[j][5]);
+                }
             }
             for (j = 0; j < 3; j++) {
                 $scope.legend.items[j].total = chartArray[12][j + 1];
             }
             if (chartArray[j].length == 5 && linechart === "budget") {
-                $scope.legend.items[4].total = chartArray[12][5];
+                $scope.legend.items[5].total = chartArray[12][5];
             }
         } else {
             // calculate totals for the legend
@@ -354,7 +445,11 @@ define([], function () {
                 $scope.legend.items[1].total += chartArray[j][2];
                 $scope.legend.items[2].total += chartArray[j][3];
                 if (chartArray[j].length == 5 && linechart === "budget")
-                    $scope.legend.items[3].total += chartArray[j][4];
+                    $scope.legend.items[5].total += chartArray[j][4];
+                if (chartArray[j].length == 6 && linechart === "demand") {
+                    $scope.legend.items[4].total = Math.max($scope.legend.items[4].total, chartArray[j][4]);
+                    $scope.legend.items[5].total = Math.max($scope.legend.items[5].total, chartArray[j][5]);
+                }
             }
         }
 
@@ -378,7 +473,7 @@ define([], function () {
                 }
             }
         }
-        // now the first row.
+        // now the first row of the legend
         for (i = 2; i >= 0; i--) {
             if ($scope.legend.items[i].enabled == false) {
                 for (j in chartArray) {
