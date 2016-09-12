@@ -137,7 +137,7 @@ define([], function (app) {
                     seriesType: 'bars',
                     vAxis: {title: legend.axistitle},
                     textStyle: {fontName: 'MuseoSans-300'},
-                    legend: {position: 'bottom'},
+                    legend: 'none',
                     lineWidth: 4,
                     colors: [],
                     series: {
@@ -201,9 +201,10 @@ define([], function (app) {
 
                 // chart colours come from the legend
                 for (var i in legend.items) {
-                    if (legend.items[i].enabled)
+                    if (legend.items[i].enabled && legend.items[i].exists)
                         options.colors.push(legend.items[i].color);
                 }
+
                 // aa few extra colours, just to make sure google doesn't choke
                 options.colors.push('#0093B4', '#f9dc5c', '#db504a', '#799D4B', '#cf5c36', '#684b7f', '#FF7F00', '#1200c3');
 

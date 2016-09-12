@@ -38,15 +38,18 @@
                                                    ng-model="currentGraph"></select></div>
                     <div ng-repeat="n in [0, 1, 2] track by $index">
                         <div class="item">
+                            <div ng-class="legend.items[n].exists ? 'legenditem' : 'hidden-legenditem'">
 
-                            <button ng-click="legend.items[n].enabled = !legend.items[n].enabled; legendChanged()"
-                                    ng-class="legend.items[n].enabled ? 'show-graph' : 'hide-graph'">
-                                <svg width="28" height="14" style="overflow: hidden;">
-                                    <rect x="0" y="0" width="28" height="14" stroke="none" stroke-width="0"
-                                          fill={{legend.items[n].color}}></rect>
-                                </svg>
-                                &nbsp;{{legend.items[n].display}} 4322 kwh
-                            </button>
+                                <button ng-click="legend.items[n].enabled = !legend.items[n].enabled; legendChanged()"
+                                        ng-class="legend.items[n].enabled ? 'show-graph' : 'hide-graph'">
+                                    <svg width="28" height="14" style="overflow: hidden;">
+                                        <rect x="0" y="0" width="28" height="14" stroke="none" stroke-width="0"
+                                              fill={{legend.items[n].color}}></rect>
+                                    </svg>
+                                    &nbsp;{{ legend.items[n].total | number : 0}} {{legend.items[n].units}}
+                                </button>
+                            </div>
+                            <div>&nbsp</div>
                         </div>
                     </div>
                     <div class="selectors"><select name="secondgraphSelect" id="secondgraphSelect"
@@ -56,15 +59,19 @@
                     </div>
                     <div ng-repeat="n in [3, 4, 5] track by $index">
                         <div class="item">
+                            <div ng-class="legend.items[n].exists ? 'legenditem' : 'hidden-legenditem'">
 
-                            <a ng-click="legend.items[n].enabled = !legend.items[n].enabled; legendChanged()"
-                               ng-class="legend.items[n].enabled ? 'show-graph' : 'hide-graph'">
-                            <svg width="28" height="14" style="overflow: hidden;">
-                                <rect x="0" y="5" width="28" height="3" stroke="none" stroke-width="0"
-                                      fill={{legend.items[n].color}}></rect>
-                            </svg>
-                                &nbsp;{{legend.items[n].display}} 422 kW
-                            </a>
+                                <a ng-click="legend.items[n].enabled = !legend.items[n].enabled; legendChanged()"
+                                   ng-class="legend.items[n].enabled ? 'show-graph' : 'hide-graph'">
+                                    <svg width="28" height="14" style="overflow: hidden;">
+                                        <rect x="0" y="5" width="28" height="3" stroke="none" stroke-width="0"
+                                              fill={{legend.items[n].color}}></rect>
+                                    </svg>
+                                    &nbsp;{{ legend.items[n].total | number : 0}} {{legend.items[n].units}}
+
+                                </a>
+                            </div>
+                            &nbsp;
                         </div>
                     </div>
                 </div>

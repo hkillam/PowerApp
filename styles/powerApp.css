@@ -516,7 +516,7 @@ ul[dnd-list] > li {
 }
 
 #legend-waitforit-ary {
-    width: 580px;
+    width: 650px;
     margin: auto;
     max-width: 100%;
 }
@@ -553,4 +553,8 @@ ul[dnd-list] > li {
 
 #legend-waitforit-ary .selectors {
     clear: both;
+}
+
+.hidden-legenditem {
+    display: none;
 }

@@ -22,13 +22,12 @@ define([], function () {
         $scope.legend = {
             charttitle: "", axistitle: "", axis2title: "",
             items: [
-                {enabled: true, display: "", color: '#c7e9e5'},
-                {enabled: true, display: "", color: '#66c2d9'},
-                {enabled: true, display: "", color: '#005b85'},
-                {enabled: true, display: "", color: '#db504a'},
-                {enabled: true, display: "", color: '#D87A77'},
-                {enabled: true, display: "", color: '#D8A4A2'}
-            ]
+                {enabled: true, display: "", color: '#c7e9e5', units: '$', exists: true},
+                {enabled: true, display: "", color: '#66c2d9', units: '$', exists: true},
+                {enabled: true, display: "", color: '#005b85', units: '$', exists: true},
+                {enabled: true, display: "", color: '#D8A4A2', units: '$', exists: false},
+                {enabled: true, display: "", color: '#D87A77', units: '$', exists: false},
+                {enabled: true, display: "", color: '#db504a', units: '$', exists: false}]
         };
 
         // this chart is wide, let people collapse the side menu
@@ -49,7 +48,7 @@ define([], function () {
             powerAppDataService.loadAccountOverview().then(function (promise) {
                 $scope.clientAccount = promise.data;
                 var d = new Date($scope.clientAccount.lastStatementDate);
-                $scope.chartPeriod = d.toLocaleDateString();
+                $scope.chartPeriod = "Statement on " + d.toLocaleDateString();
 
                 LoadGraphList($scope);
                 var chartData = GraphData.prepareBillingTrendForAllMeters($scope.clientAccount.trendData);
@@ -85,7 +84,7 @@ define([], function () {
         $scope.changedPeriod = function (item) {
             if ($scope.selectedPeriod.label === "Last Statement") {
                 var d = new Date($scope.clientAccount.lastStatementDate);
-                $scope.chartPeriod = d.toLocaleDateString();
+                $scope.chartPeriod = "Statement on " + d.toLocaleDateString();
             }
             if ($scope.selectedPeriod.label === "Last Quarter") {
                 $scope.chartPeriod = "Last Quarter";
@@ -209,21 +208,37 @@ define([], function () {
         // make and initialize an array:  rows for each month, columns for each year
         var chartArray = new Array(13);
         for (var i = 0; i < chartArray.length; i++) {
-            if (linechart === "none") {
-                chartArray[i] = new Array(4);
-            } else {
-                chartArray[i] = new Array(5);
+            switch (linechart) {
+                case "none":
+                    chartArray[i] = new Array(4);
+                    break;
+                case "budget":
+                    chartArray[i] = new Array(5);
+                    break;  // one year of budget data
+                case "demand":
+                    chartArray[i] = new Array(6);
+                    break;  // we usually have data from two years
             }
-            chartArray[i][0] = "mon";
+            chartArray[i][0] = "Month";
             for (var j = 1; j < chartArray[i].length; j++) {
                 chartArray[i][j] = 0;
             }
         }
 
+        // hide items in the second row of the legend.
+        if (linechart === "none") {
+            $scope.legend.items[3].exists = false;
+            $scope.legend.items[4].exists = false;
+            $scope.legend.items[5].exists = false;
+        }
+
         // some labels
         chartArray[0][0] = "Month";
-        if (chartArray[0].length == 5) {
+        if (chartArray[0].length > 4) {
             chartArray[0][4] = $scope.currentSecondGraph.name;
+        }
+        if (chartArray[0].length > 5) {
+            chartArray[0][5] = $scope.currentSecondGraph.name;
         }
 
         var monthlabels = false;
@@ -271,14 +286,23 @@ define([], function () {
                     for (var srv in services) {
                         if (services[srv].name === "ELECTRICITY-1") {
                             var reads = services[srv].reads;
+                            var now = new Date();
+                            var thisyear = now.getFullYear();
                             for (var r in reads) {
                                 //var d = new Date(str);  //converts the string into date object
                                 var d = new Date(reads[r].lastReadDate);
                                 var mon = d.getMonth() + 1; //get the value of month
+                                var year = d.getFullYear();
                                 var details = reads[r].details;
                                 for (var det in details) {
                                     if (details[det].label === "Actual Demand") {
-                                        chartArray[mon][4] += details[det].amount;
+                                        if (year === thisyear) {
+                                            chartArray[mon][5] += details[det].amount;
+                                            $scope.legend.items[5].exists = true;
+                                        } else {
+                                            chartArray[mon][4] += details[det].amount;
+                                            $scope.legend.items[4].exists = true;
+                                        }
                                     }
                                     // other values:  "Billable Demand" "Electric Charges", "Total Electric Charges", "Total Electric Charges / Day", "Average Temperature", "Cooling Degree Days", "Heating Degree Days"
 
@@ -291,6 +315,7 @@ define([], function () {
 
                 // this needs to be separate functions...  but why start now?
                 if (linechart === "budget") {
+                    $scope.legend.items[5].exists = true;
                     for (var j = 1; j < 13; j++) {
                         if (selected[i].meter.monthlyBudget > 0)
                             chartArray[j][4] += selected[i].meter.monthlyBudget;
@@ -299,6 +324,11 @@ define([], function () {
 
 
             }
+        }
+
+        // clear the totals in the legend
+        for (i in $scope.legend.items) {
+            $scope.legend.items[i].total = 0;
         }
 
         // There isn't a built-in cumulative function in google charts.
@@ -311,18 +341,53 @@ define([], function () {
                 if (chartArray[j].length == 5 && linechart === "budget")
                     chartArray[j][4] += chartArray[j - 1][4];
             }
+            for (j = 0; j < 3; j++) {
+                $scope.legend.items[j].total = chartArray[12][j + 1];
+            }
+            if (chartArray[j].length == 5 && linechart === "budget") {
+                $scope.legend.items[4].total = chartArray[12][5];
+            }
+        } else {
+            // calculate totals for the legend
+            for (j = 1; j < 13; j++) {
+                $scope.legend.items[0].total += chartArray[j][1];
+                $scope.legend.items[1].total += chartArray[j][2];
+                $scope.legend.items[2].total += chartArray[j][3];
+                if (chartArray[j].length == 5 && linechart === "budget")
+                    $scope.legend.items[3].total += chartArray[j][4];
+            }
         }
 
         // There may be hidden values (user clicked legend to hide/display)
         // Remove them from the data.
         // Not done in live data via jquery because there were no classes and ids - too many assumptions being made.
-        for (i = chartArray[0].length - 1; i > 0; i--) {
+        // second row first, this gets even uglier.
+        if (linechart === "demand") {
+            for (i = 5; i >= 4; i--) {
+                if ($scope.legend.items[i].enabled == false && $scope.legend.items[i].exists == true) {
+                    for (j in chartArray) {
+                        chartArray[j].splice(i, 1);   // this is some ugly codes
+                    }
+                }
+            }
+        }
+        if (linechart === "budget") {
+            if ($scope.legend.items[i].enabled == false && $scope.legend.items[i].exists == true) {
+                for (j in chartArray) {
+                    chartArray[j].splice(4, 1);   // this is getting even worse.  I'm so not happy with this.
+                }
+            }
+        }
+        // now the first row.
+        for (i = 2; i >= 0; i--) {
             if ($scope.legend.items[i].enabled == false) {
                 for (j in chartArray) {
                     chartArray[j].splice(i + 1, 1);   // this is some ugly codes
                 }
             }
         }
+
+        // Grab the totals, we need these for the legend
 
 
         return chartArray;
