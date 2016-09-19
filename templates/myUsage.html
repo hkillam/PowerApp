@@ -32,11 +32,11 @@
                     <div class="heading item">2014</div>
                     <div class="heading item">2015</div>
                     <div class="heading item">2016 <a class="help fa fa-question-circle help-collapse"
-                                                      ng-click='help()'>
-                        <div class="help-text" ng-class="showHelp ? 'help-visible' : 'hidden'">">Use this legend to
+                                                      ng-click='help()'>&nbsp;</a>
+                        <div class="help-text" ng-class="showHelp ? 'help-visible' : 'hidden'">Use this legend to
                             disable data sets, or to select which information is graphed.
                         </div>
-                    </a></div>
+                    </div>
                     <div class="selectors"><select name="graphSelect" id="graphSelect"
                                                    ng-change="changedGraph(graphSelect)"
                                                    ng-options="option.name for option in graphs track by option.name"

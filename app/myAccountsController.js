@@ -7,16 +7,51 @@ define([], function (app) {
         $scope.loadedMeters = 0;
         $scope.template = getTemplates();
 
+        // use the legend to turn series of data on or off in the chart
+        // UGLY cut and paste.  TODO - make GraphData.loadAndDrawGoogleChart run with less junk.
+        $scope.legend = {
+            charttitle: "", axistitle: "", axis2title: "",
+            items: [
+                {
+                    enabled: true, display: "", color: '#c7e9e5',
+                    units: '', exists: true, total: 0, prefix: '$'
+                },
+                {
+                    enabled: true, display: "", color: '#66c2d9',
+                    units: '', exists: true, total: 0, prefix: '$'
+                },
+                {
+                    enabled: true, display: "", color: '#005b85',
+                    units: '', exists: true, total: 0, prefix: '$'
+                },
+                {
+                    enabled: true, display: "", color: '#D8A4A2',
+                    units: '', exists: false, total: 0, prefix: '$'
+                },
+                {
+                    enabled: true, display: "", color: '#D87A77',
+                    units: '', exists: false, total: 0, prefix: '$'
+                },
+                {
+                    enabled: true, display: "", color: '#db504a',
+                    units: '', exists: false, total: 0, prefix: '$'
+                }]
+        };
+        $scope.legend.charttitle = 'Billing Trend';
+        $scope.legend.axistitle = 'Cost ($)';
+        $scope.legend.axis2title = "";
+
+
         $scope.clientAccount = powerAppDataService.getAccountOverview();
         if ($scope.clientAccount != null) {
             var chartData = GraphData.prepareBillingTrendForAllMeters($scope.clientAccount.trendData);
-            GraphData.loadAndDrawGoogleChart(chartData, 'bill_trend_chart_div', 'Billing Trend', 'Cost ($)');
+            GraphData.loadAndDrawGoogleChart(chartData, 'bill_trend_chart_div', $scope.legend);
         } else {
             // data not loaded yet - use promise... and draw the chart when the data is done loading.
             powerAppDataService.loadData().then(function (promise) {
                 $scope.clientAccount = promise.data;
                 var chartData = GraphData.prepareBillingTrendForAllMeters($scope.clientAccount.trendData);
-                GraphData.loadAndDrawGoogleChart(chartData, 'bill_trend_chart_div', 'Billing Trend', 'Cost ($)');
+                GraphData.loadAndDrawGoogleChart(chartData, 'bill_trend_chart_div', $scope.legend);
             });
         }
 

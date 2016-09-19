@@ -573,7 +573,7 @@ ul[dnd-list] > li {
     float: right;
 }
 
-#legend-waitforit-ary a .help-text {
+#legend-waitforit-ary a .help-text, .help-visible {
     color: #000;
     text-decoration: none;
     border: 1px solid #ccc;
