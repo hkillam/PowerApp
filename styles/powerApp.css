@@ -401,16 +401,21 @@ ul[dnd-list] > li {
 
 /***************************** Element Selection *****************************/
 .meterdetails {
-    display: none;
+    height: 0;
+    overflow: hidden;
 }
 
 .dropzone .selected {
+    /* background-color: #CCE4AD; */
+    border: 2px solid #799d4b;
 
-    background-color: #CCE4AD;
 }
 
 .dropzone .selected > .meterdetails {
-    display: inline;
+    height: auto;
+    transition-property: all;
+    transition-duration: .75s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 
 .dropzone .selected .box {
@@ -508,12 +513,35 @@ ul[dnd-list] > li {
 }
 
 .meterdetails input {
-    width: 100%;
+    width: 60%;
 }
 
 .dropzone {
     font-size: 0.85em;
 }
+
+.dropzone h3 {
+    font-weight: 600;
+    margin-top: 0;
+    padding-top: 3px;
+    margin-bottom: 0;
+}
+
+.dropzone sm {
+    font-style: italic;
+    text-align: right;
+    float: right;
+    margin-right: 20px;
+}
+
+.dropzone label {
+    width: 109px !important;
+    font-weight: 500;
+    margin-left: 10px;
+    margin-right: 6px;
+    text-align: right;
+}
+
 
 #legend-waitforit-ary {
     width: 650px;

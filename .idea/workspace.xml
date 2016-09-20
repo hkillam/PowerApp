@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7ff64fec-badf-464c-8f2f-e69c3087bb7b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/myAccountsController.js" afterPath="$PROJECT_DIR$/app/myAccountsController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/mySettingsController.js" afterPath="$PROJECT_DIR$/app/mySettingsController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/powerApp.css" afterPath="$PROJECT_DIR$/styles/powerApp.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/myAccounts.html" afterPath="$PROJECT_DIR$/templates/myAccounts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/myUsage.html" afterPath="$PROJECT_DIR$/templates/myUsage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/mySettings.html" afterPath="$PROJECT_DIR$/templates/mySettings.html" />
     </list>
     <ignored path="PowerApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,74 +38,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="mySettings.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mySettings.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/mySettings.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="129" column="30" selection-start-line="129" selection-start-column="30" selection-end-line="129" selection-end-column="30" />
+            <state relative-caret-position="300">
+              <caret line="125" column="61" selection-start-line="125" selection-start-column="61" selection-end-line="125" selection-end-column="61" />
               <folding>
-                <element signature="e#4913#4919#0" expanded="true" />
-                <element signature="e#4919#4925#0" expanded="true" />
+                <element signature="e#5220#5226#0" expanded="true" />
+                <element signature="e#5226#5232#0" expanded="true" />
+                <marker date="1474395028534" expanded="false" signature="6963:6978" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="accountmenu.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/accountmenu.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myUsage.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/myUsage.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-              <folding>
-                <element signature="e#1102#1108#1" expanded="true" />
-                <element signature="e#1404#1410#1" expanded="true" />
-                <element signature="n#style#0;n#svg#0;n#button#0;n#div#0;n#div#0;n#div#5;n#div#3;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-                <element signature="e#2872#2878#0" expanded="true" />
-                <element signature="n#style#0;n#svg#0;n#button#0;n#div#0;n#div#0;n#div#7;n#div#3;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-                <element signature="e#4437#4443#0" expanded="true" />
-                <element signature="e#4677#4683#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myAccounts.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/myAccounts.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GraphData.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/GraphData.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="powerApp.min.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="powerApp.min.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/powerApp.min.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="1316" column="40" selection-start-line="1316" selection-start-column="40" selection-end-line="1316" selection-end-column="40" />
+            <state relative-caret-position="361">
+              <caret line="1429" column="13" selection-start-line="1429" selection-start-column="13" selection-end-line="1429" selection-end-column="13" />
               <folding>
-                <marker date="1474314168889" expanded="true" signature="26719:26805" ph="..." />
+                <marker date="1474392031351" expanded="true" signature="26719:26805" ph="..." />
               </folding>
             </state>
           </provider>
@@ -115,8 +67,8 @@
       <file leaf-file-name="angular.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/angular.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="9735" column="21" selection-start-line="9735" selection-start-column="21" selection-end-line="9735" selection-end-column="21" />
+            <state relative-caret-position="513">
+              <caret line="9736" column="17" selection-start-line="9736" selection-start-column="17" selection-end-line="9736" selection-end-column="17" />
               <folding>
                 <marker date="1470695666790" expanded="true" signature="26336:26862" ph="..." />
                 <marker date="1470695666790" expanded="true" signature="26379:26768" ph="..." />
@@ -931,21 +883,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myUsageController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/myUsageController.js">
+      <file leaf-file-name="mySettingsController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/mySettingsController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="80" selection-end-column="46" />
+            <state relative-caret-position="337">
+              <caret line="46" column="86" selection-start-line="46" selection-start-column="86" selection-end-line="46" selection-end-column="86" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myAccountsController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/myAccountsController.js">
+      <file leaf-file-name="angular-drag-and-drop-lists.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/angular-drag-and-drop-lists.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+            <state relative-caret-position="25">
+              <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="powerApp.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/styles/powerApp.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="538" column="22" selection-start-line="538" selection-start-column="22" selection-end-line="538" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -1012,16 +974,16 @@
         <option value="$PROJECT_DIR$/styles/xe1.css" />
         <option value="$PROJECT_DIR$/app/powerAppDataService.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/app/mySettingsController.js" />
-        <option value="$PROJECT_DIR$/templates/mySettings.html" />
         <option value="$PROJECT_DIR$/app/test/test.json" />
         <option value="$PROJECT_DIR$/app/GraphData.js" />
         <option value="$PROJECT_DIR$/app/myUsageController.js" />
         <option value="$PROJECT_DIR$/templates/myUsage.html" />
-        <option value="$PROJECT_DIR$/styles/powerApp.css" />
         <option value="$PROJECT_DIR$/templates/myAccounts.html" />
-        <option value="$PROJECT_DIR$/powerApp.min.js" />
         <option value="$PROJECT_DIR$/app/myAccountsController.js" />
+        <option value="$PROJECT_DIR$/styles/powerApp.css" />
+        <option value="$PROJECT_DIR$/powerApp.min.js" />
+        <option value="$PROJECT_DIR$/app/mySettingsController.js" />
+        <option value="$PROJECT_DIR$/templates/mySettings.html" />
       </list>
     </option>
   </component>
@@ -1071,9 +1033,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-10" />
-    <option name="width" value="1924" />
-    <option name="height" value="1030" />
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
+    <option name="width" value="1942" />
+    <option name="height" value="1042" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -1150,68 +1113,8 @@
     </navigator>
     <panes>
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="styles" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerApp" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Problems" />
         <subPane subId="Tests">
@@ -1223,6 +1126,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1469,7 +1373,8 @@
       <workItem from="1473627264090" duration="19207000" />
       <workItem from="1473688804435" duration="16164000" />
       <workItem from="1474285953668" duration="445000" />
-      <workItem from="1474303209796" duration="2866000" />
+      <workItem from="1474303209796" duration="11893000" />
+      <workItem from="1474372836737" duration="10654000" />
     </task>
     <task id="LOCAL-00001" summary="Use AngularJS, drop Backbone/React.  Use WebStorm to edit and manage source files.">
       <created>1463677261953</created>
@@ -1800,7 +1705,14 @@
       <option name="project" value="LOCAL" />
       <updated>1473707274160</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Added help button for Usage Legend.  Fixed the $scope.legend for the graph on My Accounts.">
+      <created>1474314382553</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1474314382553</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1836,7 +1748,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="839235000" />
+    <option name="totallyTimeSpent" value="858916000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1848,20 +1760,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-10" y="0" width="1924" height="1030" extended-state="0" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27074236" sideWeight="0.5387097" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27535442" sideWeight="0.5322581" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32818073" sideWeight="0.49783784" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27074236" sideWeight="0.46129033" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27535442" sideWeight="0.46774194" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936978" sideWeight="0.52162164" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969433" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6550926" sideWeight="0.49783784" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3256936" sideWeight="0.4783784" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14716525" sideWeight="0.4783784" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2537797" sideWeight="0.4939577" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4411415" sideWeight="0.48918918" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.252111" sideWeight="0.48702702" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26159334" sideWeight="0.48702702" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1881,11 +1793,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936978" sideWeight="0.52162164" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33658537" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6550926" sideWeight="0.49783784" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3256936" sideWeight="0.4783784" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14716525" sideWeight="0.4783784" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4411415" sideWeight="0.48918918" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26091704" sideWeight="0.5580645" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27535442" sideWeight="0.5322581" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26091704" sideWeight="0.44193548" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27535442" sideWeight="0.46774194" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5243056" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969433" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3388823" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1927,7 +1839,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="Detail report can reload now.   Code cleanup - smaller functions, more files, to make this easier to follow." />
     <MESSAGE value="Menu tools working better on small screens," />
     <MESSAGE value="Added charts to represent data from the detailed reports." />
     <MESSAGE value="Fixed an initialization problem during refresh, to make sure google charts is initialized." />
@@ -1952,7 +1863,8 @@
     <MESSAGE value="Fixed chart labels." />
     <MESSAGE value="Split the &quot;demand&quot; data into two columns, by year.  Hide legend buttons for values that are not available in the current data sets (eg budget is one year, demand is two).  Make the graph colour consistent regardless of number of values available to graph." />
     <MESSAGE value="Fixed all graph labels, titles, axis labels, units.  Added sum/max in legend for the second row items.  Formatted the buttons to appear up or down.  Added help." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed all graph labels, titles, axis labels, units.  Added sum/max in legend for the second row items.  Formatted the buttons to appear up or down.  Added help." />
+    <MESSAGE value="Added help button for Usage Legend.  Fixed the $scope.legend for the graph on My Accounts." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added help button for Usage Legend.  Fixed the $scope.legend for the graph on My Accounts." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -2020,39 +1932,30 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/myAccountsController.js</url>
           <line>44</line>
-          <properties />
           <option name="timeStamp" value="474" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app/myAccountsController.js</url>
           <line>5</line>
-          <properties />
           <option name="timeStamp" value="475" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/powerApp.min.js</url>
           <line>1299</line>
-          <properties />
           <option name="timeStamp" value="476" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/powerApp.min.js</url>
-          <line>1302</line>
-          <properties />
+          <line>1310</line>
           <option name="timeStamp" value="477" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="480" />
+      <option name="time" value="486" />
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="JavascriptDebugType">
-        <watch expression="$scope" />
-        <watch expression="theurl" />
-      </configuration>
-    </watches-manager>
+    <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/myaccount.html" />
@@ -2163,13 +2066,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/angular-drag-and-drop-lists.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="24" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/angular-drag-and-drop-lists.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -2229,38 +2125,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/mySettingsController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/mySettings.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="129" column="30" selection-start-line="129" selection-start-column="30" selection-end-line="129" selection-end-column="30" />
-          <folding>
-            <element signature="e#4913#4919#0" expanded="true" />
-            <element signature="e#4919#4925#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/partials/accountmenu.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/powerApp.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="575" column="34" selection-start-line="575" selection-start-column="34" selection-end-line="575" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2269,13 +2137,13 @@
         <state relative-caret-position="25">
           <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
           <folding>
-            <element signature="e#1102#1108#1" expanded="true" />
-            <element signature="e#1404#1410#1" expanded="true" />
-            <element signature="n#style#0;n#svg#0;n#button#0;n#div#0;n#div#0;n#div#5;n#div#3;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-            <element signature="e#2872#2878#0" expanded="true" />
-            <element signature="n#style#0;n#svg#0;n#button#0;n#div#0;n#div#0;n#div#7;n#div#3;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="true" />
-            <element signature="e#4437#4443#0" expanded="true" />
-            <element signature="e#4677#4683#0" expanded="true" />
+            <element signature="e#1102#1108#1" expanded="false" />
+            <element signature="e#1404#1410#1" expanded="false" />
+            <element signature="n#style#0;n#svg#0;n#button#0;n#div#0;n#div#0;n#div#5;n#div#3;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="false" />
+            <element signature="e#2872#2878#0" expanded="false" />
+            <element signature="n#style#0;n#svg#0;n#button#0;n#div#0;n#div#0;n#div#7;n#div#3;n#div#0;n#div#1;n#div#1;n#div#2;n#!!top" expanded="false" />
+            <element signature="e#4437#4443#0" expanded="false" />
+            <element signature="e#4677#4683#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2284,7 +2152,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2292,14 +2159,45 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/GraphData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/myUsageController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="80" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/myAccountsController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/powerApp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="538" column="22" selection-start-line="538" selection-start-column="22" selection-end-line="538" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/angular.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="9735" column="21" selection-start-line="9735" selection-start-column="21" selection-end-line="9735" selection-end-column="21" />
+        <state relative-caret-position="513">
+          <caret line="9736" column="17" selection-start-line="9736" selection-start-column="17" selection-end-line="9736" selection-end-column="17" />
           <folding>
             <marker date="1470695666790" expanded="true" signature="26336:26862" ph="..." />
             <marker date="1470695666790" expanded="true" signature="26379:26768" ph="..." />
@@ -3113,36 +3011,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/GraphData.js">
+    <entry file="file://$PROJECT_DIR$/lib/angular-drag-and-drop-lists.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="25">
+          <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/myUsageController.js">
+    <entry file="file://$PROJECT_DIR$/app/mySettingsController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="80" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/myAccountsController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+        <state relative-caret-position="337">
+          <caret line="46" column="86" selection-start-line="46" selection-start-column="86" selection-end-line="46" selection-end-column="86" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/powerApp.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="1316" column="40" selection-start-line="1316" selection-start-column="40" selection-end-line="1316" selection-end-column="40" />
+        <state relative-caret-position="361">
+          <caret line="1429" column="13" selection-start-line="1429" selection-start-column="13" selection-end-line="1429" selection-end-column="13" />
           <folding>
-            <marker date="1474314168889" expanded="true" signature="26719:26805" ph="..." />
+            <marker date="1474392031351" expanded="true" signature="26719:26805" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/mySettings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="125" column="61" selection-start-line="125" selection-start-column="61" selection-end-line="125" selection-end-column="61" />
+          <folding>
+            <element signature="e#5220#5226#0" expanded="true" />
+            <element signature="e#5226#5232#0" expanded="true" />
+            <marker date="1474395028534" expanded="false" signature="6963:6978" ph="..." />
           </folding>
         </state>
       </provider>

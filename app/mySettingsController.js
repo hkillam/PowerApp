@@ -44,7 +44,27 @@ define([], function (app) {
                 createDropzone($scope.models.sourcezones.src, $scope.groupings[i].list);
             }
         }
+        pairCurrentToSource($scope.models.sourcezones.src, $scope.models.dropzones.A);
     }
+
+    // match every meter in the current drop zone to a meter in the source.
+    function pairCurrentToSource($src, $group) {
+        for (var i in $group) {
+            var item = $group[i];
+            if (item.type === "meter") {
+                for (var j in $src) {
+                    if ($src[j].id == item.id && $src[j].type === item.type)
+                        $src[j].child = item;
+                }
+
+            }
+            if (item.type === "group") {
+                pairCurrentToSource($src, item.columns[0]);
+            }
+        }
+    }
+
+
 
     function createDropzone(dz, grouping) {
         var currlevel = -1;

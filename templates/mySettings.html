@@ -20,7 +20,7 @@
                     dnd-draggable="meter"
                     dnd-effect-allowed="move"
                     dnd-moved="list.splice($index, 1)"
-                    dnd-selected="models.selected = meter"
+                    dnd-selected="models.selected = (models.selected === meter ? null : meter)"
                     ng-class="{selected: models.selected === meter}"
                     ng-include="meter.type + '.html'">
                 </li>
@@ -31,7 +31,8 @@
                 <li ng-repeat="meter in list"
                     dnd-draggable="meter"
                     dnd-effect-allowed="copy"
-                    ng-class="{selected: models.selected === meter}"
+                    dnd-selected="models.selected = (models.selected === meter.child ? null : meter.child)"
+                    ng-class="{selected: models.selected.id === meter.child.id}"
                     ng-include="meter.type + '.html'">
                 </li>
             </ul>
@@ -53,23 +54,33 @@
 
         <!-- Template for a normal list item -->
         <script type="text/ng-template" id="meter.html">
-            <div class="item {{meter.services}}"> {{meter.name}}
-                <sm>({{meter.id}})</sm>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="item {{meter.services}}"><h3> {{meter.name}}</h3></div>
+                </div>
+                <div class="col-xs-4">
+                    <sm>({{meter.id}})</sm>
+                </div>
             </div>
-            <div class="meterdetails">
-                <div class="col-xs-4 col-md-2">
-                    <label for="metername">Name:</label></div>
-                <div class="col-xs-8 col-md-4"><input type="text" ng-model="meter.name" name="metername"></div>
-                <div class="col-xs-4 col-md-2"><label for="budget">Annual Budget:</label></div>
-                <div class="col-xs-8 col-md-4"><input type="text" ng-model="meter.annualBudget" name="budget"></div>
-                <br>Available info: {{meter}}
+
+            <div class="meterdetails row">
+                <div class="col-xs-12"><label for="metername">Name:</label><input type="text" ng-model="meter.name"
+                                                                                  id="metername" name="metername"></div>
+                <div class="col-xs-12"><label for="budget">Annual Budget:</label><input type="text"
+                                                                                        ng-model="meter.annualBudget"
+                                                                                        id="budget" name="budget"></div>
+                <div class="col-xs-12"><label for="squarefootage">Square Footage:</label><input type="text"
+                                                                                                ng-model="meter.squareFootage"
+                                                                                                id="squarefootage"
+                                                                                                name="squarefootage">
+                </div>
+                <br>
             </div>
         </script>
 
         <!-- Template for a normal list item in the source column-->
         <script type="text/ng-template" id="metersrc.html">
-            <div class="item {{meter.services}}"> {{meter.id}}</div>
-            <div class="meterdetails">Name: , addess: , etc.</div>
+            <div class="item {{meter.services}}"> {{meter.id}} ({{meter.child.name}})</div>
         </script>
 
         <!-- Main area with dropzones and source code -->
@@ -78,7 +89,7 @@
                 <div ng-repeat="(zone, list) in models.dropzones" class="col-md-12">
                     <div class="dropzone box box-green">
                         <!-- The dropzone also uses the list template -->
-                        <h3>{{selectedGrouping.name}}</h3>
+                        <h2>{{selectedGrouping.name}}</h2>
                         <div ng-include="'list.html'"></div>
                     </div>
                 </div>
@@ -123,6 +134,8 @@
                                     <li ng-repeat="meter in list"
                                         dnd-draggable="meter"
                                         dnd-effect-allowed="copy"
+                                        dnd-selected="models.selected = (models.selected === meter.child ? null : meter.child)"
+                                        ng-class="{selected: models.selected === meter.child}"
                                         ng-include="meter.type + 'src.html'">
                                     </li>
                                 </ul>
@@ -134,11 +147,11 @@
 
                 </div>
             </div>
-            <div ng-if="models.selected" class="box box-grey box-padding">
-                <h3>Selected</h3>
-                <strong>Type: </strong> {{models.selected.type}}<br>
-                <input type="text" ng-model="models.selected.id" class="form-control" style="margin-top: 5px"/>
-            </div>
+            <!--           <div ng-if="models.selected" class="box box-grey box-padding">
+                           <h3>Selected</h3>
+                           <strong>Type: </strong> {{models.selected.type}}<br>
+                           <input type="text" ng-model="models.selected.id" class="form-control" style="margin-top: 5px"/>
+                       </div> -->
 
 
 
